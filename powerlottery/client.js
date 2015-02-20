@@ -1,25 +1,27 @@
 /* CLIENT SIDE CODE*/
 if (Meteor.isClient) {
-  Template.timer.events({
-    'click button': function() {
-      Session.set("tt",22)
-      console.log('start timer');
-
-    }
-
-});
 
 
-Template.timer.helpers({
-  tt : function() {
-    return Session.get("tt");
+  /* Templates */
+  function onDeviceReady() {
+    // Now safe to use device APIs
+   console.log("deviceready!!!");
+ }
+
+Template.offerDetails.helpers({
+  noTokens: function (tokens_to_be_awarded) {
+    return tokens_to_be_awarded
   }
-
 });
 
-
-  // Page will change to say "We've always been at war with Eurasia"
-Accounts.ui.config({
-  passwordSignupFields: "USERNAME_ONLY"
+Template.offerDetails.helpers({
+  timeLeft: function () {
+    return counter.get();
+    }
 });
+
+setInterval(function (interval) {
+  counter.set(counter.get() + 1);
+  }, interval);
+
 }

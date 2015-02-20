@@ -9,3 +9,5 @@ autopublish
 insecure
 accounts-ui
 accounts-password
+blaze
+reactive-var

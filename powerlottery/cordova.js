@@ -17,18 +17,42 @@ if (Meteor.isCordova) {
  @param tokens : tokens PowerLottery is offering if request is completed successfully
  */
 
- function sendNotification(minutes, tokens) {
+ function sendNotificationToPhone(minutes, tokens) {
    window.plugin.notification.local.add({
      id:      1, //TODO: change this to user id
      title:   tokens +  ' Token Offer',
-     message: 'Offer expires in 10 minutes! Please turn off your AC for ' minutes + ' minutes for' + tokens + 'tokens',
+     message: 'Offer expires in 10 minutes! Please turn off your AC for ' + minutes + ' minutes for' + tokens + ' tokens',
      date:     new Date(current_time)
    });
 
-   expirationTimer();
+   offerExpire();
  }
 
  // Starts countdown from 10 minutes, retracts offer
  function offerExpire() {
  }
+
+ // updates Client's Home Screen with New Token Offer
+ function updateHomeScreenWithOffer() {
+
+
+ }
+
+
+ /* Template updating */
+ Template.timer.events({
+   'click button': function() {
+     Session.set("timeDisplay",22)
+     console.log('start timer');
+   }
+
+});
+
+
+Template.timer.helpers({
+ getTime : function() {
+   return Session.get("timeDisplay");
+ }
+});
+
 }

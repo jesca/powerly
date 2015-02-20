@@ -3,13 +3,13 @@
 </head>
 <body>
     <h1>Time</h1>
-    {{>timer}}
+    {{>timeDisplay}}
 
 </body>
 
 
+<template name="timeDisplay">
+  Thank you for participating!
+  {{noTokens}} will be added to your account in <b>{{time}}</b>
 
-<template name="timer">
-  <button> click me </button>
-  {{tt}}
 </template>
