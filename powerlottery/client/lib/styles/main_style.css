@@ -1,0 +1,49 @@
+/* CSS declarations go here */
+@font-face {
+  font-family: 'OpenSans';
+  src: url("font/OpenSans-CondLight.ttf");
+}
+body {
+  font-family: 'OpenSans';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+}
+
+.logo {
+  content:url('img/logo4.png');
+  height:50px;
+  width:130px;
+  display: block;
+   margin: 0 auto;
+}
+
+.container {
+margin-right:auto;
+margin-left:auto;
+}
+
+.main {
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+header {
+  background: #f5d07c;
+  border-bottom: 1px #a5a4aa;
+  padding: 15px 10px 10px 30px;
+  position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  margin: 0;
+  margin-bottom: 10px;
+  display: inline-block;
+  margin-right: 1em;
+}

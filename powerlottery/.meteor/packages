@@ -11,3 +11,5 @@ accounts-ui
 accounts-password
 blaze
 reactive-var
+iron:router
+jquery
