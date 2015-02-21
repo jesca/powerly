@@ -1,7 +1,6 @@
-Router.route('/', function () {
-  this.render('account');
-});
+if (Meteor.isServer) {
+  function sendOffer() {
+    
+  }
 
-Router.route('/time', function () {
-  this.render('timeDisplay');
-});
+}
