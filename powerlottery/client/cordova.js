@@ -1,5 +1,4 @@
 if (Meteor.isCordova) {
-  console.log("Printed only in mobile cordova apps");
 
   Meteor.startup(function () {
       // any cordova api needs thi
@@ -40,18 +39,18 @@ if (Meteor.isCordova) {
 
 
  /* Template updating */
- Template.timer.events({
-   'click button': function() {
-     Session.set("timeDisplay",22)
-     console.log('start timer');
+ Template.account.events({
+   'click .accept': function() {
+     console.log("acceptedOffer");
+     Meteor.Router.to('/time');
    }
 
 });
 
 
-Template.timer.helpers({
- getTime : function() {
-   return Session.get("timeDisplay");
+Template.timeDisplay.helpers({
+ timeLeft : function() {
+   return Session.get("timeLeft");
  }
 });
 

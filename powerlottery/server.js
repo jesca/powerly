@@ -1,7 +1,7 @@
 Router.route('/', function () {
-  this.render('timeDisplay');
+  this.render('account');
 });
 
-Router.route('/account', function () {
-  this.render('account');
+Router.route('/time', function () {
+  this.render('timeDisplay');
 });

@@ -1,27 +1,53 @@
 <head>
+    <title></title>
 </head>
 
 <body>
-  <container>
-    <header class = "container">
-      <img class = "logo">
-      
-    </header>
-  </container>
+    <nav class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
 
+        <div class="navbar-center navbar-brand">
+            <div class="logo">
+            </div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+        <div class="dropdown">
+            <button class="btn dropdown-toggle fa fa-bars menu-icon"
+            data-toggle="dropdown" id="dropdownMenu1" type="button"></button>
+
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#" tabindex="-1">Settings</a>
+                </li>
+
+                <li>
+                    <a href="#" tabindex="-1">Leaderboard</a>
+                </li>
+
+                <li>
+                    <a href="#" tabindex="-1">Log out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </body>
 
-
-<template name="timeDisplay">
-  <div class = 'container main'>
-
+<template name = "successScreen">  <div class = 'container main'>
   Thank you for participating!
   {{noTokens}} will be added to your account in <b>{{time}}</b>
-</div>
 
+</div></template>
+
+<template name="timeDisplay">
+  <div class = "container main">
+    You have: <br>
+    {{timeLeft}}
+    </div>
 </template>
 
 <template name="account">
-  <div class = 'container main'>
-
-adifoad</div></template>
+  <div class = "container main">
+    <button class ="accept">Accept</button>
+  </div>
+   </template>

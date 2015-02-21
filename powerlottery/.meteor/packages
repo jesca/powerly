@@ -13,3 +13,6 @@ blaze
 reactive-var
 iron:router
 jquery
+less
+fortawesome:fontawesome
+mizzao:bootstrap-3
