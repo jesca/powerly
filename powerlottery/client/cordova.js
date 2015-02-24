@@ -39,7 +39,7 @@ if (Meteor.isCordova) {
 
 
  /* Template updating */
- Template.account.events({
+ Template.main.events({
    'click .accept': function() {
      console.log("acceptedOffer");
      Meteor.Router.to('/time');

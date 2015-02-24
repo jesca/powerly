@@ -1,5 +1,5 @@
 Router.route('/', function () {
-  this.render('account');
+  this.render('main');
 });
 
 Router.route('/time', function () {

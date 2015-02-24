@@ -4,22 +4,38 @@
   src: url("font/OpenSans-CondLight.ttf");
 }
 @icon-font-path: "font/"
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
 body {
-  font-family: 'OpenSans';
+  font-family: Open Sans;
+  background-attachment: fixed;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 100%;
   padding: 0;
   margin: 0;
-  font-size: 20px;
-}
 
+  font-size: 14px;
+}
 .logo {
   content:url('img/logo4.png');
   height:33px;
   width:85px;
+  display: block;
+   margin: 0 auto;
 }
 
 .container {
@@ -27,9 +43,18 @@ margin-right:auto;
 margin-left:auto;
 }
 
-.main {
-  margin: 50px 50px 50px 50px;
+
+
+.mobile-wrapper{
+  max-width: 600px;
+  margin: 0 auto;
   min-height: 100%;
+  background-image:url("img/login.png");
+  background-size :100%;
+}
+
+.main {
+  padding: 200px 50px 50px 50px;
 }
 
 header {
@@ -39,13 +64,27 @@ header {
   position: relative;
 }
 
+
 /* Navbar */
 .navbar {
-  background:#f5d07c !important;
+  border-radius: 0;
+  margin-bottom:0;
+  border:none !important;
+}
+.navbar-default {
+  background:#61b9c1 !important;
+}
+.navbar-signin {
+  background:none;
+  padding-top:30px;
 }
 
+.navbar-signin-logo {
+  margin-top:20px;
+}
 .navbar-brand {
   float: none;
+  padding: 10px 0 8px 0;
   }
 
 .navbar-center
@@ -55,9 +94,9 @@ header {
     left: 0;
     top: 0;
     text-align: center;
-    margin: auto;
-  height:100%;
 }
+
+
 
 .btn {
   background-color:transparent;
@@ -65,6 +104,15 @@ header {
   padding-left:15px;
 }
 
+
+
+/* Signed in Navbar*/
+
 .menu-icon {
   color:#ffffff;
+}
+
+
+.sign-in-screen{
+
 }
