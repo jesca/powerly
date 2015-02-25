@@ -27,6 +27,9 @@ if (Meteor.isClient) {
 
   });
 
+
+
+
  /* Template updating */
   Template.main.events({
     'click .accept': function() {
@@ -36,11 +39,35 @@ if (Meteor.isClient) {
       Meteor.call('beginTimer', new Date(), tempVal);
     },
 
+    'click #login-button': function() {
+      Session.set("clickedRegister", false);
+      Session.set("clickedLogin", true);
+    },
+
+    'click #register-button': function() {
+      Session.set("clickedLogin", false);
+      Session.set("clickedRegister", true);
+    },
+
     'click .logout': function(event){
          event.preventDefault();
-         console.log('logginout');
          Meteor.logout();
+     },
+
+     'click #settings': function(event) {
+       event.preventDefault();
+       Router.go('/settings');
      }
+ });
+
+ Template.main.helpers({
+   clickedLogin: function() {
+     return Session.get("clickedLogin");
+   },
+   clickedRegister: function() {
+     return Session.get("clickedRegister");
+   }
+
  });
 
  Template.loginForm.events({
@@ -96,27 +123,6 @@ if (Meteor.isClient) {
            }
         });
 
-Template.registerForm.events({
-    'submit #register-form' : function(e, t) {
-      e.preventDefault();
-      var email = t.find('#account-email').value
-        , password = t.find('#account-password').value;
-
-        // Trim and validate the input
-
-      Accounts.createUser({email: email, password : password}, function(err){
-          if (err) {
-            // Inform the user that account creation failed
-          } else {
-            // Success. Account has been created and the user
-            // has logged in successfully.
-          }
-
-        });
-
-      return false;
-    }
-  });
 
 Template.timeDisplay.helpers({
   minutes : function() {
