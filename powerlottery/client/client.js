@@ -22,14 +22,8 @@ if (Meteor.isClient) {
         }
       timer();
 
-    },
-
-
+    }
   });
-
-
-
-
 
  /* Template updating */
   Template.main.events({
@@ -68,7 +62,6 @@ if (Meteor.isClient) {
    clickedRegister: function() {
      return Session.get("clickedRegister");
    }
-
  });
 
  Template.registerForm.helpers( {
@@ -76,10 +69,13 @@ if (Meteor.isClient) {
      return Session.get("response_msg");
    }
  });
-
+ Template.loginForm.helpers( {
+   response_msg: function() {
+     return Session.get("response_msg");
+   }
+ });
 
  Template.loginForm.events({
-
    'submit #login-form' : function(e, t){
      e.preventDefault();
      // retrieve the input field values
@@ -92,15 +88,11 @@ if (Meteor.isClient) {
        // Meteor.loginWithPassword() function.
        Meteor.loginWithPassword(email, password, function(err){
        if (err) {
-
+         Session.set('response_msg', "Invalid credentials!");
        }
-         // The user might not have been found, or their passwword
-         // could be incorrect. Inform the user that their
-         // login attempt has failed.
        else {
-
+         //user has been logged in
        }
-         // The user has been logged in.
      });
         return false;
      }
@@ -110,7 +102,6 @@ if (Meteor.isClient) {
  Template.registerForm.events({
    'submit #register-form' : function(e, t) {
      e.preventDefault();
-
      // Trim and validate the input
      var trimInput = function(val) {
        return val.replace(/^\s*|\s*$/g, "");
@@ -118,39 +109,43 @@ if (Meteor.isClient) {
      var email = trimInput(t.find('#account-email').value),
      password = t.find('#account-password').value,
      d_id = "" + t.find('#device-id').value + "";
+
      // Check if device is in the device database
-     // TODO: Currently in progress
-     lookInDevices = devices.find({_id: d_id}).count();
-     test = devices.find({_id: d_id});
+     var lookInDevices = devices.find({_id: d_id}).count();
+     // Device in database. Valid device. Now check if it's already been claimed
+
      if (lookInDevices > 0) {
-       console.log("device already in database");
-      name = devices.find(
+       // get the current device info
+       var register_info = devices.find(
          {_id:d_id},
-           { name: 1, _id:0}
-       );
-     }
-     else if (lookInDevices == 0) {
-       console.log("not a valid device")
-       Session.set('response_msg', "Sorry, this device doesn't exist!");
-     }
-     else {
-       console.log(lookInDevices);
-     Accounts.createUser({email: email, password : password, device_id: d_id, datejoined: new Date(), offers_completed: 0, total_tokens:0, current_offer_endtime: 0}, function(err){
-       if (err) {
-         // Inform the user that account creation failed
-         } else {
-           console.log("successfully added user")
-           devices.update({_id: d_id}, {$set: {owner:email}});
-           // Success. Account has been created and the user
-           // has logged in successfully.
+         { email: 1, status:1}).fetch();
+         if (register_info[0].status == 0) {
+           // unregistered valid device, continue
+           Accounts.createUser({email: email, password : password, device_id: d_id,
+              datejoined: new Date(), offers_completed: 0, total_tokens:0, current_offer_endtime: 0}, function(err){
+             if (err) {
+               Session.set('response_msg', "Account creation failed");
+               // Inform the user that account creation failed
+               } else {
+                 console.log("successfully added user")
+                 // TODO: update with status of ac
+                 devices.update({_id: d_id}, {$set: {status:1}});
+                 }
+                 });
+             }
+             else {
+               Session.set('response_msg', "This device has already been registered!");
+               }
+             }
+
+             else if (lookInDevices == 0) {
+               Session.set('response_msg', "Sorry, this device doesn't exist!");
+             }
            }
 
-           });
-           return false;
-           }
-         }
+     });
 
-        });
+
 
 
 

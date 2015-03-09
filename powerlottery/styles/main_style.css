@@ -150,6 +150,9 @@ header {
   margin-top:20px;
 }
 
+.error {
+  color:#e78c8c;
+}
 
 /* Signed in Navbar*/
 
