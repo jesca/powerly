@@ -56,8 +56,9 @@ margin-left:auto;
   background-size :100%;
 }
 
-.main {
-  padding: 350px 50px 50px 50px;
+.register-wrapper {
+  margin-top:250px;
+  padding: 0px 50px 50px 50px;
   width:350px;
 }
 
@@ -106,12 +107,13 @@ header {
 }
 
 
+
 .btn-login {
   background-color:#3cb5bd;
   color:#ffffff;
   font-size:18px;
   border-radius:0px !important;
-  width:250px;
+  width:150px;;
   display:block;
   margin-left:auto;
   position:relative;
@@ -129,7 +131,7 @@ header {
   color:#ffffff;
   border:2px solid !important;
   font-size:18px;
-  width:250px;
+  width:150px;
   border-radius:0px !important;
   line-height:1.5em;
   display:block;
@@ -141,6 +143,10 @@ header {
 
 
 .signin-form {
+  width:150px;
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
   margin-top:20px;
 }
 
@@ -150,9 +156,4 @@ header {
 .menu-icon {
   padding-top:15px;
   color:#ffffff;
-}
-
-
-.sign-in-screen{
-
 }

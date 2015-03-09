@@ -30,6 +30,7 @@ if (Meteor.isClient) {
 
 
 
+
  /* Template updating */
   Template.main.events({
     'click .accept': function() {
@@ -70,6 +71,13 @@ if (Meteor.isClient) {
 
  });
 
+ Template.registerForm.helpers( {
+   response_msg: function() {
+     return Session.get("response_msg");
+   }
+ });
+
+
  Template.loginForm.events({
 
    'submit #login-form' : function(e, t){
@@ -109,11 +117,30 @@ if (Meteor.isClient) {
      }
      var email = trimInput(t.find('#account-email').value),
      password = t.find('#account-password').value,
-     device_id = t.find('#device_id'.value);
-     Accounts.createUser({email: email, password : password, device_id: device_id, datejoined: new Date(), offers_completed: 0, total_tokens:0, current_offer_endtime: 0}, function(err){
+     d_id = "" + t.find('#device-id').value + "";
+     // Check if device is in the device database
+     // TODO: Currently in progress
+     lookInDevices = devices.find({_id: d_id}).count();
+     test = devices.find({_id: d_id});
+     if (lookInDevices > 0) {
+       console.log("device already in database");
+      name = devices.find(
+         {_id:d_id},
+           { name: 1, _id:0}
+       );
+     }
+     else if (lookInDevices == 0) {
+       console.log("not a valid device")
+       Session.set('response_msg', "Sorry, this device doesn't exist!");
+     }
+     else {
+       console.log(lookInDevices);
+     Accounts.createUser({email: email, password : password, device_id: d_id, datejoined: new Date(), offers_completed: 0, total_tokens:0, current_offer_endtime: 0}, function(err){
        if (err) {
          // Inform the user that account creation failed
          } else {
+           console.log("successfully added user")
+           devices.update({_id: d_id}, {$set: {owner:email}});
            // Success. Account has been created and the user
            // has logged in successfully.
            }
@@ -121,7 +148,10 @@ if (Meteor.isClient) {
            });
            return false;
            }
+         }
+
         });
+
 
 
 Template.timeDisplay.helpers({
