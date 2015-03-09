@@ -1,27 +1,27 @@
 <template name = "accountSettings">
   <nav class="navbar navbar-default">
-      <div class="navbar-center navbar-brand">
-          <div class="logo">
-          </div>
+    <div class="navbar-center navbar-brand">
+      <div class="logo">
       </div>
+    </div>
 
-      <div class="dropdown">
-          <button class="btn dropdown-toggle fa fa-bars menu-icon"
-          data-toggle="dropdown" id="dropdownMenu1" type="button"></button>
+    <div class="dropdown">
+      <button class="btn dropdown-toggle fa fa-bars menu-icon"
+      data-toggle="dropdown" id="dropdownMenu1" type="button"></button>
 
-          <ul class="dropdown-menu">
-              <li>
-                  <a href="#" tabindex="-1" id = "settings">Settings</a>
-              </li>
-              <li>
-                  <a href="#" tabindex="-1" class = 'logout'>Log out</a>
-              </li>
-          </ul>
-      </div>
-      </nav>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#" tabindex="-1" id = "settings">Settings</a>
+        </li>
+        <li>
+          <a href="#" tabindex="-1" class = 'logout'>Log out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-      <div class = "container main">
-        Welcome!
-        {{currentUser.user}}
-      </div>
-      </template>
+  <div class = "container main">
+    Welcome!
+    {{currentUser.user}}
+  </div>
+</template>

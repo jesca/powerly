@@ -5,7 +5,7 @@ if (Meteor.isClient) {
     /* If your app is asleep, there's no need for it to continue timer processing or
     update a screen. In the app "pause" event, kill your timer and stop updating the screen.
     In the app "resume" event, immediately update the screen again, and restart your timer.*/
-    'beginTimer': function(beginDate, sessionMinutes){
+    'beginTimer': function(beginDate, sessionMinutes) {
       s = sessionMinutes
       Router.go('/time');
       console.log("started timer for " + s);
@@ -19,13 +19,12 @@ if (Meteor.isClient) {
         minutesLeft.set(timeleft.getMinutes());
         secondsLeft.set(timeleft.getSeconds());
         var cont = setInterval(function(){ timer() }, 1000);
-        }
+      }
       timer();
-
     }
   });
 
- /* Template updating */
+  /* Template updating */
   Template.main.events({
     'click .accept': function() {
       console.log("acceptedOffer")
@@ -45,13 +44,18 @@ if (Meteor.isClient) {
     },
 
     'click .logout': function(event){
-         event.preventDefault();
-         Meteor.logout();
+       event.preventDefault();
+       Meteor.logout();
      },
 
      'click #settings': function(event) {
        event.preventDefault();
        Router.go('/settings');
+     },
+
+     'click .accept': function() {
+       console.log("acceptedOffer");
+       Meteor.Router.to('/time');
      }
  });
 
@@ -64,18 +68,13 @@ if (Meteor.isClient) {
    }
  });
 
- Template.registerForm.helpers( {
+  Template.registerForm.helpers( {
    response_msg: function() {
      return Session.get("response_msg");
    }
- });
- Template.loginForm.helpers( {
-   response_msg: function() {
-     return Session.get("response_msg");
-   }
- });
+  });
 
- Template.loginForm.events({
+  Template.loginForm.events({
    'submit #login-form' : function(e, t){
      e.preventDefault();
      // retrieve the input field values
@@ -96,10 +95,9 @@ if (Meteor.isClient) {
      });
         return false;
      }
- });
+  });
 
-
- Template.registerForm.events({
+  Template.registerForm.events({
    'submit #register-form' : function(e, t) {
      e.preventDefault();
      // Trim and validate the input
@@ -145,19 +143,12 @@ if (Meteor.isClient) {
 
      });
 
-
-
-
-
 Template.timeDisplay.helpers({
   minutes : function() {
     return minutesLeft.get();
   },
-
   seconds : function() {
     return secondsLeft.get();
   }
-
-});
-
+  });
 }

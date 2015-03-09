@@ -84,18 +84,18 @@
         <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" /></div>
         <label class = "error"> {{response_msg}}</label>
    </form>
- </template>
+</template>
 
- <template name = "successScreen">
-   <div class = 'container'>
-   Thank you for participating!
-   {{noTokens}} will be added to your account in <b>{{time}}</b>
+<template name = "successScreen">
+ <div class = 'container'>
+ Thank you for participating!
+ {{noTokens}} will be added to your account in <b>{{time}}</b>
+ </div>
+</template>
+
+<template name="timeDisplay">
+ <div class = "container">
+   You have: <br>
+   {{minutes}} : {{seconds}}
    </div>
- </template>
-
- <template name="timeDisplay">
-   <div class = "container">
-     You have: <br>
-     {{minutes}} : {{seconds}}
-     </div>
- </template>
+</template>
