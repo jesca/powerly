@@ -19,7 +19,7 @@ email@1.0.5
 fastclick@1.0.2
 follower-livedata@1.0.3
 fortawesome:fontawesome@4.2.0_2
-fourseven:scss@2.0.1_2
+fourseven:scss@2.0.0_1
 geojson-utils@1.0.2
 html-tools@1.0.3
 htmljs@1.0.3
@@ -43,7 +43,7 @@ localstorage@1.0.2
 logging@1.0.6
 meteor@1.1.4
 meteor-platform@1.2.1
-meteoric:ionic@0.1.17
+meteoric:ionic@0.1.16
 meteoric:ionic-sass@0.1.9
 meteoric:ionicons-sass@0.1.6
 minifiers@1.1.3

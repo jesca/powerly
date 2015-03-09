@@ -1,57 +1,46 @@
+/*
+The interface for interacting with phone features
+*/
 if (Meteor.isCordova) {
 
   Meteor.startup(function () {
-      // any cordova api needs thi
-      document.addEventListener("deviceready", onDeviceReady, false);
-      var current_time = new Date().getTime();
-      });
+    document.addEventListener("deviceready", onDeviceReady, false);
+  });
 
   function onDeviceReady() {
-    // Now safe to use device APIs
-   console.log("deviceready!!!");
- }
+    console.log("deviceready!!!");
+  }
 
- /* Send a phone notification to user
- @param minutes : request for how many minutes to turn off AC
- @param tokens : tokens PowerLottery is offering if request is completed successfully
- */
+  /* 
+   * Send an offer notification to the phone
+   *
+  @param minutes : how many minutes to turn off AC
+  @param tokens  : number of rewarded tokens if request is completed successfully
+  */
+  function sendOfferNotification(user_id, minutes, tokens) {
+    var title = tokens + ' Token Offer';
+    var message = 'Offer expires in 10 minutes! Please turn off your AC for ' + minutes + ' minutes for' + tokens + ' tokens';
+    sendNotification(user_id, title, message);
+    offerExpire();
+  }
+  
+  /*
+   * Sends a push notification to the phone
+  */
+  function sendNotification(user_id, title, message) {
+    window.plugin.notification.local.add({
+      id:       user_id,
+      title:    title,
+      message:  msg,
+      date:     new Date().getTime()
+    });
+  }
 
- function sendNotificationToPhone(minutes, tokens) {
-   window.plugin.notification.local.add({
-     id:      1, //TODO: change this to user id
-     title:   tokens +  ' Token Offer',
-     message: 'Offer expires in 10 minutes! Please turn off your AC for ' + minutes + ' minutes for' + tokens + ' tokens',
-     date:     new Date(current_time)
-   });
+  // Starts countdown from 10 minutes, retracts offer
+  function offerExpire() {
+  }
 
-   offerExpire();
- }
-
- // Starts countdown from 10 minutes, retracts offer
- function offerExpire() {
- }
-
- // updates Client's Home Screen with New Token Offer
- function updateHomeScreenWithOffer() {
-
-
- }
-
-
- /* Template updating */
- Template.main.events({
-   'click .accept': function() {
-     console.log("acceptedOffer");
-     Meteor.Router.to('/time');
-   }
-
-});
-
-
-Template.timeDisplay.helpers({
- timeLeft : function() {
-   return Session.get("timeLeft");
- }
-});
-
+  // updates Client's Home Screen with New Token Offer
+  function updateHomeScreenWithOffer() {
+  }
 }
