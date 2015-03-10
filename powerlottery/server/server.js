@@ -6,8 +6,9 @@
  * heavy loads by the way, but should be fine for our purposes.
  * 
  */
-var windowSize = 5000;
+var windowSize = 10000;
 var windowPowerTotal = 0;
+var maxPowerThreshold = 1000;
 var Vrms = 120;
 var minheap = new Heap();
 
@@ -41,6 +42,8 @@ function processDeviceUpdate(deviceId, timestamp, status, power) {
   }
   windowPowerTotal += power * Vrms;
   minheap.push({time: timestamp, value: power * Vrms});
+  
+  updateTotalPowerUsage();
 }
 
 function updateTotalPowerUsage() {
@@ -53,6 +56,10 @@ function updateTotalPowerUsage() {
     windowPowerTotal -= timeVal.value;
     minheap.pop();
     timeVal = minheap.peek();
+  }
+  
+  if (windowPowerTotal > maxPowerThreshold) {
+    // send offer to users
   }
 }
 
