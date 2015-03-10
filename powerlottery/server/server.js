@@ -1,6 +1,10 @@
 /*
  * This algorithm assumes devices are in the same timezone 
  * and comply with a Vrms of 120
+ * 
+ * This implementation will probably fail under extremely 
+ * heavy loads by the way, but should be fine for our purposes.
+ * 
  */
 var windowSize = 5000;
 var windowPowerTotal = 0;
@@ -43,7 +47,6 @@ function updateTotalPowerUsage() {
   if (minheap.empty()) {
     return; 
   }
-  
   var timeVal = minheap.peek();
   
   while (timeVal.time < new Date().getTime() - windowSize) {
@@ -53,4 +56,4 @@ function updateTotalPowerUsage() {
   }
 }
 
-setInterval(updateTotalPowerUsage, 5000);
+setInterval(updateTotalPowerUsage, windowSize);
