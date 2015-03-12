@@ -1,0 +1,45 @@
+<template name = "upper">
+    <div class="fullscreen background">
+    </div>
+    <div class = "login_register_form">
+      <img src = "img/logo.png">
+      <div class="row">
+        <div class="col col-33 col-offset-33">
+          {{#if clickedLogin}}
+          {{> loginForm}}
+          {{/if}}
+          {{#if clickedRegister}}
+          {{> registerForm}}
+          {{/if}}
+          </div>
+      </div>
+    </div>
+
+    <div class="button-bar custom_footer">
+      <button class="button button-light" id="login-button" type=
+      "button">LOGIN</button> <button class="button button-stable" id=
+      "register-button" type="button">REGISTER</button>
+    </div>
+</template>
+
+<template name = "registerForm">
+  <form id="register-form" action="action">
+  <div>
+   <input type="email" id="account-email" placeholder="Email" /><br>
+   <input type="password" id="account-password" placeholder="Password"/><br>
+   <input type="device-id" id="device-id" placeholder="Device ID" /><br>
+   <input type="submit" id="create-account" value="Create an Account" /><br>
+   <label class = "error"> {{response_msg}}</label>
+ </div>
+</form>
+</template>
+
+<template name = "loginForm">
+  <form id="login-form" action="action">
+      <div class = "input-group">
+        <input type="email" id="login-email" placeholder="Email"/><br>
+        <input type="password" id="login-password" placeholder="Password"/><br>
+        <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" /></div>
+        <label class = "error"> {{response_msg}}</label>
+   </form>
+</template>

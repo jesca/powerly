@@ -1,147 +1,33 @@
-<template name="main">
+<head>
+  <title>Powerly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
+</head>
+<body>
+</body>
 
+<template name="main">
+  {{#ionBody}}
   <!-- Signed in -->
     {{#if currentUser}}
-    <nav class="navbar navbar-default">
-        <div class="navbar-center navbar-brand">
-            <div class="logo">
-            </div>
-        </div>
+    {{> ionNavBar class = "navbar-default"}}
+    {{#contentFor "headerTitle"}}
+    <div class="logo"></div>
+    {{/contentFor}}
+    {{#contentFor "headerButtonRight"}}
+    <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+    {{/contentFor}}
 
-        <div class="dropdown">
-            <button class="btn dropdown-toggle fa fa-bars menu-icon"
-            data-toggle="dropdown" id="dropdownMenu1" type="button"></button>
-
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="#" tabindex="-1" id = "settings">Settings</a>
-                </li>
-
-                <li>
-                    <a href="#" tabindex="-1" class = 'logout'>Log out</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- End Navbar -->
-    <div class = "container">
-      <div class = "offerScreen">
-        hi
-      </div>
-      <button class ="accept">Accept</button>
+    <div class = "row upper">
+    Hello {{name}}
     </div>
+      <div class = "offerScreen">
+        <br><br>
+      </div>
+      <button class ="accept">Accept</button>  {{cur_user}}
     <!-- Not signed in user -->
     {{else}}
-    <div class = "mobile-wrapper">
-    <nav class="navbar navbar-signin">
-        <div class="navbar-center navbar-brand navbar-signin-logo">
-            <div class="logo">
-            </div>
-        </div>
-      </nav>
-
-      <div class = "container register-wrapper">
-        <div class = "row">
-          <button type="button" id = "login-button" class="btn btn-login" data-page='login'>LOGIN</button>
-<br>
-          <button type="button" id = "register-button" class="btn btn-register" data-page='register'>REGISTER</button>
-          <div class = "signin-form">
-            {{#if clickedLogin}}
-            {{> loginForm}}
-            {{/if}}
-            {{#if clickedRegister}}
-            {{> registerForm}}
-            {{/if}}
-          </div>
-      </div>
-
-        </div>
-      </div>
+    {{>login_register_page}}
     {{/if}}
-</template>
-<template name="layout">
-  {{#ionBody}}
-
-    {{#ionSideMenuContainer}}
-
-      {{#ionSideMenus}}
-
-        {{#ionSideMenu}}
-          <div class="bar bar-header bar-dark">
-            <h1 class="title">Left Menu</h1>
-          </div>
-          <div class="content has-header">
-            <div class="list">
-              <div class="item item-icon-right" data-ion-menu-close>
-                Close Me {{> ionIcon icon="ios-arrow-right"}}
-              </div>
-            </div>
-          </div>
-        {{/ionSideMenu}}
-
-        {{#ionSideMenu side="right"}}
-          <div class="bar bar-header bar-dark">
-            <h1 class="title">Right Menu</h1>
-          </div>
-          <div class="content has-header">
-            <div class="list">
-              <div class="item item-icon-left" data-ion-menu-close>
-                {{> ionIcon icon="ios-arrow-left"}} Close Me
-              </div>
-            </div>
-          </div>
-        {{/ionSideMenu}}
-
-      {{/ionSideMenus}}
-
-      {{#ionSideMenuContent}}
-
-        {{> ionNavBar class="bar-positive"}}
-
-        {{#ionNavView}}
-          {{> yield}}
-        {{/ionNavView}}
-
-      {{/ionSideMenuContent}}
-
-    {{/ionSideMenuContainer}}
-
-  {{/ionBody}}
-</template>
-
-<template name = "registerForm">
-  <form id="register-form" action="action">
-  <div>
-   <input type="email" id="account-email" placeholder="Email" /><br>
-   <input type="password" id="account-password" placeholder="Password"/><br>
-   <input type="device-id" id="device-id" placeholder="Device ID" /><br>
-   <input type="submit" id="create-account" value="Create an Account" /><br>
-   <label class = "error"> {{response_msg}}</label>
- </div>
-</form>
-</template>
-
-<template name = "loginForm">
-  <form id="login-form" action="action">
-      <div class = "input-group">
-        <input type="email" id="login-email" placeholder="Email"/><br>
-        <input type="password" id="login-password" placeholder="Password"/><br>
-        <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" /></div>
-        <label class = "error"> {{response_msg}}</label>
-   </form>
-</template>
-
-<template name = "successScreen">
- <div class = 'container'>
- Thank you for participating!
- {{noTokens}} will be added to your account in <b>{{time}}</b>
- </div>
-</template>
-
-<template name="timeDisplay">
- <div class = "container">
-   You have: <br>
-   {{minutes}} : {{seconds}}
-   </div>
+    {{/ionBody}}
 </template>

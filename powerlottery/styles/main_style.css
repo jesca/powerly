@@ -1,3 +1,67 @@
+/* background setup */
+.background {
+    background-repeat:no-repeat;
+    /* custom background-position */
+    background-position:50% 50%;
+    /* ie8- graceful degradation */
+    background-position:50% 50%\9 !important;
+    position:fixed;
+    z-index:-1;
+}
+
+/* fullscreen setup */
+html, body {
+    /* give this to all tags from html to .fullscreen */
+    height:100%;
+
+}
+.fullscreen,
+.content-a {
+  margin-right:auto;
+  margin-left:auto;
+    max-width:600px;
+    min-height:100%;
+    min-width:100%;
+}
+.not-fullscreen,
+.not-fullscreen .content-a,
+.fullscreen.not-overflow,
+.fullscreen.not-overflow .content-a {
+    height:100%;
+    overflow:hidden;
+}
+
+.background {
+  background-color:#edbf53;
+}
+/* content centering styles */
+.content-a {
+	display:table;
+}
+.content-b {
+	display:table-cell;
+    position:relative;
+	vertical-align:middle;
+	text-align:center;
+}
+
+/* visual styles */
+body{
+    margin:0;
+    font-family:sans-serif;
+    font-size:28px;
+    line-height:100px;
+	color:#ffffff;
+    text-align:center;
+}
+section {
+	background:#9ed100;
+}
+.not-fullscreen {
+    height:50%;
+}
+
+
 /* CSS declarations go here */
 @font-face {
   font-family: 'OpenSans';
@@ -8,30 +72,6 @@
   margin: 0;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-}
-body {
-  font-family: Open Sans;
-  background-attachment: fixed;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  font-size: 14px;
-}
 .logo {
   content:url('img/logo4.png');
   height:33px;
@@ -43,42 +83,12 @@ body {
 .container {
 margin-right:auto;
 margin-left:auto;
-
 }
 
-
-
-.mobile-wrapper{
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100%;
-  background-image:url("img/login.png");
-  background-size :100%;
-}
-
-.register-wrapper {
-  margin-top:250px;
-  padding: 0px 50px 50px 50px;
-  width:350px;
-}
-
-header {
-  background: #f5d07c;
-  border-bottom: 1px #a5a4aa;
-  padding: 15px 10px 10px 30px;
-  position: relative;
-}
-
-
-/* Navbar */
-.navbar {
-  border-radius: 0;
-  margin-bottom:0;
-  border:none !important;
-}
 .navbar-default {
   background:#61b9c1 !important;
 }
+
 .navbar-signin {
   background:none;
   padding-top:30px;
@@ -87,6 +97,7 @@ header {
 .navbar-signin-logo {
   margin-top:20px;
 }
+
 .navbar-brand {
   float: none;
   padding: 10px 0 8px 0;
@@ -106,14 +117,11 @@ header {
 
 }
 
-
-
 .btn-login {
   background-color:#3cb5bd;
   color:#ffffff;
   font-size:18px;
   border-radius:0px !important;
-  width:150px;;
   display:block;
   margin-left:auto;
   position:relative;
@@ -131,7 +139,6 @@ header {
   color:#ffffff;
   border:2px solid !important;
   font-size:18px;
-  width:150px;
   border-radius:0px !important;
   line-height:1.5em;
   display:block;
@@ -140,14 +147,8 @@ header {
   margin-right:auto;
 }
 
-
-
-.signin-form {
-  width:150px;
-  display: block;
-    margin-left: auto;
-    margin-right: auto;
-  margin-top:20px;
+.upper {
+  margin-top:100px;
 }
 
 .error {
@@ -155,8 +156,19 @@ header {
 }
 
 /* Signed in Navbar*/
-
 .menu-icon {
   padding-top:15px;
   color:#ffffff;
+}
+
+.popover {
+  height:100px !important;
+}
+
+.custom_footer {
+	width:100%;
+	position:absolute;
+	bottom:0;
+	left:0;
+	background:#ee5;
 }

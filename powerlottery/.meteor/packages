@@ -14,8 +14,6 @@ reactive-var
 iron:router
 jquery
 less
-fortawesome:fontawesome
-mizzao:bootstrap-3
 accounts-base
 fourseven:scss
 meteoric:ionic-sass

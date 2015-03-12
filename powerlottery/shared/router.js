@@ -1,9 +1,9 @@
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'main'
 });
 
 Router.route('/', function () {
-  this.render('layout');
+  this.render('main');
 });
 
 Router.route('/time', function () {
