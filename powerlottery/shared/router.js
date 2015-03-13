@@ -1,15 +1,14 @@
-Router.configure({
-  layoutTemplate: 'main'
+Router.onBeforeAction(function() {
+  if (! Meteor.userId()) {
+    this.render('login');
+  } else {
+    this.render('main');
+  }
 });
 
-Router.route('/', function () {
-  this.render('main');
+Router.map(function() {
+  this.route('main', {path: '/'});
 });
-
-Router.route('/time', function () {
-  this.render('timeDisplay');
-});
-
-Router.route('/settings', function () {
-  this.render('accountSettings');
+Router.map(function() {
+  this.route('settings');
 });

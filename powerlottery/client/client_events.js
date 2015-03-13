@@ -1,4 +1,8 @@
 if (Meteor.isClient) {
+  Template.login.rendered =
+    function() {
+        Session.set("clickedLogin", true);
+    };
 
   /* Events */
   Template.main.events({
@@ -8,34 +12,34 @@ if (Meteor.isClient) {
       var tempVal = 20; // TODO:use event.target.minutes.value to get offer minutes
       Meteor.call('beginTimer', new Date(), tempVal);
     },
-    'click .logout': function(event){
-       event.preventDefault();
-       IonPopover.hide();
-       Meteor.logout();
-     },
-     'click #settings': function(event) {
-       event.preventDefault();
-     IonPopover.hide();
-
-       Router.go('/settings');
-     },
      'click .accept': function() {
        console.log("acceptedOffer");
        Meteor.Router.to('/time');
      }
  });
 
- Template.login_register_page.events({
+
+Template.main.events({
+   'click .logout': function(event){
+     console.log("clickedlogoutNAVBAR");
+      event.preventDefault();
+      IonPopover.hide();
+      Meteor.logout();
+    },
+    'click #settings': function(event) {
+      console.log("settings");
+      IonPopover.hide();
+    }
+});
+
+ Template.login.events({
    'click #login-button': function() {
      Session.set("clickedRegister", false);
      Session.set("clickedLogin", true);
-     console.log("clicked login");
    },
    'click #register-button': function() {
      Session.set("clickedLogin", false);
      Session.set("clickedRegister", true);
-     console.log(Session.get("clickedRegister"));
-     console.log("clicked register");
    }
  });
 
@@ -66,6 +70,7 @@ if (Meteor.isClient) {
       return val.replace(/^\s*|\s*$/g, "");
     }
     var email = trimInput(t.find('#account-email').value),
+    name = t.find('#account-name').value,
     password = t.find('#account-password').value,
     d_id = "" + t.find('#device-id').value + "";
 
@@ -80,7 +85,7 @@ if (Meteor.isClient) {
         { email: 1, status:1}).fetch();
         if (register_info[0].status == 0) {
           // unregistered valid device, continue
-          Accounts.createUser({email: email, password : password, profile: {device_id: d_id,
+          Accounts.createUser({email: email, password : password, profile: {name: name, device_id: d_id,
             datejoined: new Date(), offers_completed: 0, total_tokens:0, current_offer_endtime: 0}}, function(err){
               if (err) {
                 console.log(err);

@@ -6,28 +6,39 @@
 <body>
 </body>
 
-<template name="main">
-  {{#ionBody}}
-  <!-- Signed in -->
-    {{#if currentUser}}
-    {{> ionNavBar class = "navbar-default"}}
-    {{#contentFor "headerTitle"}}
-    <div class="logo"></div>
-    {{/contentFor}}
-    {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-    {{/contentFor}}
 
-    <div class = "row upper">
-    Hello {{name}}
-    </div>
-      <div class = "offerScreen">
-        <br><br>
-      </div>
-      <button class ="accept">Accept</button>  {{cur_user}}
-    <!-- Not signed in user -->
+<template name="main">
+  <!-- Signed in -->
+  {{#if currentUser}}
+  {{#ionBody}}
+  {{> ionNavBar class = "navbar-default"}}
+  {{#ionNavView}}
+  {{#contentFor "headerTitle"}}
+  <div class="logo"></div>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+  <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+  {{/contentFor}}
+
+  {{/ionNavView}}
+
+  <div class="not-fullscreen background" style=" no-repeat center center fixed;   background-size: cover;   -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;background-image:url('/img/s.png');" data-img-width="1500" data-img-height="1064">
+  <div class = "upper">
+  <div class="row">
+  <div class="col col-33"><h1>{{tokens}}</h1> <br> <h3> tokens</h3></div>
+  <div class="col col-33">Hello {{name}}</div>
+  <div class="col"><h1>{{offers_completed}} </h1><br>  <h3> offers completed </h3> </div>
+  </div>
+  </div>
+  </div>
+  {{/ionBody}}
+
+      <!-- Not signed in user -->
     {{else}}
-    {{>login_register_page}}
+    {{>login}}
     {{/if}}
-    {{/ionBody}}
+
 </template>
