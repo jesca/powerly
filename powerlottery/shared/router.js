@@ -13,3 +13,15 @@ Router.route('/time', function () {
 Router.route('/settings', function () {
   this.render('accountSettings');
 });
+
+// POST request for recieving device data
+Router.route('/device', { where: 'server' })
+  .post(function() {
+    query = this.params.query;
+    PowerHandler.processDeviceUpdate(
+      query['id'], 
+      query['timestamp'], 
+      query['status'], 
+      query['power']);
+    this.response.end(JSON.stringify(this.params.query));
+  })
