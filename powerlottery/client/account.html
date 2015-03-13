@@ -1,20 +1,21 @@
 <template name="settings">
   <!-- Signed in -->
-    {{#ionBody}}
-    {{> ionNavBar class = "navbar-default"}}
-    {{#ionNavView}}
-    {{#contentFor "headerTitle"}}
-    <div class="logo"></div>
-    {{/contentFor}}
 
-    {{#contentFor "headerButtonRight"}}
-    <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-    {{/contentFor}}
-    {{#contentFor "headerButtonLeft"}}
-      {{>ionNavBackButton path="main" }}
-    {{/contentFor}}
+      {{> ionNavBar class = "navbar-default"}}
+      {{#ionNavView}}
+      {{#contentFor "headerTitle"}}
+      <div class="logo"></div>
+      {{/contentFor}}
 
-    {{/ionNavView}}
+          {{#contentFor "headerButtonRight"}}
+          <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+          {{/contentFor}}
 
-    {{/ionBody}}
+          {{#contentFor "headerButtonLeft"}}
+        {{>ionNavBackButton icon="chevron-left" class = "button button-clear menu-icon" path = "main" text=" "}}
+          {{/contentFor}}
+      {{/ionNavView}}
+
+ Account!!!
+
 </template>

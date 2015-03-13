@@ -174,7 +174,7 @@ margin-left:auto;
 /* Signed in Navbar*/
 .menu-icon {
   padding-top:15px;
-  color:#ffffff;
+  color:#ffffff !important;
 }
 
 .popover {

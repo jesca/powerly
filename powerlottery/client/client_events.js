@@ -19,7 +19,7 @@ if (Meteor.isClient) {
  });
 
 
-Template.main.events({
+Template._sideMenu.events({
    'click .logout': function(event){
      console.log("clickedlogoutNAVBAR");
       event.preventDefault();
@@ -94,7 +94,7 @@ Template.main.events({
                 else {
                   console.log("successfully added user");
                   // TODO: update with status of ac
-                  devices.update({_id: d_id}, {$set: {status:1}});
+                  devices.update({_id: d_id}, {$set: {status:1, uid: Meteor.userId()}});
                   }
                 });
               }
