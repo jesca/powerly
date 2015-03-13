@@ -1,3 +1,11 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+* {
+	margin: 0;
+	padding: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
 /* background setup */
 .background {
     background-repeat:no-repeat;
@@ -6,70 +14,78 @@
     /* ie8- graceful degradation */
     background-position:50% 50%\9 !important;
     position:fixed;
-    z-index:-1;
 }
 
-/* fullscreen setup */
+body{
+    margin:0;
+    font-size:28px;
+    line-height:100px;
+	  color:#ffffff;
+    text-align:center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+input {
+  font-family: 'Roboto', sans-serif;
+	font-size: 16px !important;
+	min-height: 40px;
+	border-radius: 2px;
+	line-height: 20px;
+	padding: 11px 30px 12px;
+	border: 1px solid #b9b9af;
+	margin-bottom: 10px;
+	background-color: #fff;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+p {
+	padding: 0;
+	margin-bottom: 12px;
+  font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-size: 18px;
+	line-height: 28px;
+	color: #666;
+	margin-top: 10px;
+}
+
+
+/* Fonts and Styles */
 html, body {
     /* give this to all tags from html to .fullscreen */
     height:100%;
-
+    font-family: 'Roboto', sans-serif;
 }
+
+.centered {text-align: center}
+
+
+/* Login */
+
 .fullscreen,
 .content-a {
+  z-index:-1;
   margin-right:auto;
   margin-left:auto;
-    max-width:600px;
-    min-height:100%;
-    min-width:100%;
-}
-.not-fullscreen,
-.not-fullscreen .content-a,
-.fullscreen.not-overflow,
-.fullscreen.not-overflow .content-a {
-    height:100%;
-    overflow:hidden;
+  max-width:600px;
+  min-height:100%;
+  min-width:100%;
 }
 
-.background {
+
+.prelogin {
   background-color:#edbf53;
-}
-/* content centering styles */
-.content-a {
-	display:table;
-}
-.content-b {
-	display:table-cell;
-    position:relative;
-	vertical-align:middle;
-	text-align:center;
 }
 
 /* visual styles */
-body{
-    margin:0;
-    font-family:sans-serif;
-    font-size:28px;
-    line-height:100px;
-	color:#ffffff;
-    text-align:center;
-}
+
 section {
 	background:#9ed100;
-}
-.not-fullscreen {
-    height:50%;
-}
-
-
-/* CSS declarations go here */
-@font-face {
-  font-family: 'OpenSans';
-  src: url("font/OpenSans-CondLight.ttf");
-}
-@icon-font-path: "font/"
-* {
-  margin: 0;
 }
 
 .logo {
@@ -152,13 +168,13 @@ margin-left:auto;
 }
 
 .error {
-  color:#e78c8c;
+  color:#e95353;
 }
 
 /* Signed in Navbar*/
 .menu-icon {
   padding-top:15px;
-  color:#ffffff;
+  color:#ffffff !important;
 }
 
 .popover {
@@ -171,4 +187,22 @@ margin-left:auto;
 	bottom:0;
 	left:0;
 	background:#ee5;
+}
+
+/* Main Page */
+.profile {
+
+    background-repeat:no-repeat;
+    /* custom background-position */
+    background-position:50% 50%;
+    /* ie8- graceful degradation */
+    background-position:50% 50%\9 !important;
+
+}
+
+.not-fullscreen {
+  z-index:-1 !important;
+    height:50%;
+    width:100%;
+    overflow:hidden;
 }

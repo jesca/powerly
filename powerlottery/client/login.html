@@ -1,5 +1,5 @@
-<template name = "login_register_page">
-    <div class="fullscreen background">
+<template name = "login">
+    <div class="fullscreen background prelogin">
     </div>
     <div class = "login_register_form">
       <img src = "img/logo.png">
@@ -17,18 +17,22 @@
 
     <div class="button-bar custom_footer">
       <button class="button button-light" id="login-button" type=
-      "button">LOGIN</button> <button class="button button-stable" id=
-      "register-button" type="button">REGISTER</button>
+      "button">LOGIN
+      </button>
+      <button class="button button-stable" id=
+      "register-button" type="button">REGISTER
+      </button>
     </div>
 </template>
 
 <template name = "registerForm">
   <form id="register-form" action="action">
   <div>
-   <input type="email" id="account-email" placeholder="Email" /><br>
-   <input type="password" id="account-password" placeholder="Password"/><br>
-   <input type="device-id" id="device-id" placeholder="Device ID" /><br>
-   <input type="submit" id="create-account" value="Create an Account" /><br>
+   <input type="text" id="account-name" placeholder="Name" />
+   <input type="email" id="account-email" placeholder="Email" />
+   <input type="password" id="account-password" placeholder="Password"/>
+   <input type="text" id="device-id" placeholder="Device ID" />
+   <input type="submit" id="create-account" value="Create an Account" />
    <label class = "error"> {{response_msg}}</label>
  </div>
 </form>
@@ -37,9 +41,10 @@
 <template name = "loginForm">
   <form id="login-form" action="action">
       <div class = "input-group">
-        <input type="email" id="login-email" placeholder="Email"/><br>
-        <input type="password" id="login-password" placeholder="Password"/><br>
-        <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" /></div>
+        <input type="email" id="login-email" placeholder="Email"/>
+        <input type="password" id="login-password" placeholder="Password"/>
+        <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" />
         <label class = "error"> {{response_msg}}</label>
+      </div>
    </form>
 </template>

@@ -1,11 +1,12 @@
 <template name="_sideMenu">
   {{#ionPopover}}
+
     <div class="content">
-        <a class="item item-icon-right" href = "#" id = "settings">
+        <a class="item item-icon-right" href = "{{pathFor "settings"}}" id = "settings">
           Settings
           {{> ionIcon icon="ios-arrow-right"}}
         </a>
-        <a class="item item-icon-right logout" href= "#">
+        <a class="item item-icon-right logout" href= "{{pathFor "main"}}">
           Logout
           {{> ionIcon icon="ios-arrow-right"}}
         </a>

@@ -1,17 +1,18 @@
 Router.configure({
-  layoutTemplate: 'main'
+  layoutTemplate:"layout"
 });
 
-Router.route('/', function () {
-  this.render('main');
+Router.onBeforeAction(function() {
+  if (! Meteor.userId()) {
+    this.render('login');
+  } else {
+    this.next();
+  }
 });
 
-Router.route('/time', function () {
-  this.render('timeDisplay');
-});
-
-Router.route('/settings', function () {
-  this.render('accountSettings');
+Router.map(function() {
+  this.route('main', {path: '/'});
+  this.route('settings');
 });
 
 // POST request for recieving device data
