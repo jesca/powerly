@@ -3,7 +3,7 @@ devices = new Mongo.Collection('devices');
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // clear the devices db on startup
-      Meteor.users.remove({});
+    Meteor.users.remove({});
     devices.remove({});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
@@ -16,8 +16,11 @@ if (Meteor.isServer) {
         },
         isAvail: function(id) {
             device = devices.find({_id: id}).fetch();
-            console.log("status is " + device[0].status);
             return device[0].status;
+        },
+        addUsertoDevice: function(id, uid) {
+            devices.update({_id: id}, {$set: {status:1, uid: Meteor.userId()}});
+            return;
         }
     });
   });
@@ -27,7 +30,8 @@ if (Meteor.isServer) {
   Meteor.publish("userDevices", function (device) {
       console.log("published");
       if (this.userId) {
-          return devices.find({user:this.userId});
+          console.log(devices.find().fetch());
+          return devices.find({uid:this.userId});
         //return devices.find({_id:device}).fetch();
       }
   });
@@ -35,6 +39,6 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   Meteor.subscribe("userData");
-  Meteor.subscribe("userDevices");
+  Meteor.subscribe("userDevices", Meteor.user());
   console.log("subscribed");
 }
