@@ -88,19 +88,19 @@ Template._sideMenu.events({
                   Session.set('response_msg', "Account creation failed");
                   }
                 else {
-                  console.log("successfully added user");
-                  // TODO: update with status of ac
-                  devices.update({_id: d_id}, {$set: {status:1, uid: Meteor.userId()}});
+                  Meteor.call("addUsertoDevice", d_id, Meteor.userId());
                 }
               });
           }
           else {
-            Session.set('response_msg', "This device has already been registered!" + status);
+              console.log("registeredalready");
+            Session.set('response_msg', "This device has already been registered!");
           }
         });
       }
-      else {
-          Session.set('response_msg', "Sorry, this device doesn't exist!" + lookInDevices);
+      else if (data == 0) {
+          console.log("not exist");
+          Session.set('response_msg', "Sorry, this device doesn't exist!");
       }
     });
   }
