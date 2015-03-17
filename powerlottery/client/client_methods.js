@@ -1,5 +1,6 @@
-if (Meteor.isClient) {
+if (Meteor.isServer) {
 
+    
 Meteor.methods( {
   // Begin the countdown after the user accepted the offer for a @totalMinutes
   /* If your app is asleep, there's no need for it to continue timer processing or
