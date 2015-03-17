@@ -1,3 +1,4 @@
+
 var postSubmit = function(error, state){
   if (!error) {
     if (state === "signIn") {
@@ -68,9 +69,11 @@ AccountsTemplates.addFields( [
     required: true,
     displayName: "Device ID",
     func: function (d_id) {
+
             d_id = "" + d_id + ""
             var findDevice = devices.find({_id: d_id}).count();
             if (findDevice == 0) {
+              console.log("didn't find device");
               return true;
             }
             else if (findDevice > 0) {
@@ -81,6 +84,7 @@ AccountsTemplates.addFields( [
                     return false;
                   }
                   else {
+                    console.log("status");
                     return true;
                   }
                 }
@@ -89,21 +93,3 @@ AccountsTemplates.addFields( [
       errStr: "This device does not exist or has already been registered!",
 
 }]);
-
-
-Accounts.onCreateUser(function(options, user) {
-    console.log("created user");
-    user.datejoined = new Date();
-    user.offers_completed = [];
-    user.tokens = 0;
-    user.current_offer_endtime = 0;
-
-    if (options.profile) {
-      user.profile = options.profile;
-    }
-
-    d_id = user.profile[device_id];
-    console.log("on create user did:" +d_id);
-    devices.update({_id:d_id}, {$set: {status:1}});
-    return user;
-  });
