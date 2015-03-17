@@ -1,30 +1,23 @@
 <template name = "login">
-    <div class="fullscreen background prelogin">
+    <div class="fullscreen background" style="background-image:url('/img/bg.png');" data-img-width="1500" data-img-height="904">
     </div>
-    <div class = "login_register_form">
-      <img src = "img/logo.png">
-      <div class="row">
-        <div class="col col-33 col-offset-33">
-          {{#if clickedLogin}}
-          {{> loginForm}}
-          {{/if}}
-          {{#if clickedRegister}}
-          {{> registerForm}}
-          {{/if}}
-          </div>
+    {{#ionContent}}
+    <div class = "row prelogin-logo">
+      <div class = "col col-50">
+        <img src = "img/logo.png" height="42" width="100">
+        <h5 class = "white"> Earn while saving. <br>
+          Live better, together </h5>
       </div>
     </div>
+    {{/ionContent}}
 
-    <div class="button-bar custom_footer">
-      <button class="button button-light" id="login-button" type=
-      "button">LOGIN
-      </button>
-      <button class="button button-stable" id=
-      "register-button" type="button">REGISTER
-      </button>
-    </div>
+      {{#ionTabs style="ios"}}
+      {{> ionTab title="Login" path="userAccounts" icon="happy-outline"}}
+      {{/ionTabs}}
+
 </template>
 
+<!--
 <template name = "registerForm">
   <form id="register-form" action="action">
   <div>
@@ -47,4 +40,7 @@
         <label class = "error"> {{response_msg}}</label>
       </div>
    </form>
+
 </template>
+
+-->

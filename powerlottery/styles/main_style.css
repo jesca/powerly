@@ -24,7 +24,12 @@ body{
     text-align:center;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.container {
+
+  margin-right: auto;
+  margin-left: auto;
+}
+ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 	font-weight: 400;
 }
@@ -64,6 +69,9 @@ html, body {
 
 .centered {text-align: center}
 
+.white {
+	color: #ffffff;
+}
 
 /* Login */
 
@@ -77,9 +85,8 @@ html, body {
   min-width:100%;
 }
 
-
-.prelogin {
-  background-color:#edbf53;
+.prelogin-logo {
+	margin-top:370px;
 }
 
 /* visual styles */
@@ -103,6 +110,7 @@ margin-left:auto;
 
 .navbar-default {
   background:#61b9c1 !important;
+	color: #ffffff !important;
 }
 
 .navbar-signin {
@@ -164,7 +172,7 @@ margin-left:auto;
 }
 
 .upper {
-  margin-top:100px;
+  margin-top:30px;
 }
 
 .error {
@@ -185,6 +193,7 @@ margin-left:auto;
 	width:100%;
 	position:absolute;
 	bottom:0;
+	z-index:2;
 	left:0;
 	background:#ee5;
 }
@@ -202,7 +211,32 @@ margin-left:auto;
 
 .not-fullscreen {
   z-index:-1 !important;
-    height:50%;
+    height:150px;
     width:100%;
     overflow:hidden;
+}
+
+.mini-box {
+	padding: 30px 20px 30px 20px;
+	border:1px;
+}
+
+.main-icons {
+	font-size:34px;
+}
+
+.token-icon {
+	color: #e0b127;
+}
+
+.ac-off {
+	color: #44a135;
+}
+
+.ac-on {
+	color: #a82100;
+}
+
+.achievement-icon {
+	color: #55b1bf;
 }

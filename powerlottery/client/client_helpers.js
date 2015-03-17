@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
 
+
 /* Template helpers */
 Template.main.helpers({
   name: function() {
@@ -10,9 +11,12 @@ Template.main.helpers({
   },
   offers_completed: function() {
     return Meteor.user().profile.offers_completed;
+  },
+  ac_on: function() {
+    return Meteor.user().profile.status == 1;
   }
 })
-
+/*
 Template.login.helpers({
   clickedLogin: function() {
         return Session.get("clickedLogin");
@@ -33,7 +37,7 @@ Template.loginForm.helpers( {
   return Session.get("response_msg");
   }
   });
-
+*/
 Template.timeDisplay.helpers({
   minutes : function() {
     return minutesLeft.get();

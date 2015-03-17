@@ -1,10 +1,16 @@
 if (Meteor.isClient) {
+  Template.userAccounts.events({
+    'click [data-action=logout]': function () {
+      AccountsTemplates.logout();
+    }
+  });
+
   Template.login.rendered =
     function() {
         Session.set("clickedLogin", true);
     };
 
-  /* Events */
+  /* Events
   Template.main.events({
     'click .accept': function() {
       console.log("acceptedOffer");
@@ -18,7 +24,8 @@ if (Meteor.isClient) {
      }
  });
 
-
+*/
+/*
 Template._sideMenu.events({
    'click .logout': function(event){
      console.log("clickedlogoutNAVBAR");
@@ -31,7 +38,9 @@ Template._sideMenu.events({
       IonPopover.hide();
     }
 });
+*/
 
+/*
  Template.login.events({
    'click #login-button': function() {
      Session.set("clickedRegister", false);
@@ -45,7 +54,6 @@ Template._sideMenu.events({
 
  Template.loginForm.events({
   'submit #login-form' : function(e, t){
-    e.preventDefault();
     // retrieve the input field values
     var email = t.find('#login-email').value
       , password = t.find('#login-password').value;
@@ -62,6 +70,7 @@ Template._sideMenu.events({
     }
  });
 
+*//*
  Template.registerForm.events({
   'submit #register-form' : function(e, t) {
     e.preventDefault();
@@ -106,5 +115,5 @@ Template._sideMenu.events({
       Session.set('response_msg', "Sorry, this device doesn't exist!");
     }
   }
-});
+});*/
 }

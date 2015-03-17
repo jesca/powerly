@@ -1,48 +1,58 @@
-<head>
-  <title>Powerly</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
-</head>
-
-
-<template name = "layout">
-{{#ionBody}}
-    {{> yield}}
-  {{/ionBody}}
-</template>
-
-
 <template name="main">
   <!-- Signed in -->
 
   {{#if currentUser}}
-  {{> ionNavBar class = "navbar-default"}}
-  {{#ionNavView}}
   {{#contentFor "headerTitle"}}
-  <div class="logo"></div>
+    <h2 class="title white">Sign up</h2>
   {{/contentFor}}
 
   {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
   {{/contentFor}}
+  {{#contentFor "headerButtonLeft"}}
+    {{>ionNavBackButton class = "button button-clear menu-icon" path="main" text=" "}}
+  {{/contentFor}}
 
-  {{/ionNavView}}
 
-  <div class="not-fullscreen background" style=" no-repeat center center fixed;   background-size: cover;   -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;background-image:url('/img/s.png');" data-img-width="1500" data-img-height="1064">
-  <div class = "upper">
-  <div class="row">
-  <div class="col col-33"><h1>{{tokens}}</h1> <br> <h3> tokens</h3></div>
-  <div class="col col-33">Hello {{name}}</div>
-  <div class="col"><h1>{{offers_completed}} </h1><br>  <h3> offers completed </h3> </div>
-  </div>
-  </div>
-  </div>
+<div class = "row" style="background-image:url('/img/bg.png');" data-img-width="1500" data-img-height="904">
+<div class = "col col-100 upper">
+<div class="row">
+<div class="col col-33"><h2>{{tokens}}</h2> <br> <h4> tokens</h4></div>
+<div class="col col-33">Hello {{name}}</div>
+<div class="col"><h2>{{offers_completed}} </h2><br>  <h4> offers completed </h4> </div>
+</div>
+</div>
+</div>
 
-      <!-- Not signed in user -->
+<div class="row">
+  <div class="col mini-box">
+    {{#if ac_on}}
+    {{> ionIcon icon="ios-circle-filled" class = "ac-on main-icons"}}
+    <h5 class = "centered">AC On</h5>
     {{else}}
+    {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
+    <h5 class = "centered">AC Off</h5>
+    {{/if}}
+  </div>
+  <div class="col mini-box">
+    {{> ionIcon icon="ios-star" class = "token-icon main-icons"}}
+    <h5 class = "centered">Use Tokens</h5>
+  </div>
+  <div class="col mini-box">
+    {{> ionIcon icon="ribbon-a" class = "achievement-icon main-icons"}}
+    <h5 class = "centered">Achievements</h5>
+</div>
+</div>
+
+
+
+
+
+       <!-- Not signed in user -->
+    {{else}}
+
     {{>login}}
+
     {{/if}}
 
 </template>
