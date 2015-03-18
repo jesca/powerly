@@ -19,16 +19,19 @@ if (Meteor.isServer) {
             return device[0].status;
         },
         addUsertoDevice: function(id, uid) {
-            devices.update({_id: id}, {$set: {status:1, uid: Meteor.userId()}});
+            devices.update({_id: id}, {$set: {status:1}});
             return;
         }
     });
   });
 
   //note Accounts automatically publishes user data if logged in
-    
+  Meteor.publish("devices", function () {
+    return devices.find();
+  });
+
+
   Meteor.publish("userDevices", function (device) {
-      console.log("published");
       if (this.userId) {
           console.log(devices.find().fetch());
           return devices.find({uid:this.userId});
@@ -40,5 +43,5 @@ if (Meteor.isServer) {
 if (Meteor.isClient) {
   Meteor.subscribe("userData");
   Meteor.subscribe("userDevices", Meteor.user());
-  console.log("subscribed");
+  Meteor.subscribe("devices");
 }

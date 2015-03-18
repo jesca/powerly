@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-  Meteor.subscribe("devices");
+
 
 /* Template helpers */
 Template.main.helpers({

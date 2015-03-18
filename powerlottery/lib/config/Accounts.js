@@ -16,7 +16,6 @@ var postSubmit = function(error, state){
 };
 
 AccountsTemplates.configure({
-
    onSubmitHook: postSubmit,
     // Behaviour
     confirmPassword: false,
@@ -88,7 +87,6 @@ AccountsTemplates.addFields( [
                     return true;
                   }
                 }
-
       },
       errStr: "This device does not exist or has already been registered!",
 
