@@ -1,7 +1,5 @@
 if (Meteor.isClient) {
 
-
-
 /* Template helpers */
 Template.main.helpers({
   name: function() {
@@ -15,30 +13,13 @@ Template.main.helpers({
   },
   ac_on: function() {
     return Meteor.user().profile.status == 1;
+  },
+  current_offer: function() {
+    console.log(Meteor.user().profile.current_offer_id != "");
+    return (Meteor.user().profile.current_offer_id != "");
   }
 })
-/*
-Template.login.helpers({
-  clickedLogin: function() {
-        return Session.get("clickedLogin");
-    },
-    clickedRegister: function() {
-        return Session.get("clickedRegister");
-    }
-});
 
-Template.registerForm.helpers( {
-  response_msg: function() {
-  return Session.get("response_msg");
-  }
-  });
-
-Template.loginForm.helpers( {
-  response_msg: function() {
-  return Session.get("response_msg");
-  }
-  });
-*/
 Template.timeDisplay.helpers({
   minutes : function() {
     return minutesLeft.get();

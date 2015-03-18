@@ -113,7 +113,7 @@ margin-left:auto;
 }
 
 .navbar-default {
-  background:#61b9c1 !important;
+  background:rgba(190, 203, 203, 0.55) !important;
 	color: #ffffff !important;
 }
 
@@ -179,10 +179,7 @@ margin-left:auto;
   margin-top:40px;
 }
 
-.city-main {
-	margin-top:40px;
-	margin-bottom:20px;
-}
+
 
 .error {
   color:#e95353;
@@ -208,7 +205,11 @@ margin-left:auto;
 }
 
 /* Main Page */
-.circle{width:90px;height:90px;border-radius:45px;color:#fff;text-align:center;background:rgba(18, 18, 18, 0.52)}
+.profile {
+		background-color:#ecc572;
+}
+
+.circle{width:120px;height:120px;border-radius:60px;color:#fff;text-align:center;background:rgba(18, 18, 18, 0.52)}
 
 .in-circle {
 	padding-top:5px;
@@ -216,8 +217,13 @@ margin-left:auto;
 
 .name {
 font-weight: 500;
-font-size:30px;
-text-transform:uppercase;	
+font-size:15px;
+padding-top:50px;
+text-transform:uppercase;
+}
+
+.main-info {
+margin-top:50px;
 }
 
 .h-pad {
