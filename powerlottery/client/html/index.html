@@ -20,14 +20,16 @@
       <div class="col col-33"><div class = "circle"><h3 class = " white name">{{name}}</h3></div>    </div>
 
       <div class = "row main-info">
-        <div class="col col-33 white"> <h2 class = "white ">{{tokens}}</h2> <h4 class = "white"> tokens</h4></div>
-        <div class="col col-33"> {{#if ac_on}}
+        <div class="col col-33 white"> {{#if ac_on}}
         {{> ionIcon icon="ios-circle-filled" class = "ac-on main-icons"}}
         <h4 class = "centered white">AC On</h4>
         {{else}}
         {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
         <h4 class = "centered white">AC Off</h4>
-        {{/if}}</div>
+        {{/if}}
+        </div>
+        <div class="col col-33">  <h2 class = "white ">{{tokens}}</h2> <h4 class = "white"> tokens</h4>
+        </div>
         <div class="col"><h2 class = "white">{{offers_completed}} </h2>  <h4 class = "white"> offers </h4> </div>
       </div>
       </div>
@@ -35,22 +37,17 @@
       </div>
 
 <div class="row">
-  <div class="col mini-box">
-    {{#if ac_on}}
-    {{> ionIcon icon="ios-circle-filled" class = "ac-on main-icons"}}
-    <h5 class = "centered">AC On</h5>
-    {{else}}
-    {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
-    <h5 class = "centered">AC Off</h5>
-    {{/if}}
-  </div>
-  <div class="col mini-box">
-    {{> ionIcon icon="ios-star" class = "token-icon main-icons"}}
-    <h5 class = "centered">Use Tokens</h5>
-  </div>
-  <div class="col mini-box">
-    {{> ionIcon icon="ribbon-a" class = "achievement-icon main-icons"}}
-    <h5 class = "centered">Achievements</h5>
+  <div class="col">
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div class = "row">
+          <div class="col">
+          </div>
+           <div class="col">
+            </div>
+      </div></div>
+
+    </div>
 </div>
 </div>
 

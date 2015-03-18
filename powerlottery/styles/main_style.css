@@ -113,7 +113,7 @@ margin-left:auto;
 }
 
 .navbar-default {
-  background:rgba(190, 203, 203, 0.55) !important;
+  background:rgba(240, 240, 240, 0.42) !important;
 	color: #ffffff !important;
 }
 
@@ -235,11 +235,6 @@ margin-top:50px;
     height:150px;
     width:100%;
     overflow:hidden;
-}
-
-.mini-box {
-	padding: 30px 20px 30px 20px;
-	border:1px;
 }
 
 .main-icons {

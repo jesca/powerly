@@ -83,7 +83,6 @@ AccountsTemplates.addFields( [
                     return false;
                   }
                   else {
-                    console.log("status");
                     return true;
                   }
                 }
