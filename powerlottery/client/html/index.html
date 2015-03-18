@@ -2,24 +2,23 @@
   <!-- Signed in -->
 
   {{#if currentUser}}
+
   {{#contentFor "headerTitle"}}
-    <h2 class="title white">Sign up</h2>
+  <div class="logo"></div>
   {{/contentFor}}
 
   {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
   {{/contentFor}}
-  {{#contentFor "headerButtonLeft"}}
-    {{>ionNavBackButton class = "button button-clear menu-icon" path="main" text=" "}}
-  {{/contentFor}}
 
 
-<div class = "row" style="background-image:url('/img/bg.png');" data-img-width="1500" data-img-height="904">
-<div class = "col col-100 upper">
-<div class="row">
-<div class="col col-33"><h2>{{tokens}}</h2> <br> <h4> tokens</h4></div>
-<div class="col col-33">Hello {{name}}</div>
-<div class="col"><h2>{{offers_completed}} </h2><br>  <h4> offers completed </h4> </div>
+
+<div class = "row" style="background-image:url('/img/city.png');" data-img-width="800" data-img-height="458">
+<div class = "col upper">
+<div class="row city-main">
+<div class="col col-33 white"> <h2 class = "white ">{{tokens}}</h2> <h4 class = "white"> tokens</h4></div>
+<div class="col col-33"><h3 class = "white name">{{name}}</h3></div>
+<div class="col"><h2 class = "white">{{offers_completed}} </h2>  <h4 class = "white"> offers </h4> </div>
 </div>
 </div>
 </div>
@@ -48,10 +47,10 @@
 
 
 
-       <!-- Not signed in user -->
+       <!-- Not igned in user -->
     {{else}}
 
-    {{>login}}
+{{>login}}
 
     {{/if}}
 

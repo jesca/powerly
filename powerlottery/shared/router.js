@@ -3,7 +3,8 @@ Router.configure({
 });
 
 Router.map(function() {
-  this.route('main', {path: '/', layoutTemplate:'main'});
+  this.route('main', {path: '/'});
+  this.route('login', {layoutTemplate: 'login'});
   this.route('settings');
   this.route('userAccounts');
 });

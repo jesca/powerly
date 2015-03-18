@@ -70,9 +70,12 @@ html, body {
 .centered {text-align: center}
 
 .white {
-	color: #ffffff;
+	color: #ffffff !important;
 }
 
+.nav-view-transition-ios.nav-view-direction-forward {
+	background-color:#ffffff !important;
+}
 /* Login */
 
 .fullscreen,
@@ -86,7 +89,8 @@ html, body {
 }
 
 .prelogin-logo {
-	margin-top:370px;
+position:absolute;
+bottom:80px;
 }
 
 /* visual styles */
@@ -100,7 +104,7 @@ section {
   height:33px;
   width:85px;
   display: block;
-   margin: 0 auto;
+  margin: 0 auto;
 }
 
 .container {
@@ -172,7 +176,12 @@ margin-left:auto;
 }
 
 .upper {
-  margin-top:30px;
+  margin-top:40px;
+}
+
+.city-main {
+	margin-top:40px;
+	margin-bottom:20px;
 }
 
 .error {
@@ -199,14 +208,20 @@ margin-left:auto;
 }
 
 /* Main Page */
-.profile {
+.circle{width:90px;height:90px;border-radius:45px;color:#fff;text-align:center;background:rgba(18, 18, 18, 0.52)}
 
-    background-repeat:no-repeat;
-    /* custom background-position */
-    background-position:50% 50%;
-    /* ie8- graceful degradation */
-    background-position:50% 50%\9 !important;
+.in-circle {
+	padding-top:5px;
+}
 
+.name {
+font-weight: 500;
+font-size:30px;
+text-transform:uppercase;	
+}
+
+.h-pad {
+	padding-top:15px;
 }
 
 .not-fullscreen {

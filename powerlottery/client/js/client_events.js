@@ -4,7 +4,11 @@ if (Meteor.isClient) {
       Meteor.logout();
     }
   });
-
+  Template._sideMenu.events({
+    'click [data-action=logout]': function () {
+      Meteor.logout();
+    }
+  });
 
 
   /* Events
@@ -22,11 +26,10 @@ if (Meteor.isClient) {
  });
 
 */
-/*
+
 Template._sideMenu.events({
-   'click .logout': function(event){
+   'click #logout': function(event){
      console.log("clickedlogoutNAVBAR");
-      event.preventDefault();
       IonPopover.hide();
       Meteor.logout();
     },
@@ -35,7 +38,7 @@ Template._sideMenu.events({
       IonPopover.hide();
     }
 });
-*/
+
 
 /*
  Template.login.events({

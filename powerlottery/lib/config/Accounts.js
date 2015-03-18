@@ -1,4 +1,3 @@
-
 var postSubmit = function(error, state){
   if (!error) {
     if (state === "signIn") {
@@ -49,6 +48,7 @@ AccountsTemplates.configure({
       },
     },
 });
+
 
 
 AccountsTemplates.addFields( [

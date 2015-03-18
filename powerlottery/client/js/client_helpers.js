@@ -11,7 +11,7 @@ Template.main.helpers({
     return Meteor.user().profile.total_tokens;
   },
   offers_completed: function() {
-    return Meteor.user().profile.offers_completed;
+    return Meteor.user().profile.completed_offer_ids.length;
   },
   ac_on: function() {
     return Meteor.user().profile.status == 1;
