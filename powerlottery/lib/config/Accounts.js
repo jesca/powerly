@@ -1,3 +1,8 @@
+Accounts.onCreateUser(function(options, user) {
+    console.log(options);
+    return user;
+  });
+
 
 var postSubmit = function(error, state){
   if (!error) {
