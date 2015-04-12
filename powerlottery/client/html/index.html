@@ -47,6 +47,9 @@
                     <div class="col"></div>
                     Time left to accept offer:<br>
                     {{minutes}}:{{seconds}}
+                    <br><br>
+                    Tokens offered: {{offer.tokensOffered}}
+                    to keep your AC off for 
                     <div class="col"></div>
                     {{#if ac_on}}
                     <button class="button button-light">
@@ -57,6 +60,23 @@
                     Accept Offer
                     </button>
                     {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
+{{#if inGame}}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col"></div>
+                    Time left before offer ends:<br>
+                    {{minutes}}:{{seconds}}
+                   
                 </div>
             </div>
         </div>

@@ -10,7 +10,6 @@ Meteor.startup(function () {
       var offerId = Meteor.user().profile.current_offer_id;
       var offer = offers.findOne({'_id': offerId});
       if (offer) {
-        Session.set('offer', offer);
         Session.set('timeLeftInSeconds', Math.floor((offer._id - Session.get('serverTime'))/1000));
       }
     }
@@ -49,11 +48,11 @@ Template.main.helpers({
   4: fail
   */
   hasOffer: function() {
-    return Meteor.user().profile.current_offer_state == 1 &&
-      Session.get('offer');
-  }
-  currentlyInOffer: function() {
+    
+    return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
+  },
+  inGame: function() {
     // user has accepted offer and it's in progress
-    return Meteor.user().profile.current_offer_state == 2 &&
+    return Meteor.user().profile.current_offer_state == 2 &&  Session.get('offer');
   }
 });
