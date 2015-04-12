@@ -9,8 +9,13 @@ if (Meteor.isServer) {
     offers.remove({});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
+    devices.insert({_id:"1",email:"test@test.com",password: "test", status:0});
 
-    Meteor.methods({
+  });
+
+
+
+  Meteor.methods({
         realdeviceid: function (id) {
             device = devices.find({_id: id});
             console.log(device.count());
@@ -42,17 +47,11 @@ if (Meteor.isServer) {
             return offerDetails;
           }
         },
-        clearCurOffer: function(uid) {
-          // sets current offer id = "", the offer has expired
-          users.update({_id:uid},{$set: {current_offer_id:""}});
-          return;
-        },
         updateSuccessfulOffer: function(uid,offer_id) {
           users.update({_id:uid}, { $push: { completed_offer_ids: offer_id } });
           return;
         },
     });
-  });
 
   // TODO: change this to a method that checks if the current id is already in devices (used by registration check)
   Meteor.publish("devices", function () {

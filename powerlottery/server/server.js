@@ -9,24 +9,10 @@ Accounts.onCreateUser(function(options, user) {
     return user;
 });
 
-OfferHandler = {
-    tokenAmount: 10,
-    // 10 minutes
-    offerLength: 1000 * 60 * 10,
-
-    attemptCreateAndSendOffer: function() {
-        /*
-            If there is no current offer, create the new offer!
-            the client side will listen for the new offer in the offer table
-            and update the UI and try to get the user to accept it
-        */
-        if (!offers.find({offerEnd: { $gte: new Date().getTime() }}).fetch().length == 0) {
-            var endTime = new Date().getTime() + OfferHandler.offerLength;
-            offers.insert({
-                tokensOffered: OfferHandler.tokenAmount,
-                timestamp: endTime
-            }, function(error, result) {});
-        }
+Meteor.methods( {
+    getCurrentTime: function() {
+        // return time in milliseconds 
+        return new Date().getTime()
     },
 
     acceptOffer: function(offerId, userId) {
@@ -48,5 +34,8 @@ OfferHandler = {
         else, add to the failed offers
     */
     updateOutstandingOffer: function(offerId, userId) {
-    }
-};
+    },
+
+
+})
+ 

@@ -4,6 +4,7 @@ Router.configure({
 
 Router.map(function() {
   this.route('main', {path: '/'});
+  this.route('time');
   this.route('login', {layoutTemplate: 'login'});
   this.route('settings');
   this.route('userAccounts');

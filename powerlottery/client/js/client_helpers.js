@@ -1,18 +1,17 @@
 if (Meteor.isClient) {
   Meteor.methods( {
-    // Begin the countdown after the user accepted the offer for a @totalMinutes
-    /* If your app is asleep, there's no need for it to continue timer processing or
-    update a screen. In the app "pause" event, kill your timer and stop updating the screen.
-    In the app "resume" event, immediately update the screen again, and restart your timer.*/
-    'beginTimer': function(beginDate, sessionMinutes) {
-      s = sessionMinutes
-      Router.go('/time');
-      console.log("started timer for " + s);
-      endDate = new Date(beginDate.getTime() + (sessionMinutes*60000)); // 60000 being the number of milliseconds in a minute
+    setTimeLeft: function() {
+      var sessionMinutes = 
+      endDate = new Date(Meteor.call('getCurrentTime') + (sessionMinutes*60000)); // 60000 being the number of milliseconds in a minute
       minutesLeft = new ReactiveVar(new Date(endDate - beginDate).getMinutes());
       secondsLeft = new ReactiveVar(new Date(endDate - beginDate).getSeconds());
 
       function timer() {
+        // poll database to see if currently still in offer
+        // if failed : call failedMethod
+        // if still in offer: update timer
+
+        // call timer method from server for the minutes and seconds in sec
         var dateNow = new Date();
         timeleft = new Date(endDate - dateNow);
         minutesLeft.set(timeleft.getMinutes());
@@ -38,12 +37,10 @@ Template.main.helpers({
     return Meteor.user().profile.status == 1;
   },
 
-  /* the current_offer in the user_database is a tuple: [offer_id, status, timer_end]
-  the status is either 0 (not accepted) or 1 (accepted)
-  if status is 0, timer_end is how much longer they have to accept the offer
-  if status is 1, timer_end is how much longer they have until they successfully complete the offer
+  /* 
+  to find out if there is a current offer, look in the offer database to see if there is an offer
   */
-  current_offer: function() {
+  'current_offer': function() {
     //
     var uid = Meteor.userId();
     var cur_offer = Meteor.user().profile.current_offer;
@@ -78,8 +75,8 @@ Template.main.helpers({
       // no current offer
       return false
       }
-    },
-});
+    }
+  });
 
 Template.timeDisplay.helpers({
   minutes : function() {
