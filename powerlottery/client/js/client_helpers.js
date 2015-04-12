@@ -5,12 +5,14 @@ Meteor.startup(function () {
     });
   }, 1000);
   Tracker.autorun(function() {
-    user = Meteor.user();
-    var offerId = Meteor.user().profile.current_offer_id;
-    var offer = offers.findOne({'_id': offerId});
-    if (offer) {
-      Session.set('offer', offer);
-      Session.set('timeLeftInSeconds', Math.floor((offer._id - Session.get('serverTime'))/1000));
+
+    if (Meteor.user()) {
+      var offerId = Meteor.user().profile.current_offer_id;
+      var offer = offers.findOne({'_id': offerId});
+      if (offer) {
+        Session.set('offer', offer);
+        Session.set('timeLeftInSeconds', Math.floor((offer._id - Session.get('serverTime'))/1000));
+      }
     }
   });
 });
@@ -49,5 +51,9 @@ Template.main.helpers({
   hasOffer: function() {
     return Meteor.user().profile.current_offer_state == 1 &&
       Session.get('offer');
+  }
+  currentlyInOffer: function() {
+    // user has accepted offer and it's in progress
+    return Meteor.user().profile.current_offer_state == 2 &&
   }
 });
