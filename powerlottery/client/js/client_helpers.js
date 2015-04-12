@@ -1,16 +1,18 @@
 if (Meteor.isClient) {
   Meteor.methods( {
     setTimeLeft: function() {
-      var offer = Session.get('offer')
-      var timeLeft = new Date(offer.offerEnd - Meteor.call('getCurrentTime'));
-      var minutesLeft = new ReactiveVar(timeLeft.getMinutes());
-      var secondsLeft = new ReactiveVar(timeLeft.getSeconds());
+      var offer = Session.get('offer');
+      console.log("offer from session var " + offer._id)
+      timeLeft = new Date(offer._id - Meteor.call('getCurrentTime'));
+      console.log("time left " + timeLeft)
+      minutesLeft = new ReactiveVar(timeLeft.getMinutes());
+      secondsLeft = new ReactiveVar(timeLeft.getSeconds());
 
       var timer = function () {
         // poll database to see if currently still in offer
         // if failed : call failedMethod
         // if still in offer: update timer
-        var timeLeft = new Date(offer.offerEnd - Meteor.call('getCurrentTime'));
+        timeLeft = new Date(offer._id - Meteor.call('getCurrentTime'));
         minutesLeft.set(timeleft.getMinutes());
         secondsLeft.set(timeleft.getSeconds());
       }
@@ -55,20 +57,15 @@ Template.main.helpers({
   */
   getOffer: function() {
     var uid = Meteor.userId();
-    console.log("getting offer")
-    console.log(uid);
     var offerStatus = Meteor.user().profile.current_offer_state;
     var offerId = Meteor.user().profile.current_offer_id;
-    console.log("offer id" + offerId)
-    console.log("offer status" + offerStatus)
-
-
 
     if (offerStatus == 1) {
       // there is an offer that has not been accepted yet
       //TODO: update timer to count down 10 minutes from when the offer is sent
       Session.set('offer', offers.findOne({'_id': offerId}));
-      setTimeLeft();
+      console.log(offers.findOne({'_id': offerId}));
+      Meteor.call("setTimeLeft");
       return true;
     }
     return false;
