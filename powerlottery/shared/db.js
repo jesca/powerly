@@ -5,12 +5,12 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // clear the devices and offers db on startup
     //sMeteor.users.remove({});
+    
     devices.remove({});
     offers.remove({});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
-    devices.insert({_id:"1",email:"test@test.com",password: "test", status:0});
-
+    var offerId = '' + (new Date().getTime() + 500000);
   });
 
 
@@ -33,7 +33,6 @@ if (Meteor.isServer) {
           var offerDetails =  offers.find({_id:offer_id}).fetch();
 
           var offer_start_time = offerDetails['timestamp'];
-          var total_offer_min = offers.find({_id:offer_id}).fetch()['offer_minutes'];
           var offer_expiration = new Date(new Date().getTime() + total_offer_min*60000);
 
           if (new Date() >= offer_expiration) {
@@ -50,7 +49,7 @@ if (Meteor.isServer) {
         updateSuccessfulOffer: function(uid,offer_id) {
           users.update({_id:uid}, { $push: { completed_offer_ids: offer_id } });
           return;
-        },
+        }
     });
 
   // TODO: change this to a method that checks if the current id is already in devices (used by registration check)

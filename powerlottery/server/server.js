@@ -6,6 +6,7 @@ Accounts.onCreateUser(function(options, user) {
     user.profile.completed_offer_ids = [];
     user.profile.failed_offer_ids = [];
     user.profile.current_offer_id = "";
+    user.profile.current_offer_state = 0
     return user;
 });
 
@@ -37,5 +38,25 @@ Meteor.methods( {
     },
 
 
+    attemptCreateAndSendOffer: function() {
+        /*
+            If there is no current offer, create the new offer!
+            the client side will listen for the new offer in the offer table
+            and update the UI and try to get the user to accept it
+        */
+        if (!offers.find({offerEnd: { $gte: new Date().getTime() }}).fetch().length == 0) {
+            var endTime = new Date().getTime() + OfferHandler.offerLength;
+            offers.insert({
+                tokensOffered: OfferHandler.tokenAmount,
+                offerEnd: endTime
+            }, function(error, result) {});
+        }
+    },
+
+    clearCurOffer: function(uid) {
+          // sets current offer id = "", the offer has expired
+          users.update({_id:uid},{$set: {current_offer_id:""}});
+          return;
+    }
 })
  

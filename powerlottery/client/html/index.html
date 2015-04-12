@@ -36,21 +36,24 @@
       </div>
       </div>
 
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="item item-text-wrap">
-        <div class = "row">
-          <div class="col">
-          </div>
-           <div class="col">
-            </div>
-      </div></div>
 
+
+{{#if getOffer}}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div class="col"></div>
+                    Time left to accept offer:
+                    {{minutes}} : {{seconds}} 
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-</div>
-
+{{/if}}
 
 
 
