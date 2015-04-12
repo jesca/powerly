@@ -42,7 +42,7 @@ PowerHandler = {
 
     var user = Meteor.users.findOne({profile:{ device_id : deviceId }});
     if (user['profile']['current_offer_state'] == 2 && power > 0) {
-      Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}}});
+      Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
     }
 
     // reject timestamps outside of the current window
