@@ -56,9 +56,14 @@ Meteor.methods({
         update userId with accepted when client side accepts offer
     */    
     acceptOffer: function(userId) {
-        var challengeLength = 1000 * 60 * 60;
-        var offerEnd = new Date.getTime() + challengeLength;
-        Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": offerEnd}});
+        var user = Meteor.users.findOne({_id:userId});
+        var offerId = user.profile.current_offer_id;
+        var status = user.profile.current_offer_state;
+        if (status == 1 && offerId != "") {
+            var challengeLength = 1000 * 60 * 60;
+            var offerEnd = new Date.getTime() + challengeLength;
+            Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": offerEnd}});
+        }
     },
 
     /*
@@ -82,10 +87,5 @@ Meteor.methods({
             //push offerid to list of succeededOffers
             Meteor.users.update({_id:userId}, {$push:{"profile.completed_offer_ids":id}});
         }
-    },
-
-    clearCurOffer: function(uid) {
-          // sets current offer id = "", the offer has expired
-          users.update({_id:uid},{$set: {"profile.current_offer_id": ""}});
     },
 });

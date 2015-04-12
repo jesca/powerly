@@ -11,21 +11,16 @@ if (Meteor.isClient) {
   });
 
 
-  /* Events
-  Template.main.events({
-    'click .accept': function() {
-      console.log("acceptedOffer");
-      // Start timer, logging when they press "accept"
-      var tempVal = 20; // TODO:use event.target.minutes.value to get offer minutes
-      Meteor.call('beginTimer', new Date(), tempVal);
-    },
-     'click .accept': function() {
-       console.log("acceptedOffer");
-       Meteor.Router.to('/time');
-     }
- });
 
-*/
+Template.main.events({
+    'click #acceptOffer': function() {
+        Meteor.call("acceptOffer", function(err, data) {
+            // offer is now accepted
+            // switch templates here!
+        });
+    },
+});
+
 
 Template._sideMenu.events({
    'click #logout': function(event){
