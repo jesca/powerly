@@ -16,7 +16,6 @@ Template.main.events({
     'click #acceptOffer': function() {
         Meteor.call("acceptOffer", function(err, data) {
             // offer is now accepted
-            // switch templates here!
         });
     },
 });

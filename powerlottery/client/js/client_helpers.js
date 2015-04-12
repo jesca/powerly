@@ -57,10 +57,9 @@ Template.main.helpers({
   4: fail
   */
   hasOffer: function() {
-    return Meteor.user().profile.current_offer_state == 1 &&
-      Session.get('offer');
-  }
-  currentlyInOffer: function() {
+    return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
+  },
+  inGame: function() {
     // user has accepted offer and it's in progress
     return Meteor.user().profile.current_offer_state == 2 &&
       Session.get('offer') && Meteor.user().profile.ac_end_time > Session.get('serverTime');
