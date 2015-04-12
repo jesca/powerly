@@ -7,6 +7,7 @@ Accounts.onCreateUser(function(options, user) {
     user.profile.failed_offer_ids = [];
     user.profile.current_offer_id = "";
     user.profile.current_offer_state = 0
+    user.profile.ac_end_time = 0;
     return user;
 });
 
@@ -22,7 +23,6 @@ Meteor.methods({
         and update the UI and try to get the user to accept it
     */
     attemptCreateAndSendOffer: function() {
-        console.log("hey")
         if (offers.find({_id: { $gte: new Date().getTime() }}).fetch().length == 0) {
             var offerLength = 60 * 10 * 1000;
             var endTime = '' + (new Date().getTime() + offerLength);
@@ -47,7 +47,7 @@ Meteor.methods({
     acceptOffer: function(userId) {
         var challengeLength = 1000 * 60 * 60;
         var offerEnd = new Date.getTime() + challengeLength;
-        Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.current_offer_id": offerEnd}});
+        Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": offerEnd}});
     },
 
     /*

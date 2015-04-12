@@ -5,7 +5,6 @@ Meteor.startup(function () {
     });
   }, 1000);
   Tracker.autorun(function() {
-
     if (Meteor.user()) {
       var offerId = Meteor.user().profile.current_offer_id;
       var offer = offers.findOne({'_id': offerId});
@@ -54,6 +53,6 @@ Template.main.helpers({
   }
   currentlyInOffer: function() {
     // user has accepted offer and it's in progress
-    return Meteor.user().profile.current_offer_state == 2 &&
+    return Meteor.user().profile.current_offer_state == 2;
   }
 });
