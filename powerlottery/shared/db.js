@@ -72,7 +72,7 @@ if (Meteor.isServer) {
 }
 
 if (Meteor.isClient) {
-  Meteor.subscribe("userData");
+  Meteor.subscribe("users");
   Meteor.subscribe("userDevices", Meteor.user());
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");

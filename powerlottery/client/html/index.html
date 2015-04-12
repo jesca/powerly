@@ -48,6 +48,15 @@
                     Time left to accept offer:<br>
                     {{minutes}}:{{seconds}}
                     <div class="col"></div>
+                    {{#if ac_on}}
+<button class="button button-light">
+  Turn AC Off to Accept
+</button>
+{{else}}
+<button class="button button-balanced">
+  Accept Offer
+</button>
+{{/if}}
                 </div>
             </div>
         </div>

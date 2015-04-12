@@ -22,6 +22,7 @@ Meteor.methods({
         and update the UI and try to get the user to accept it
     */
     attemptCreateAndSendOffer: function() {
+        console.log("hey")
         if (offers.find({_id: { $gte: new Date().getTime() }}).fetch().length == 0) {
             var offerLength = 60 * 10 * 1000;
             var endTime = '' + (new Date().getTime() + offerLength);

@@ -5,6 +5,7 @@ Meteor.startup(function () {
     });
   }, 1000);
   Tracker.autorun(function() {
+    user = Meteor.user();
     var offerId = Meteor.user().profile.current_offer_id;
     var offer = offers.findOne({'_id': offerId});
     if (offer) {
