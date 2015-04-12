@@ -3,9 +3,10 @@ offers = new Mongo.Collection('offers');
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // clear the devices db on startup
+    // clear the devices and offers db on startup
     //sMeteor.users.remove({});
     devices.remove({});
+    offers.remove({});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
 

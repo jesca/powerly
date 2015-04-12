@@ -66,6 +66,7 @@ PowerHandler = {
     
     if (this.windowPowerTotal > PowerHandler.maxPowerThreshold) {
       // send offer to users here
+      OfferSender.attemptCreateAndSendOffer();
     }
   }
 };
