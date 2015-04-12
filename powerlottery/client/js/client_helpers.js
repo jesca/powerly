@@ -10,7 +10,16 @@ Meteor.startup(function () {
       var offer = offers.findOne({'_id': offerId});
       if (offer) {
         Session.set('offer', offer);
-        Session.set('timeLeftInSeconds', Math.floor((offer._id - Session.get('serverTime'))/1000));
+        var timeLeftInSeconds = Math.ceil((offer._id - Session.get('serverTime'))/1000);
+        Session.set('timeLeftInSeconds', timeLeftInSeconds);
+        if (timeLeftInSeconds == 0) {
+          var offerEnd = Meteor.user().profile.current_offer_id;
+          Meteor.call('expireOffer', function(err, data) {
+            if (!data) {
+              console.log("This should never be displayed... If it is then something is very wrong");
+            }
+          });
+        }
       }
     }
   });
@@ -53,6 +62,7 @@ Template.main.helpers({
   }
   currentlyInOffer: function() {
     // user has accepted offer and it's in progress
-    return Meteor.user().profile.current_offer_state == 2;
+    return Meteor.user().profile.current_offer_state == 2 &&
+      Session.get('offer') && Meteor.user().profile.ac_end_time > Session.get('serverTime');
   }
 });

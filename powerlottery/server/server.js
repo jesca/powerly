@@ -15,6 +15,17 @@ Meteor.methods({
     getCurrentTime: function() {
         // return time in milliseconds 
         return new Date().getTime();
+    }
+
+    expireOffer: function(userId) {
+        // expires the 1st phase offer
+        var user = Meteor.users.findOne({_id:userId});
+        var offerEnd = user.profile.current_offer_id;
+        if (new Date().getTime() < offerEnd) {
+            return false;
+        }
+        Meteor.users.update({_id:userId},{$set: {"profile.current_offer_id": "", "profile.current_offer_state": 0}});
+        return true;
     },
 
     /*
@@ -58,7 +69,7 @@ Meteor.methods({
     */
     updateOutstandingOffer: function(userId) {
         // Updates user with userId provided whose endtime is earlier than current time and is accepted
-        var user = Meteor.users.findOne({_id:UserId});
+        var user = Meteor.users.findOne({_id:userId});
         var offerId = user.profile.current_offer_id;
         var tokensEarned = offers.findOne({_id: offerId}).tokensOffered;
         var status = user.profile.current_offer_state;
