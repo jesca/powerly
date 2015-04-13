@@ -15,7 +15,7 @@ Meteor.methods({
     getCurrentTime: function() {
         // return time in milliseconds 
         return new Date().getTime();
-    }
+    },
 
     expireOffer: function(userId) {
         // expires the 1st phase offer
@@ -61,7 +61,7 @@ Meteor.methods({
         var status = user.profile.current_offer_state;
         if (status == 1 && offerId != "") {
             var challengeLength = 1000 * 60 * 60;
-            var offerEnd = new Date.getTime() + challengeLength;
+            var offerEnd = new Date().getTime() + challengeLength;
             Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": offerEnd}});
         }
     },

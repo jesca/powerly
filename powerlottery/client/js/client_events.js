@@ -14,7 +14,7 @@ if (Meteor.isClient) {
 
 Template.main.events({
     'click #acceptOffer': function() {
-        Meteor.call("acceptOffer", function(err, data) {
+        Meteor.call("acceptOffer", Meteor.user()._id, function(err, data) {
             // offer is now accepted
         });
     },

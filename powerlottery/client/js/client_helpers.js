@@ -13,7 +13,7 @@ Meteor.startup(function () {
         var timeLeftInSeconds = Math.ceil((offer._id - Session.get('serverTime'))/1000);
         Session.set('timeLeftInSeconds', timeLeftInSeconds);
         if (timeLeftInSeconds == 0) {
-          Meteor.call('expireOffer', function(err, data) {
+          Meteor.call('expireOffer', Meteor.user()._id, function(err, data) {
             if (!data) {
               console.log("This should never be displayed... If it is then something is very wrong");
             }
