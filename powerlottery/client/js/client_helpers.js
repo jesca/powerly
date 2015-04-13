@@ -71,8 +71,17 @@ Template.main.helpers({
     return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
   },
   inGame: function() {
+    console.log(Session.get('offer')); 
+    console.log(Meteor.user().profile.ac_end_time > Session.get('serverTime'));
     // user has accepted offer and it's in progress
     return Meteor.user().profile.current_offer_state == 2 &&
       Session.get('offer') && Meteor.user().profile.ac_end_time > Session.get('serverTime');
+  },
+  failed: function() {
+    return Meteor.user().profile.current_offer_state == 4 && Session.get('offer');
+  },
+  success: function() {
+    return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
   }
+
 });
