@@ -43,6 +43,7 @@ PowerHandler = {
     var user = Meteor.users.findOne({profile:{ device_id : deviceId }});
     if (user) {
       if (user['profile']['current_offer_state'] == 2 && power > 0) {
+        Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
         Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
       }
       if (power > 0) {
