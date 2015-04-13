@@ -23,6 +23,11 @@ Template.main.events({
       Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
     });
     },
+    'click #acknowledgeFailure': function() {
+      //Resets the user's current_offer_state and current_offer_id to 0
+      Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
+    });
+    },
 });
 
 
