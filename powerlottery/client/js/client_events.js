@@ -18,6 +18,11 @@ Template.main.events({
             // offer is now accepted
         });
     },
+    'click #acknowledgeSuccess': function() {
+      //Resets the user's current_offer_state and current_offer_id to 0
+      Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
+    });
+    },
 });
 
 

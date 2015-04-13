@@ -73,8 +73,6 @@ Meteor.methods({
         else, add to the failed offers
     */
     updateOutstandingOffer: function(userId) {
-        console.log("inside updateOutstandingOffer");
-
         // Updates user with userId provided whose endtime is earlier than current time and is accepted
         var user = Meteor.users.findOne({_id:userId});
         var offerId = user.profile.current_offer_id;
@@ -90,5 +88,9 @@ Meteor.methods({
             //push offerid to list of succeededOffers
             Meteor.users.update({_id:userId}, {$push:{"profile.completed_offer_ids":offerId}});
         }
+    },
+
+    resetUserStates: function(userId) {
+        Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":0, "profile.current_offer_id":0, "ac_end_time":0}});
     },
 });
