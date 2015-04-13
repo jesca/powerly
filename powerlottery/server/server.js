@@ -60,7 +60,7 @@ Meteor.methods({
         var offerId = user.profile.current_offer_id;
         var status = user.profile.current_offer_state;
         if (status == 1 && offerId != "") {
-            var challengeLength = 1000 * 60 * 60;
+            var challengeLength = 1000 * 10;
             var challengeEnd = new Date().getTime() + challengeLength;
             Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": challengeEnd}});
         }
@@ -73,19 +73,22 @@ Meteor.methods({
         else, add to the failed offers
     */
     updateOutstandingOffer: function(userId) {
+        console.log("inside updateOutstandingOffer");
+
         // Updates user with userId provided whose endtime is earlier than current time and is accepted
         var user = Meteor.users.findOne({_id:userId});
         var offerId = user.profile.current_offer_id;
+        var acEndTime = user.profile.ac_end_time;
         var tokensEarned = offers.findOne({_id: offerId}).tokensOffered;
         var status = user.profile.current_offer_state;
         // If offer status has been updated to success
-        if (offerId <= new Date().getTime() && status == 2) {
+        if (acEndTime <= new Date().getTime() && status == 2) {
             // update user's offer status to success
             Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":3}});
             // increase tokens by tokens earned
             Meteor.users.update({_id:userId}, {$inc:{"profile.total_tokens":tokensEarned}});
             //push offerid to list of succeededOffers
-            Meteor.users.update({_id:userId}, {$push:{"profile.completed_offer_ids":id}});
+            Meteor.users.update({_id:userId}, {$push:{"profile.completed_offer_ids":offerId}});
         }
     },
 });
