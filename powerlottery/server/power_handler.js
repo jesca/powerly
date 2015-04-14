@@ -51,12 +51,8 @@ PowerHandler = {
         Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
         Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
       }
-      if (power > 0) {
-        Meteor.users.update({_id: user['_id']},{$set:{"profile.status": 1}});
-      }
-      else {
-        Meteor.users.update({_id: user['_id']},{$set:{"profile.status": 0}});
-      }
+      // status 1 - on
+      Meteor.users.update({_id: user['_id']},{$set:{"profile.status": status}});
     }
     PowerHandler.windowPowerTotal += power * PowerHandler.Vrms;
     PowerHandler.minheap.push({time: timestamp, value: power * PowerHandler.Vrms});
