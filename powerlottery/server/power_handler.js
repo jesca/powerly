@@ -39,6 +39,11 @@ PowerHandler = {
         power: power
       }, function(error, result) {});
     }
+    
+    // reject timestamps outside of the current window
+    if (timestamp < new Date().getTime() - PowerHandler.windowSize) {
+      return;
+    }
 
     var user = Meteor.users.findOne({profile:{ device_id : deviceId }});
     if (user) {
@@ -52,11 +57,6 @@ PowerHandler = {
       else {
         Meteor.users.update({_id: user['_id']},{$set:{"profile.status": 0}});
       }
-    }
-
-    // reject timestamps outside of the current window
-    if (timestamp < new Date().getTime() - PowerHandler.windowSize) {
-      return;
     }
     PowerHandler.windowPowerTotal += power * PowerHandler.Vrms;
     PowerHandler.minheap.push({time: timestamp, value: power * PowerHandler.Vrms});
