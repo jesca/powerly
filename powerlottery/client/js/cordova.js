@@ -21,7 +21,6 @@ if (Meteor.isCordova) {
     var title = tokens + ' Token Offer';
     var message = 'Offer expires in 10 minutes! Please turn off your AC for ' + minutes + ' minutes for' + tokens + ' tokens';
     sendNotification(user_id, title, message);
-    offerExpire();
   }
   
   /*
@@ -34,13 +33,5 @@ if (Meteor.isCordova) {
       message:  msg,
       date:     new Date().getTime()
     });
-  }
-
-  // Starts countdown from 10 minutes, retracts offer
-  function offerExpire() {
-  }
-
-  // updates Client's Home Screen with New Token Offer
-  function updateHomeScreenWithOffer() {
   }
 }
