@@ -23,9 +23,9 @@ PowerHandler = {
   processDeviceUpdate: function(deviceId, timestamp, status, power) {
     if (devices.findOne({ _id: deviceId })) {
       devices.update({ 
-          _id: deviceId
+          _id: deviceId + ''
         }, { 
-          _id: deviceId, 
+          _id: deviceId + '',
           timestamp: timestamp, 
           status: status, 
           power: power
@@ -33,7 +33,7 @@ PowerHandler = {
     }
     else {
       devices.insert({ 
-        _id: deviceId, 
+        _id: deviceId + '',
         timestamp: timestamp, 
         status: status, 
         power: power
@@ -45,7 +45,7 @@ PowerHandler = {
       return;
     }
 
-    var user = Meteor.users.findOne({profile:{ device_id : deviceId }});
+    var user = Meteor.users.findOne({'profile.device_id' : deviceId + '' });
     if (user) {
       if (user['profile']['current_offer_state'] == 2 && status == 1) {
         Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});

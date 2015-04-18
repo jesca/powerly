@@ -91,6 +91,6 @@ Meteor.methods({
     },
 
     resetUserStates: function(userId) {
-        Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":0, "profile.current_offer_id":0, "ac_end_time":0}});
+        Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":0, "profile.current_offer_id":0, "profile.ac_end_time":0}});
     },
 });
