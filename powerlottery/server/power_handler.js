@@ -13,7 +13,7 @@ PowerHandler = {
   minheap: new Heap(),
   
   init: function() {
-    setInterval(PowerHandler.updateTotalPowerUsage, PowerHandler.windowSize);
+    Meteor.setInterval(PowerHandler.updateTotalPowerUsage, PowerHandler.windowSize);
   },
   
   /*
@@ -45,6 +45,7 @@ PowerHandler = {
       return;
     }
 
+    var powerUsage = power * PowerHandler.Vrms;
     var user = Meteor.users.findOne({'profile.device_id' : deviceId + '' });
     if (user) {
       if (user['profile']['current_offer_state'] == 2 && status == 1) {
@@ -53,10 +54,12 @@ PowerHandler = {
       }
       // status 1 - on
       Meteor.users.update({_id: user['_id']},{$set:{"profile.status": status}});
+      Meteor.users.update({_id: user['_id']},{$inc:{"profile.power_usage": powerUsage}});
+
+      PowerHandler.windowPowerTotal += powerUsage;
+      PowerHandler.minheap.push({user: user['_id'], time: timestamp, value: powerUsage});
+      PowerHandler.updateTotalPowerUsage();
     }
-    PowerHandler.windowPowerTotal += power * PowerHandler.Vrms;
-    PowerHandler.minheap.push({time: timestamp, value: power * PowerHandler.Vrms});
-    PowerHandler.updateTotalPowerUsage();
   },
   
   updateTotalPowerUsage: function() {
@@ -65,10 +68,14 @@ PowerHandler = {
       return; 
     }
     var timeVal = PowerHandler.minheap.peek();
-    
     while (timeVal.time < new Date().getTime() - PowerHandler.windowSize) {
       PowerHandler.windowPowerTotal -= timeVal.value;
-      PowerHandler.minheap.pop();
+      var obj = PowerHandler.minheap.pop();
+      Meteor.users.update({_id: obj.user},{$inc:{"profile.power_usage": -1 * obj.value}});
+      var power_usage = Meteor.users.findOne({_id: obj.user}).profile.power_usage;
+      if (power_usage == 0) {
+        Meteor.users.update({_id: obj.user},{$set:{"profile.status": 0}});
+      }
       if (PowerHandler.minheap.empty()) {
         break;
       }

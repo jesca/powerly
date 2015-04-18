@@ -8,9 +8,9 @@ if (Meteor.isServer) {
     
     devices.remove({});
     offers.remove({});
+    Meteor.users.update({}, {$set:{'profile.status': 0, 'profile.power_usage': 0}});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
-    var offerId = '' + (new Date().getTime() + 50000000);
 
     //offers.insert({ _id: offerId, tokensOffered: 10});
     //db.users.update({ _id: 'zhAcKfAuRGy7o9hAM'}, {$set:{profile: {current_offer_id: offerId, current_offer_state: 1}}});
