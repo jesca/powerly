@@ -11,15 +11,10 @@
     </div>
     {{/ionContent}}
 
-    {{#if isAndroid}}
-      {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
-      {{> ionTab title="Login" path="userAccounts" icon="happy-outline"}}
-      {{/ionTabs}}
-    {{else}}
       {{#ionTabs style="ios"}}
       {{> ionTab title="Login" path="userAccounts" icon="happy-outline"}}
       {{/ionTabs}}
-    {{/if}}
+
 </template>
 
 <!--

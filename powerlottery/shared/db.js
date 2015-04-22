@@ -5,7 +5,7 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // clear the devices and offers db on startup
     //sMeteor.users.remove({});
-
+    offers.remove({});
     devices.remove({});
     Meteor.users.update({}, {$set:{'profile.status': 0, 'profile.power_usage': 0}});
     //for testing remove this line after done
