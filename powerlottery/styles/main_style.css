@@ -100,9 +100,9 @@ section {
 }
 
 .logo {
-  content:url('img/logo4.png');
-  height:33px;
-  width:85px;
+  content:url('img/black_logo.png');
+  height:35px;
+  width:128px;
   display: block;
   margin: 0 auto;
 }
@@ -113,8 +113,9 @@ margin-left:auto;
 }
 
 .navbar-default {
-  background:rgba(240, 240, 240, 0.42) !important;
+  background:#ffffff;
 	color: #ffffff !important;
+	border-bottom: 1px solid #a2a2a2;
 }
 
 .navbar-signin {
@@ -175,9 +176,6 @@ margin-left:auto;
   margin-right:auto;
 }
 
-.upper {
-  margin-top:40px;
-}
 
 
 
@@ -188,7 +186,7 @@ margin-left:auto;
 /* Signed in Navbar*/
 .menu-icon {
   padding-top:15px;
-  color:#ffffff !important;
+  color:#000000 !important;
 }
 
 .popover {
@@ -223,7 +221,7 @@ text-transform:uppercase;
 }
 
 .main-info {
-margin-top:50px;
+margin-top:20px;
 }
 
 .h-pad {
@@ -232,7 +230,7 @@ margin-top:50px;
 
 .not-fullscreen {
   z-index:-1 !important;
-    height:150px;
+    height:25%;
     width:100%;
     overflow:hidden;
 }

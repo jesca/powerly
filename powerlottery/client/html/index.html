@@ -12,31 +12,30 @@
   {{/contentFor}}
 
 
+{{#ionView}}
 
-<!-- <div class = "row" style="background-image:url('/img/city.png');" data-img-width="800" data-img-height="458"> -->
-<div class = "row fullscreen" style="background-image:url('/img/test.jpg');" data-img-width="1700" data-img-height="1000">
-  <div class = "col upper">
+{{#ionContent}}
+<div class = "row not-fullscreen" style="background-image:url('/img/test.jpg');" data-img-width="1700" data-img-height="1000">
+  <div class = "col">
     <div class="row">
       <div class="col col-33"><div class = "circle"><h3 class = " white name">{{name}}</h3></div>    </div>
 
       <div class = "row main-info">
         <div class="col col-33 white"> {{#if ac_on}}
         {{> ionIcon icon="ios-circle-filled" class = "ac-on main-icons"}}
-        <h4 class = "centered white">AC On</h4>
+        <p class = "centered white">AC On</p>
         {{else}}
         {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
-        <h4 class = "centered white">AC Off</h4>
+        <p class = "centered white">AC Off</p>
         {{/if}}
         </div>
-        <div class="col col-33">  <h2 class = "white ">{{tokens}}</h2> <h4 class = "white"> tokens</h4>
+        <div class="col col-33">  <h2 class = "white ">{{tokens}}</h2> <p class = "white"> tokens</p>
         </div>
-        <div class="col"><h2 class = "white">{{offers_completed}} </h2>  <h4 class = "white"> offers </h4> </div>
+        <div class="col"><h2 class = "white">{{offers_completed}} </h2>  <p class = "white"> offers </p> </div>
       </div>
       </div>
       </div>
       </div>
-
-
 
 {{#if hasOffer}}
 <div class="row">
@@ -73,9 +72,9 @@
         <div class="card">
             <div class="item item-text-wrap">
                 <div class="row">
-                Keep it up! Keep your AC OFF for: 
+                Keep it up! Keep your AC OFF for:
                     {{minutes}}:{{seconds}}
-                   
+
                 </div>
             </div>
         </div>
@@ -89,9 +88,9 @@
         <div class="card">
             <div class="item item-text-wrap">
                 <div class="row">
-                    Sorry, we detected that your AC was turned on before time was up. 
-                    You have been disqualified from this challenge. 
-                    
+                    Sorry, we detected that your AC was turned on before time was up.
+                    You have been disqualified from this challenge.
+
                      <button id = "acknowledgeFailure" class="button button-assertive">
                         OK
                       </button>
@@ -113,7 +112,7 @@
                     <button id = "acknowledgeSuccess" class="button button-energized">
                         OK
                     </button>
-                   
+
                 </div>
             </div>
         </div>
@@ -121,13 +120,61 @@
 </div>
 {{/if}}
 
+{{>history_list}}
+{{/ionContent}}
+{{> _tabs}}
 
+{{/ionView}}
 
        <!-- Not igned in user -->
     {{else}}
 
+
 {{>login}}
 
     {{/if}}
+
+</template>
+
+
+
+
+<template name="history_list">
+    {{#ionList}}
+
+         {{#ionItem}}
+
+                  <h2>{{history_offers}}</h2>
+                  <p>
+                    (555) 555-1212
+                  </p>
+                  <button class="button button-positive">{{> ionIcon icon="ios-telephone"}}</button>
+
+                {{/ionItem}}
+
+                          {{#ionItem}}
+
+                            <img src="https://randomuser.me/api/portraits/thumb/men/27.jpg">
+                            <h2>{{successful_offers}}</h2>
+                            <p>
+                              (555) 555-1212
+                            </p>
+                            <button class="button button-positive">{{> ionIcon icon="ios-telephone"}}</button>
+
+                          {{/ionItem}}
+
+                                    {{#ionItem}}
+
+                                      <img src="https://randomuser.me/api/portraits/thumb/men/27.jpg">
+                                      <h2>John Smith</h2>
+                                      <p>
+                                        (555) 555-1212
+                                      </p>
+                                      <button class="button button-positive">{{> ionIcon icon="ios-telephone"}}</button>
+
+                                    {{/ionItem}}
+
+
+      {{/ionList}}
 
 </template>

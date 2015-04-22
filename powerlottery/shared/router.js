@@ -8,6 +8,8 @@ Router.map(function() {
   this.route('login', {layoutTemplate: 'login'});
   this.route('settings');
   this.route('userAccounts');
+  this.route('rewards', {path: '/rewards'});
+  this.route('data', {path: '/data'});
 });
 
 // POST request for recieving device data
