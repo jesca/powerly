@@ -68,10 +68,18 @@ if (Meteor.isServer) {
         //return devices.find({_id:device}).fetch();
       }
   });
+  // for high scores table
+  Meteor.publish("allUserData", function () {
+      return Meteor.users.find({}, {fields: {
+        'profile.total_tokens': 1,
+        'profile.name': 1,
+      }});
+  });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe("userDevices", Meteor.user());
+  Meteor.subscribe("allUserData");
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }
