@@ -11,6 +11,7 @@ PowerHandler = {
   maxPowerThreshold: 1000,
   Vrms: 120,
   minheap: new Heap(),
+  latestUpdates: {},
   
   init: function() {
     Meteor.setInterval(PowerHandler.updateTotalPowerUsage, PowerHandler.windowSize);
@@ -48,16 +49,16 @@ PowerHandler = {
     var powerUsage = power * PowerHandler.Vrms;
     var user = Meteor.users.findOne({'profile.device_id' : deviceId + '' });
     if (user) {
+      Meteor.users.update({_id: user['_id']},{$set:{"profile.status": status}});
+      PowerHandler.windowPowerTotal -= user.profile.power_usage;
+      PowerHandler.windowPowerTotal += powerUsage;
+      PowerHandler.latestUpdates[user['_id']] = timestamp;
+      Meteor.users.update({_id: user['_id']},{$set:{"profile.power_usage": powerUsage}});
+      PowerHandler.minheap.push({user: user['_id'], time: timestamp, value: powerUsage});
       if (user['profile']['current_offer_state'] == 2 && status == 1) {
         Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
         Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
       }
-      // status 1 - on
-      Meteor.users.update({_id: user['_id']},{$set:{"profile.status": status}});
-      Meteor.users.update({_id: user['_id']},{$inc:{"profile.power_usage": powerUsage}});
-
-      PowerHandler.windowPowerTotal += powerUsage;
-      PowerHandler.minheap.push({user: user['_id'], time: timestamp, value: powerUsage});
       PowerHandler.updateTotalPowerUsage();
     }
   },
@@ -67,19 +68,23 @@ PowerHandler = {
     if (PowerHandler.minheap.empty()) {
       return; 
     }
-    var timeVal = PowerHandler.minheap.peek();
-    while (timeVal.time < new Date().getTime() - PowerHandler.windowSize) {
-      PowerHandler.windowPowerTotal -= timeVal.value;
-      var obj = PowerHandler.minheap.pop();
-      Meteor.users.update({_id: obj.user},{$inc:{"profile.power_usage": -1 * obj.value}});
-      var power_usage = Meteor.users.findOne({_id: obj.user}).profile.power_usage;
-      if (power_usage == 0) {
-        Meteor.users.update({_id: obj.user},{$set:{"profile.status": 0}});
+    var powerPacket = PowerHandler.minheap.peek();
+    while (powerPacket.time < new Date().getTime() - PowerHandler.windowSize) {
+      if (powerPacket.time == PowerHandler.latestUpdates[powerPacket.user]) {
+        delete PowerHandler.latestUpdates[powerPacket.user];
+        PowerHandler.windowPowerTotal -= powerPacket.value;
+        Meteor.users.update({_id: powerPacket.user},{$set:{"profile.power_usage": 0, "profile.status": 2}});
+        var user = Meteor.users.findOne({'_id': powerPacket.user});
+        if (user.profile.current_offer_state == 2) {
+          Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
+          Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
+        }
       }
+      PowerHandler.minheap.pop();
       if (PowerHandler.minheap.empty()) {
         break;
       }
-      timeVal = PowerHandler.minheap.peek();
+      powerPacket = PowerHandler.minheap.peek();
     }
     
     if (this.windowPowerTotal > PowerHandler.maxPowerThreshold) {

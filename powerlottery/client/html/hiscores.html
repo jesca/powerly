@@ -1,0 +1,13 @@
+<template name="hiscores">
+    {{#if currentUser}}
+
+    {{#each scores}}
+        <div class="score">
+            <div class="username">{{ profile.name }}</div>
+            <div class="tokens">{{ profile.total_tokens }}</div>
+        </div>
+    {{/each}}
+
+    {{> _tabs}}
+    {{/if}}
+</template>

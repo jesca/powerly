@@ -7,7 +7,7 @@ if (Meteor.isServer) {
     //sMeteor.users.remove({});
     offers.remove({});
     devices.remove({});
-    Meteor.users.update({}, {$set:{'profile.status': 0, 'profile.power_usage': 0}});
+    Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
 
@@ -68,10 +68,18 @@ if (Meteor.isServer) {
         //return devices.find({_id:device}).fetch();
       }
   });
+  // for high scores table
+  Meteor.publish("allUserData", function () {
+      return Meteor.users.find({}, {fields: {
+        'profile.total_tokens': 1,
+        'profile.name': 1,
+      }});
+  });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe("userDevices", Meteor.user());
+  Meteor.subscribe("allUserData");
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }

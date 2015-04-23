@@ -30,6 +30,7 @@ Router.map(function() {
   this.route('userAccounts');
   this.route('rewards', {path: '/rewards', layoutTemplate: 'rewards'});
   this.route('data', {path: '/data', layoutTemplate: 'data'});
+  this.route('hiscores', {path: '/hiscores', layoutTemplate: 'hiscores'});
 });
 
 // POST request for recieving device data
