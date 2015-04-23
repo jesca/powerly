@@ -9,6 +9,7 @@ Accounts.onCreateUser(function(options, user) {
     user.profile.current_offer_state = 0
     user.profile.ac_end_time = 0;
     user.profile.power_usage = 0;
+    user.profile.status = 2;
     return user;
 });
 

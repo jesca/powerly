@@ -7,7 +7,7 @@ if (Meteor.isServer) {
     //sMeteor.users.remove({});
     offers.remove({});
     devices.remove({});
-    Meteor.users.update({}, {$set:{'profile.status': 0, 'profile.power_usage': 0}});
+    Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:0});
 
