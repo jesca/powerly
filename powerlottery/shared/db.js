@@ -3,8 +3,10 @@ offers = new Mongo.Collection('offers');
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    console.log("start up")
     // clear the devices and offers db on startup
     //sMeteor.users.remove({});
+
     offers.remove({});
     devices.remove({});
     Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
@@ -77,9 +79,43 @@ if (Meteor.isServer) {
   });
 }
 
+
+
 if (Meteor.isClient) {
   Meteor.subscribe("userDevices", Meteor.user());
   Meteor.subscribe("allUserData");
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }
+/*
+if (Meteor.isCordova) {
+
+  Meteor.startup(function () {
+    document.addEventListener("deviceready", onDeviceReady, false);
+  });
+
+  function onDeviceReady() {
+    console.log("deviceready!!!");
+  }
+
+
+    Meteor.autosubscribe(function() {
+    offers.find().observe({
+      added: function(offer){
+        console.log("sending offer " + Meteor.userId())
+        sendNotification(Meteor.userId(), "test", "test")
+      }
+    });
+    });
+
+
+    function sendNotification(user_id, title, msg) {
+      window.plugin.notification.local.add({
+        id:       user_id,
+        title:    title,
+        message:  msg,
+        date:     new Date().getTime()
+      });
+    }
+}
+*/

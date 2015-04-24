@@ -255,23 +255,6 @@ margin-top:20px;
 	color: #55b1bf;
 }
 
-/*
-.score {
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid black;
-    color: black;
-    text-align: left;
-    vertical-align: top;
-    overflow: hidden;
+.list-scores {
+	margin-top:50px;
 }
-.score .username {
-    height: 100%;
-    overflow: hidden;
-    width: auto;
-}
-.score .tokens {
-    width: 20%;
-    height: 100%;
-    float: right;
-}*/

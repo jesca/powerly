@@ -15,7 +15,7 @@ Accounts.onCreateUser(function(options, user) {
 
 Meteor.methods({
     getCurrentTime: function() {
-        // return time in milliseconds 
+        // return time in milliseconds
         return new Date().getTime();
     },
 
@@ -56,7 +56,7 @@ Meteor.methods({
         This will be triggered originally from the client side if
         the user accepts the offer
         update userId with accepted when client side accepts offer
-    */    
+    */
     acceptOffer: function(userId) {
         var user = Meteor.users.findOne({_id:userId});
         var offerId = user.profile.current_offer_id;

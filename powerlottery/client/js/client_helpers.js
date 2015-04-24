@@ -72,6 +72,7 @@ Template.main.helpers({
   4: fail
   */
   hasOffer: function() {
+    console.log("checking has offer state: " + Meteor.user().profile.current_offer_state);
     return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
   },
   inGame: function() {
@@ -87,5 +88,3 @@ Template.main.helpers({
   }
 
 });
-
- 

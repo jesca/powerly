@@ -69,11 +69,11 @@ AccountsTemplates.addFields( [
     required: true,
     displayName: "Device ID",
     func: function (d_id) {
-
-            d_id = "" + d_id + ""
+            d_id = "" + d_id + "";
             var findDevice = devices.find({_id: d_id}).count();
+            console.log("all devices found: " + devices.find({}).count());
             if (findDevice == 0) {
-              console.log("didn't find device");
+              console.log("didn't find device in database " + d_id);
               return true;
             }
             else if (findDevice > 0) {
