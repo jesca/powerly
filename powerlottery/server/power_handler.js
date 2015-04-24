@@ -56,8 +56,7 @@ PowerHandler = {
       Meteor.users.update({_id: user['_id']},{$set:{"profile.power_usage": powerUsage}});
       PowerHandler.minheap.push({user: user['_id'], time: timestamp, value: powerUsage});
       if (user['profile']['current_offer_state'] == 2 && status == 1) {
-        Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
-        Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
+        PowerHandler.failUserOffer(user);
       }
       PowerHandler.updateTotalPowerUsage();
     }
@@ -76,8 +75,7 @@ PowerHandler = {
         Meteor.users.update({_id: powerPacket.user},{$set:{"profile.power_usage": 0, "profile.status": 2}});
         var user = Meteor.users.findOne({'_id': powerPacket.user});
         if (user.profile.current_offer_state == 2) {
-          Meteor.users.update({_id: user['_id']}, {$push:{"profile.failed_offer_ids":user.profile.current_offer_id}});
-          Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
+          PowerHandler.failUserOffer(user);
         }
       }
       PowerHandler.minheap.pop();
@@ -91,6 +89,13 @@ PowerHandler = {
       // send offer to users here
       Meteor.call('attemptCreateAndSendOffer');
     }
+  },
+
+  failUserOffer: function(user) {
+    var acEndTime = user.profile.ac_end_time;
+    var tokensEarned = offers.findOne({_id: user.profile.current_offer_id}, {tokensOffered: 1}).tokensOffered;
+    Meteor.users.update({_id:userId}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 0, "end_time": acEndTime}}});
+    Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
   }
 };
 

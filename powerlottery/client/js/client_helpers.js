@@ -84,8 +84,10 @@ Template.main.helpers({
   },
   success: function() {
     return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
+  },
+  getHistory: function() {
+    return Meteor.user().profile.past_offers;
   }
-
 });
 
  
