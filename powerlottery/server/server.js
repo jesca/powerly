@@ -3,11 +3,10 @@ Accounts.onCreateUser(function(options, user) {
     user.profile = options.profile;
     }
     user.profile.total_tokens = 0;
-    user.profile.completed_offer_ids = [];
-    user.profile.failed_offer_ids = [];
     user.profile.current_offer_id = "";
     user.profile.current_offer_state = 0
     user.profile.ac_end_time = 0;
+    user.profile.past_offers = [];
     user.profile.power_usage = 0;
     user.profile.status = 2;
     return user;
@@ -88,7 +87,7 @@ Meteor.methods({
             // increase tokens by tokens earned
             Meteor.users.update({_id:userId}, {$inc:{"profile.total_tokens":tokensEarned}});
             //push offerid to list of succeededOffers
-            Meteor.users.update({_id:userId}, {$push:{"profile.completed_offer_ids":offerId}});
+            Meteor.users.update({_id:userId}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 1, "end_time": acEndTime}}});
         }
     },
 
