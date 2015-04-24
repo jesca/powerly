@@ -2,9 +2,7 @@ Router.onBeforeAction(function () {
   // all properties available in the route function
   // are also available here such as this.params
   var routeName = this.route.getName();
-  console.log("route name" + this.route.getName());
   if (!Meteor.user()) {
-    console.log("not logged in");
     if (_.include(['userAccounts'], routeName)){
         this.next();
         return;
@@ -28,9 +26,9 @@ Router.map(function() {
   this.route('login', {layoutTemplate: 'login'});
   this.route('settings');
   this.route('userAccounts');
-  this.route('rewards', {path: '/rewards', layoutTemplate: 'rewards'});
-  this.route('data', {path: '/data', layoutTemplate: 'data'});
-  this.route('hiscores', {path: '/hiscores', layoutTemplate: 'hiscores'});
+  this.route('rewards', {path: '/rewards'});
+  this.route('data', {path: '/data'});
+  this.route('hiscores', {path: '/hiscores'});
 });
 
 // POST request for recieving device data

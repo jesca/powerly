@@ -89,5 +89,3 @@ Template.main.helpers({
     return Meteor.user().profile.past_offers;
   }
 });
-
- 
