@@ -101,4 +101,8 @@ PowerHandler = {
 
 };
 
-PowerHandler.init();
+function sendPacket() {
+  console.log("sending packet!!!")
+  PowerHandler.processDeviceUpdate(2, new Date().getTime(), 0, 0);
+}
+Meteor.setInterval(sendPacket, PowerHandler.windowSize - 500);

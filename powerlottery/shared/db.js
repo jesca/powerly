@@ -14,11 +14,10 @@ if (Meteor.isServer) {
     //sMeteor.users.remove({});
 
     offers.remove({});
-    devices.remove({});
     Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
     console.log("inserting test device: ")
-    devices.insert({_id:"2",email:"none",status:2});
+    //devices.insert({_id:"2",email:"none",status:2});
 
     //offers.insert({ _id: offerId, tokensOffered: 10});
     //db.users.update({ _id: 'zhAcKfAuRGy7o9hAM'}, {$set:{profile: {current_offer_id: offerId, current_offer_state: 1}}});
@@ -34,8 +33,8 @@ if (Meteor.isServer) {
             device = devices.find({_id: id}).fetch();
             return device[0].status;
         },
-        addUsertoDevice: function(id, email) {
-            devices.update({_id: id}, {$set: {email: email, status:0}});
+        addUsertoDevice: function(id) {
+            devices.update({_id: id}, {$set: {status:0}});
             return;
         },
         getOfferDetails: function(offer_id, uid) {
