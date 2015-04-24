@@ -12,12 +12,11 @@ if (Meteor.isServer) {
     console.log("start up")
     // clear the devices and offers db on startup
     //sMeteor.users.remove({});
-
+    devices.remove({});
     offers.remove({});
     Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
-    console.log("inserting test device: ")
-    //devices.insert({_id:"2",email:"none",status:2});
+    devices.insert({_id:"2",status:2});
 
     //offers.insert({ _id: offerId, tokensOffered: 10});
     //db.users.update({ _id: 'zhAcKfAuRGy7o9hAM'}, {$set:{profile: {current_offer_id: offerId, current_offer_state: 1}}});

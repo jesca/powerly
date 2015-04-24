@@ -46,7 +46,7 @@ Template.main.helpers({
     return Meteor.user().profile.total_tokens;
   },
   offers_completed: function() {
-    return Meteor.user().profile.completed_offer_ids.length;
+    return Meteor.user().profile.total_offers_completed;
   },
   ac_on: function() {
     return Meteor.user().profile.status == 1;
@@ -90,7 +90,6 @@ Template.main.helpers({
 
 Template.history_list.helpers({
   getHistory: function() {
-    console.log("test");
     console.log("past offers" + Meteor.user().profile.past_offers);
     return Meteor.user().profile.past_offers;
   }

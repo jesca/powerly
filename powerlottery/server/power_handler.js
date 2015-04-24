@@ -24,6 +24,7 @@ PowerHandler = {
   processDeviceUpdate: function(deviceId, timestamp, status, power) {
     console.log('processingDeviceUpdate');
     if (devices.findOne({ _id: deviceId })) {
+      console.log("updating device with status " + status);
       devices.update({
           _id: deviceId + ''
         }, {
@@ -101,6 +102,7 @@ PowerHandler = {
 
 };
 
+PowerHandler.init();
 function sendPacket() {
   console.log("sending packet!!!")
   PowerHandler.processDeviceUpdate(2, new Date().getTime(), 0, 0);

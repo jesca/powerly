@@ -5,7 +5,8 @@ Accounts.onCreateUser(function(options, user) {
     Meteor.call('addUsertoDevice', user.profile.device_id)
     user.profile.total_tokens = 0;
     user.profile.current_offer_id = "";
-    user.profile.current_offer_state = 0
+    user.profile.current_offer_state = 0;
+    user.profile.total_offers_completed=0;
     user.profile.ac_end_time = 0;
     user.profile.past_offers = [];
     user.profile.power_usage = 0;
@@ -86,7 +87,7 @@ Meteor.methods({
             // update user's offer status to success
             Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":3}});
             // increase tokens by tokens earned
-            Meteor.users.update({_id:userId}, {$inc:{"profile.total_tokens":tokensEarned}});
+            Meteor.users.update({_id:userId}, {$inc:{"profile.total_tokens":tokensEarned, "profile.total_offers_completed:":1}});
             //push offerid to list of succeededOffers
             Meteor.users.update({_id:userId}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 1, "end_time": acEndTime}}});
         }
