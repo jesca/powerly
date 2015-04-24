@@ -1,4 +1,10 @@
+/*devices database status:
+0: off
+1: on
+2: unregistered
+*/
 devices = new Mongo.Collection('devices');
+
 offers = new Mongo.Collection('offers');
 
 if (Meteor.isServer) {
@@ -11,7 +17,8 @@ if (Meteor.isServer) {
     devices.remove({});
     Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
-    devices.insert({_id:"2",email:"none",status:0});
+    console.log("inserting test device: ")
+    devices.insert({_id:"2",email:"none",status:2});
 
     //offers.insert({ _id: offerId, tokensOffered: 10});
     //db.users.update({ _id: 'zhAcKfAuRGy7o9hAM'}, {$set:{profile: {current_offer_id: offerId, current_offer_state: 1}}});
@@ -27,8 +34,8 @@ if (Meteor.isServer) {
             device = devices.find({_id: id}).fetch();
             return device[0].status;
         },
-        addUsertoDevice: function(id, uid) {
-            devices.update({_id: id}, {$set: {status:1}});
+        addUsertoDevice: function(id, email) {
+            devices.update({_id: id}, {$set: {email: email, status:0}});
             return;
         },
         getOfferDetails: function(offer_id, uid) {
@@ -51,7 +58,8 @@ if (Meteor.isServer) {
         updateSuccessfulOffer: function(uid,offer_id) {
           users.update({_id:uid}, { $push: { completed_offer_ids: offer_id } });
           return;
-        }
+        },
+
     });
 
   // TODO: change this to a method that checks if the current id is already in devices (used by registration check)

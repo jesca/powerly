@@ -130,13 +130,40 @@
         </div>
     </div>
 </div>
-{{/if}}
 
+{{/if}}
+{{>history_list}}
 
 {{/ionContent}}
 {{> _tabs}}
 
 {{/ionView}}
 {{/if}}
+
+</template>
+
+<template name="history_list">
+  test
+    {{#ionList}}
+
+
+         {{#each getHistory}}
+
+
+                        
+
+                                    {{#ionItem}}
+
+                                      <img src="https://randomuser.me/api/portraits/thumb/men/27.jpg">
+                                      <h2>John Smith</h2>
+                                      <p>
+                                        (555) 555-1212
+                                      </p>
+                                      <button class="button button-positive">{{> ionIcon icon="ios-telephone"}}</button>
+
+                                    {{/ionItem}}
+{{/each}}
+
+      {{/ionList}}
 
 </template>

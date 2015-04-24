@@ -2,6 +2,7 @@ Accounts.onCreateUser(function(options, user) {
     if (options.profile) {
     user.profile = options.profile;
     }
+    Meteor.call('addUsertoDevice', user.profile.device_id)
     user.profile.total_tokens = 0;
     user.profile.current_offer_id = "";
     user.profile.current_offer_state = 0

@@ -6,8 +6,6 @@ var postSubmit = function(error, state){
       // ...
     }
     if (state === "signUp") {
-      // Successfully registered
-      // ...
     }
   }
   else {
@@ -33,7 +31,7 @@ AccountsTemplates.configure({
     negativeValidation: true,
     positiveValidation: true,
     positiveFeedback: true,
-    showValidating: true,
+    showValidating: false,
 
     // Redirects
     homeRoutePath: 'main',
@@ -71,7 +69,6 @@ AccountsTemplates.addFields( [
     func: function (d_id) {
             d_id = "" + d_id + "";
             var findDevice = devices.find({_id: d_id}).count();
-            console.log("all devices found: " + devices.find({}).count());
             if (findDevice == 0) {
               console.log("didn't find device in database " + d_id);
               return true;
@@ -79,7 +76,7 @@ AccountsTemplates.addFields( [
             else if (findDevice > 0) {
                 // get the current device info
                 var register_info = devices.find({_id:d_id},{email: 1, status:1}).fetch();
-                  if (register_info[0].status == 0) {
+                  if (register_info[0].status == 2) {
                     // unregistered valid device, continue
                     return false;
                   }

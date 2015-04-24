@@ -1,9 +1,9 @@
 /*
- * This algorithm assumes devices are in the same timezone 
- * 
- * This implementation will probably fail under extremely 
+ * This algorithm assumes devices are in the same timezone
+ *
+ * This implementation will probably fail under extremely
  * heavy loads by the way, but should be fine for our purposes.
- * 
+ *
  */
 PowerHandler = {
   windowSize: 5000,
@@ -12,35 +12,36 @@ PowerHandler = {
   Vrms: 120,
   minheap: new Heap(),
   latestUpdates: {},
-  
+
   init: function() {
     Meteor.setInterval(PowerHandler.updateTotalPowerUsage, PowerHandler.windowSize);
   },
-  
+
   /*
    * Processes a post request from a device
    * Gets called asynchronously
    */
   processDeviceUpdate: function(deviceId, timestamp, status, power) {
+    console.log('processingDeviceUpdate');
     if (devices.findOne({ _id: deviceId })) {
-      devices.update({ 
+      devices.update({
           _id: deviceId + ''
-        }, { 
+        }, {
           _id: deviceId + '',
-          timestamp: timestamp, 
-          status: status, 
+          timestamp: timestamp,
+          status: status,
           power: power
         }, function(error, result) {});
     }
     else {
-      devices.insert({ 
+      devices.insert({
         _id: deviceId + '',
-        timestamp: timestamp, 
-        status: status, 
+        timestamp: timestamp,
+        status: status,
         power: power
       }, function(error, result) {});
     }
-    
+
     // reject timestamps outside of the current window
     if (timestamp < new Date().getTime() - PowerHandler.windowSize) {
       return;
@@ -61,11 +62,11 @@ PowerHandler = {
       PowerHandler.updateTotalPowerUsage();
     }
   },
-  
+
   updateTotalPowerUsage: function() {
     console.log("Total current power usage: " + PowerHandler.windowPowerTotal);
     if (PowerHandler.minheap.empty()) {
-      return; 
+      return;
     }
     var powerPacket = PowerHandler.minheap.peek();
     while (powerPacket.time < new Date().getTime() - PowerHandler.windowSize) {
@@ -84,7 +85,7 @@ PowerHandler = {
       }
       powerPacket = PowerHandler.minheap.peek();
     }
-    
+
     if (this.windowPowerTotal > PowerHandler.maxPowerThreshold) {
       // send offer to users here
       Meteor.call('attemptCreateAndSendOffer');
@@ -96,8 +97,8 @@ PowerHandler = {
     var tokensEarned = offers.findOne({_id: user.profile.current_offer_id}, {tokensOffered: 1}).tokensOffered;
     Meteor.users.update({_id:userId}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 0, "end_time": acEndTime}}});
     Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
-  }
+  },
+
 };
 
 PowerHandler.init();
-
