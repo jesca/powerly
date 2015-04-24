@@ -94,4 +94,8 @@ Meteor.methods({
     resetUserStates: function(userId) {
         Meteor.users.update({_id:userId},{$set:{"profile.current_offer_state":0, "profile.current_offer_id":0, "profile.ac_end_time":0}});
     },
+
+    deviceExists: function(deviceId) {
+        return devices.find({_id: '' + deviceId}).count() > 0;
+    }
 });

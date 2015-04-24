@@ -100,4 +100,3 @@ PowerHandler = {
 };
 
 PowerHandler.init();
-

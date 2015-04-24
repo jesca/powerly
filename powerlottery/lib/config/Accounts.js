@@ -29,7 +29,7 @@ AccountsTemplates.configure({
 
     // Client-side Validation
     continuousValidation: false,
-    negativeFeedback: false,
+    negativeFeedback: true,
     negativeValidation: true,
     positiveValidation: true,
     positiveFeedback: true,
@@ -69,25 +69,15 @@ AccountsTemplates.addFields( [
     required: true,
     displayName: "Device ID",
     func: function (d_id) {
-
-            d_id = "" + d_id + ""
-            var findDevice = devices.find({_id: d_id}).count();
-            if (findDevice == 0) {
-              console.log("didn't find device");
-              return true;
+        var that = this;
+        Meteor.call("deviceExists", d_id, function(err, deviceExists) {
+            that.setValidating(false);
+            if (!deviceExists)
+                that.setSuccess();
+            else {
+                that.setError("This device does not exist or has already been registered!");
             }
-            else if (findDevice > 0) {
-                // get the current device info
-                var register_info = devices.find({_id:d_id},{email: 1, status:1}).fetch();
-                  if (register_info[0].status == 0) {
-                    // unregistered valid device, continue
-                    return false;
-                  }
-                  else {
-                    return true;
-                  }
-                }
-      },
-      errStr: "This device does not exist or has already been registered!",
-
-}]);
+        });
+    },
+  }
+]);
