@@ -11,7 +11,7 @@ Meteor.startup(function () {
       if (offer) {
         Session.set('offer', offer);
         if (Meteor.user().profile.current_offer_state == 1) {
-          var timeLeftInSeconds = Math.ceil((offer._id - Session.get('serverTime'))/1000);
+          var timeLeftInSeconds = Math.ceil((offer.end_time - Session.get('serverTime'))/1000);
           Session.set('timeLeftInSeconds', timeLeftInSeconds);
           if (timeLeftInSeconds == 0) {
             Meteor.call('expireOffer', Meteor.user()._id, function(err, data) {
@@ -46,7 +46,7 @@ Template.main.helpers({
     return Meteor.user().profile.total_tokens;
   },
   offers_completed: function() {
-    return Meteor.user().profile.completed_offer_ids.length;
+    return 1;
   },
   ac_on: function() {
     return Meteor.user().profile.status == 1;

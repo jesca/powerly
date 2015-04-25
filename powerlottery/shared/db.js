@@ -4,10 +4,10 @@ offers = new Mongo.Collection('offers');
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // clear the devices and offers db on startup
-    //sMeteor.users.remove({});
+    Meteor.users.remove({});
     offers.remove({});
     devices.remove({});
-    Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
+    //Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
     devices.insert({_id:"2",email:"none",status:2});
 
@@ -75,10 +75,15 @@ if (Meteor.isServer) {
         'profile.name': 1,
       }});
   });
+
+  Meteor.publish("userData", function () {
+    return Meteor.users.find({_id: this.userId});
+  });
 }
 
 if (Meteor.isClient) {
   Meteor.subscribe("userDevices", Meteor.user());
+  Meteor.subscribe("userData");
   Meteor.subscribe("allUserData");
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");

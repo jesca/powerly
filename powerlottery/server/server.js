@@ -21,7 +21,7 @@ Meteor.methods({
     expireOffer: function(userId) {
         // expires the 1st phase offer
         var user = Meteor.users.findOne({_id:userId});
-        var offerEnd = user.profile.current_offer_id;
+        var offerEnd = offers.findOne({_id: user.profile.current_offer_id}).end_time;
         if (new Date().getTime() < offerEnd) {
             return false;
         }
@@ -35,19 +35,20 @@ Meteor.methods({
         and update the UI and try to get the user to accept it
     */
     attemptCreateAndSendOffer: function() {
-        if (offers.find({_id: { $gte: new Date().getTime() }}).fetch().length == 0) {
+        if (offers.find({end_time: { $gte: new Date().getTime() }}).fetch().length == 0) {
             var offerLength = 60 * 10 * 1000;
-            var endTime = '' + (new Date().getTime() + offerLength);
+            var endTime = new Date().getTime() + offerLength;
             offers.insert({
-                _id: endTime,
+                end_time: endTime,
                 tokensOffered: 10
-            }, function(error, result) {});
+            });
 
+            var id = offers.findOne({end_time: endTime})._id;
             /*
               Updates all users whose offer status is not accepted to pending and sets offerId to endtime
               offerStatus = 0 - none, 1 - pending, 2 - accepted, 3 - success, 4 - fai
             */
-            Meteor.users.update({"profile.current_offer_state": {$ne:2}}, {$set: {"profile.current_offer_state": 1, "profile.current_offer_id": endTime}}, {multi:true});
+            Meteor.users.update({"profile.current_offer_state": {$ne:2}}, {$set: {"profile.current_offer_state": 1, "profile.current_offer_id": id}}, {multi:true});
         }
     },
 
@@ -58,12 +59,17 @@ Meteor.methods({
     */    
     acceptOffer: function(userId) {
         var user = Meteor.users.findOne({_id:userId});
-        var offerId = user.profile.current_offer_id;
-        var status = user.profile.current_offer_state;
-        if (status == 1 && offerId != "") {
-            var challengeLength = 1000 * 10;
-            var challengeEnd = new Date().getTime() + challengeLength;
-            Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": challengeEnd}});
+        if (user) {
+            var offer = offers.findOne({_id: user.profile.current_offer_id});
+            if (offer) {
+                var offer_end_time = offer.end_time;
+                var status = user.profile.current_offer_state;
+                if (status == 1 && offer_end_time >= new Date().getTime()) {
+                    var challengeLength = 1000 * 10;
+                    var challengeEnd = new Date().getTime() + challengeLength;
+                    Meteor.users.update({_id: userId}, {$set: {"profile.current_offer_state": 2, "profile.ac_end_time": challengeEnd}});
+                }
+            }
         }
     },
 
