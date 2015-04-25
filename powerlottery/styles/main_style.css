@@ -235,6 +235,8 @@ margin-top:20px;
     overflow:hidden;
 }
 
+
+/* icons */
 .main-icons {
 	font-size:34px;
 }
@@ -254,7 +256,14 @@ margin-top:20px;
 .achievement-icon {
 	color: #55b1bf;
 }
-
 .list-scores {
 	margin-top:50px;
+}
+.succeed {
+	color: #85D78E;
+	font-size:30px !important;
+}
+.failed {
+	font-size:30px !important;
+	color: #D13434;
 }

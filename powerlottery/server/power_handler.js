@@ -94,7 +94,7 @@ PowerHandler = {
   failUserOffer: function(user) {
     var acEndTime = user.profile.ac_end_time;
     var tokensEarned = offers.findOne({_id: user.profile.current_offer_id}, {tokensOffered: 1}).tokensOffered;
-    Meteor.users.update({_id:userId}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 0, "end_time": acEndTime}}});
+    Meteor.users.update({_id: user['_id']}, {$push:{"profile.past_offers": {"tokens": tokensEarned, "status": 0, "end_time": acEndTime}}});
     Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
   }
 };

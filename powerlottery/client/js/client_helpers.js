@@ -84,8 +84,20 @@ Template.main.helpers({
   },
   success: function() {
     return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
-  },
+  }
+});
+
+Template.history_list.helpers({
   getHistory: function() {
+    console.log("past offers");
+    console.log(Meteor.user().profile.past_offers);
     return Meteor.user().profile.past_offers;
+  },
+  succeededOffer: function() {
+    return this.status = 1;
+  },
+  timeOffer: function() {
+    d = new Date(this.end_time);
+    return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
   }
 });

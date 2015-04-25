@@ -131,12 +131,34 @@
     </div>
 </div>
 {{/if}}
-
+{{>history_list}}
 
 {{/ionContent}}
 {{> _tabs}}
 
 {{/ionView}}
 {{/if}}
+
+</template>
+
+<template name = "history_list">
+  {{#each getHistory}}
+    {{#ionItem }}
+    <div class = "row">
+      <div class = "col">
+      {{#if succeededOffer }}
+      {{> ionIcon icon="checkmark" class = "succeed"}}
+      {{else}}
+      {{> ionIcon icon="close" class="failed"}}
+      {{/if}}
+    </div>
+    <div class = "col">
+      <h2>{{tokens}}</h2>
+      <p>
+      {{timeOffer}}
+    </p></div>
+  </div>
+    {{/ionItem}}
+  {{/each}}
 
 </template>
