@@ -70,13 +70,12 @@ AccountsTemplates.addFields( [
     displayName: "Device ID",
     func: function (d_id) {
         var that = this;
-        Meteor.call("deviceExists", d_id, function(err, deviceExists) {
+        Meteor.call("deviceAvailable", d_id, function(err, deviceAvailable) {
             that.setValidating(false);
-            if (!deviceExists)
+            if (deviceAvailable)
                 that.setSuccess();
-            else {
+            else
                 that.setError("This device does not exist or has already been registered!");
-            }
         });
     },
   }
