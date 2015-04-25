@@ -46,7 +46,7 @@ Template.main.helpers({
     return Meteor.user().profile.total_tokens;
   },
   offers_completed: function() {
-    return 1;
+    return Meteor.user().profile.total_offers_completed;
   },
   ac_on: function() {
     return Meteor.user().profile.status == 1;
