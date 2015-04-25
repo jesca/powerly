@@ -235,6 +235,8 @@ margin-top:20px;
     overflow:hidden;
 }
 
+
+/* icons */
 .main-icons {
 	font-size:34px;
 }
@@ -254,24 +256,11 @@ margin-top:20px;
 .achievement-icon {
 	color: #55b1bf;
 }
-
-/*
-.score {
-    width: 100%;
-    height: 50px;
-    border-bottom: 1px solid black;
-    color: black;
-    text-align: left;
-    vertical-align: top;
-    overflow: hidden;
+.succeed {
+	color: #85D78E;
+	font-size:30px !important;
 }
-.score .username {
-    height: 100%;
-    overflow: hidden;
-    width: auto;
+.failed {
+	font-size:30px !important;
+	color: #D13434
 }
-.score .tokens {
-    width: 20%;
-    height: 100%;
-    float: right;
-}*/

@@ -45,9 +45,6 @@ Template.main.helpers({
   tokens: function() {
     return Meteor.user().profile.total_tokens;
   },
-  offers_completed: function() {
-    return Meteor.user().profile.completed_offer_ids.length;
-  },
   ac_on: function() {
     return Meteor.user().profile.status == 1;
   },
@@ -84,10 +81,20 @@ Template.main.helpers({
   },
   success: function() {
     return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
-  },
-  getHistory: function() {
-    return Meteor.user().profile.past_offers;
   }
 });
 
- 
+Template.history_list.helpers({
+  getHistory: function() {
+    console.log("past offers");
+    console.log(Meteor.user().profile.past_offers);
+    return Meteor.user().profile.past_offers;
+  },
+  succeededOffer: function() {
+    return this.status = 1;
+  },
+  timeOffer: function() {
+    d = new Date(this.end_time);
+    return d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear();
+  }
+});
