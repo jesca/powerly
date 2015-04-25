@@ -1,13 +1,31 @@
 <template name="hiscores">
-    {{#if currentUser}}
+  {{#contentFor "headerTitle"}}
+  <div class="logo"></div>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+  <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+  {{/contentFor}}
+
+    <div class = "list-scores">
     {{#ionList}}
         {{#each scores}}
             {{#ionItem}}
-                <div class="username">{{ profile.name }}</div>
-                <div class="tokens">{{ profile.total_tokens }}</div>
+            <div class = "row">
+              <div class = "col">
+                <h4>{{ profile.name }}
+                </h4>
+              </div>
+              <div class = "col">
+                <h4>{{ profile.total_tokens }}</h4>
+              </div>
+            </div>
             {{/ionItem}}
         {{/each}}
     {{/ionList}}
+  </div>
+
+
     {{> _tabs}}
-    {{/if}}
+
 </template>

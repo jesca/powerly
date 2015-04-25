@@ -2,6 +2,7 @@ Accounts.onCreateUser(function(options, user) {
     if (options.profile) {
     user.profile = options.profile;
     }
+    Meteor.call('addUsertoDevice', user.profile.device_id)
     user.profile.total_tokens = 0;
     user.profile.current_offer_id = "";
     user.profile.current_offer_state = 0
@@ -14,7 +15,7 @@ Accounts.onCreateUser(function(options, user) {
 
 Meteor.methods({
     getCurrentTime: function() {
-        // return time in milliseconds 
+        // return time in milliseconds
         return new Date().getTime();
     },
 
@@ -55,7 +56,7 @@ Meteor.methods({
         This will be triggered originally from the client side if
         the user accepts the offer
         update userId with accepted when client side accepts offer
-    */    
+    */
     acceptOffer: function(userId) {
         var user = Meteor.users.findOne({_id:userId});
         var offerId = user.profile.current_offer_id;
@@ -97,5 +98,24 @@ Meteor.methods({
 
     deviceExists: function(deviceId) {
         return devices.find({_id: '' + deviceId}).count() > 0;
+    },
+    deviceValid: function(deviceId) {
+      // device already registered = 2
+      // device not in database = 1
+      // device in database, not registered (valid) = 0
+      if (devices.find({_id: '' + deviceId}).count() > 0) {
+        if (devices.find({_id: '' + deviceId}).fetch()[0].status == 0) {
+          // found device, unregistered
+          return 0
+        }
+        else {
+          // found device, but already registered
+          return 2
+        }
+      }
+      else {
+        // did not find device in database
+        return 1
+      }
     }
 });

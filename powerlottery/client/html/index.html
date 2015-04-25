@@ -39,9 +39,9 @@
         </div>
         <div class="col"><h2 class = "white">{{offers_completed}} </h2>  <p class = "white"> offers </p> </div>
       </div>
-      </div>
-      </div>
-      </div>
+    </div>
+  </div>
+</div>
 
 {{#if hasOffer}}
 <div class="row">
@@ -130,20 +130,28 @@
         </div>
     </div>
 </div>
-{{/if}}
 
+{{/if}}
+{{>history_list}}
 
 {{/ionContent}}
 {{> _tabs}}
 
 {{/ionView}}
+{{/if}}
 
-       <!-- Not igned in user -->
-    {{else}}
+</template>
 
+<template name="history_list">
+  test
+    {{#ionList}}
+      {{#each getHistory}}
+        {{#ionItem}}
+          <img src="https://randomuser.me/api/portraits/thumb/men/27.jpg">
+          <h2>John Smith</h2>
+        {{/ionItem}}
+      {{/each}}
 
-{{>login}}
-
-    {{/if}}
+    {{/ionList}}
 
 </template>
