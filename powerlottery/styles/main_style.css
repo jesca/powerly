@@ -100,9 +100,9 @@ section {
 }
 
 .logo {
-  content:url('img/black_logo.png');
+  content:url('img/gray_p.png');
   height:35px;
-  width:128px;
+  width:108px;
   display: block;
   margin: 0 auto;
 }
@@ -186,7 +186,7 @@ margin-left:auto;
 /* Signed in Navbar*/
 .menu-icon {
   padding-top:15px;
-  color:#000000 !important;
+  color:#BDC2C1 !important;
 }
 
 .popover {

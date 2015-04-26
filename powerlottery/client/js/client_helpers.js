@@ -94,7 +94,8 @@ Template.history_list.helpers({
     return Meteor.user().profile.past_offers;
   },
   succeededOffer: function() {
-    return this.status = 1;
+    console.log("offer status is " + this.status);
+    return this.status == 1;
   },
   timeOffer: function() {
     d = new Date(this.end_time);
