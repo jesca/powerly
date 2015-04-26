@@ -89,7 +89,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }
-
+/*
 if (Meteor.isCordova) {
 
   Meteor.startup(function () {
@@ -120,3 +120,4 @@ if (Meteor.isCordova) {
       });
     }
 }
+*/
