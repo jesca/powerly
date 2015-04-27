@@ -89,35 +89,11 @@ if (Meteor.isClient) {
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }
-/*
-if (Meteor.isCordova) {
-
-  Meteor.startup(function () {
-    document.addEventListener("deviceready", onDeviceReady, false);
-  });
-
-  function onDeviceReady() {
-    console.log("deviceready!!!");
-  }
 
 
-    Meteor.autosubscribe(function() {
-    offers.find().observe({
-      added: function(offer){
-        console.log("sending offer " + Meteor.userId())
-        sendNotification(Meteor.userId(), "test", "test")
-      }
-    });
-    });
 
-
-    function sendNotification(user_id, title, msg) {
-      window.plugin.notification.local.add({
-        id:       user_id,
-        title:    title,
-        message:  msg,
-        date:     new Date().getTime()
-      });
-    }
-}
-*/
+Meteor.startup(function () {
+	if (Meteor.isCordova) {
+		window.alert = navigator.notification.alert;
+	}
+})

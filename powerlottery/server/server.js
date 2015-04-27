@@ -43,6 +43,22 @@ Meteor.methods({
             offers.insert({
                 end_time: endTime,
                 tokensOffered: 10
+            },
+            function (error, result) {
+              if (!error) {
+                console.log("sending push notification");
+                Push.send({
+                  from: 'push',
+                  title: 'Hello World',
+                  text: 'This notification has been sent from the SERVER',
+                  badge: badge,
+                  payload: {
+                    title: 'Hello World',
+                    historyId: result
+                  },
+                  query: {}
+                  });
+                }
             });
 
             var id = offers.findOne({end_time: endTime})._id;

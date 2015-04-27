@@ -89,8 +89,6 @@ Template.main.helpers({
 
 Template.history_list.helpers({
   getHistory: function() {
-    console.log("past offers");
-    console.log(Meteor.user().profile.past_offers);
     return Meteor.user().profile.past_offers;
   },
   succeededOffer: function() {
