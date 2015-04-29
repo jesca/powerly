@@ -48,17 +48,12 @@ Meteor.methods({
               if (!error) {
                 console.log("sending push notification");
                 Push.send({
-                  from: 'push',
-                  title: 'Hello World',
-                  text: 'This notification has been sent from the SERVER',
-                  badge: badge,
-                  payload: {
-                    title: 'Hello World',
-                    historyId: result
-                  },
+                  from: 'Powerly',
+                  title: 'Powerly',
+                  text: 'New offer is available!',
                   query: {}
-                  });
-                }
+                });
+              }
             });
 
             var id = offers.findOne({end_time: endTime})._id;

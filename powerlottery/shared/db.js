@@ -89,11 +89,3 @@ if (Meteor.isClient) {
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
 }
-
-
-
-Meteor.startup(function () {
-	if (Meteor.isCordova) {
-		window.alert = navigator.notification.alert;
-	}
-})
