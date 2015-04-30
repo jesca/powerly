@@ -43,6 +43,17 @@ Meteor.methods({
             offers.insert({
                 end_time: endTime,
                 tokensOffered: 10
+            },
+            function (error, result) {
+              if (!error) {
+                console.log("sending push notification");
+                Push.send({
+                  from: 'Powerly',
+                  title: 'Powerly',
+                  text: 'New offer is available!',
+                  query: {}
+                });
+              }
             });
 
             var id = offers.findOne({end_time: endTime})._id;
