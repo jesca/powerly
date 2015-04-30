@@ -14,6 +14,7 @@
     /* ie8- graceful degradation */
     background-position:50% 50%\9 !important;
     position:fixed;
+		z-index:500;
 }
 
 body{
