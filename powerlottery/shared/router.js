@@ -8,6 +8,7 @@ Router.onBeforeAction(function () {
         return;
       }
     // if the user is not logged in, render the Login template
+    this.layout('login');
     this.render('login');
   } else {
     // otherwise don't hold up the rest of hooks or our route/action function
