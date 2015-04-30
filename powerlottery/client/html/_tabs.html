@@ -1,8 +1,9 @@
 <template name="_tabs">
     {{#ionTabs style="ios" class= "tabs-icon-only"}}
-    {{> ionTab path="main" icon="android-home"}}
-    {{> ionTab   path="rewards" icon="cash"}}
-    {{> ionTab  path="hiscores" icon="arrow-graph-up-right"}}
-    {{> ionTab  path="data" icon="stats-bars"}}
+    {{> ionTab title = "Home" path="main" icon="android-home"}}
+    {{> ionTab  title = "Rewards" path="rewards" icon="cash"}}
+    {{> ionTab title = "Data" path="data" icon="stats-bars"}}
+    {{> ionTab  title = "People" path="hiscores" icon="arrow-graph-up-right"}}
+
     {{/ionTabs}}
 </template>

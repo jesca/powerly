@@ -60,19 +60,29 @@
   </div>
 
 
-
 {{#if hasOffer}}
 <div class="row">
     <div class="col">
         <div class="card">
             <div class="item item-text-wrap">
                 <div class="row">
-                    <div class="col"></div>
-                    Time left to accept offer:<br>
-                    {{minutes}}:{{seconds}}
-                    <br><br>
+                  <div class = "col">
+                     <p>Accept offer by:</p><br></div></div>
+                     <div class = 'row offer'>
+                       <div class = "col">
+                         <div class = "timer thin">{{minutes}}:{{seconds}}</div>
+                       </div>
+                      </div>
+                      <div class = "row">
+                        <div class ="col">
+                        <p> minutes    &nbsp;&nbsp;&nbsp;   seconds</p></div>
+                      </div>
+
+
+                    <p>
                     Tokens offered: {{offer.tokensOffered}}
-                    to keep your AC off for 60 minutes
+                    to keep your AC off for 60 minutes</p>
+
                     <div class="col"></div>
                     {{#if ac_on}}
                         <button class="button button-light">
@@ -93,8 +103,7 @@
             </div>
         </div>
     </div>
-</div>
-{{/if}}
+ {{/if}}
 
 {{#if inGame}}
 <div class="row">
@@ -159,23 +168,29 @@
 </template>
 
 <template name = "history_list">
+  <div class = "padding-top">
   {{#each getHistory}}
-    {{#ionItem }}
+    {{#ionItem class="gray-bg"}}
     <div class = "row">
       <div class = "col">
-      {{#if succeededOffer }}
-      {{> ionIcon icon="checkmark" class = "succeed"}}
-      {{else}}
-      {{> ionIcon icon="close" class="failed"}}
-      {{/if}}
+      <div class='thin middle token-count'>{{tokens}}</div>
     </div>
     <div class = "col">
-      <h2>{{tokens}}</h2>
-      <p>
-      {{timeOffer}}
-    </p></div>
+      <div class = "thin middle time">{{timeOffer}} </div>
+    </div>
+    <div class = "col">
+      {{#if succeededOffer }}
+      <div class= "middle">
+        {{> ionIcon icon="cash" class = "succeed"}}
+      </div>
+      {{else}}
+      <div class= "middle">
+        {{> ionIcon icon="cash" class="gray-font"}}</div>
+      {{/if}}
+   </div>
   </div>
+
     {{/ionItem}}
   {{/each}}
-
+</div>
 </template>
