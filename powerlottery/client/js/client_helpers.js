@@ -13,7 +13,7 @@ Meteor.startup(function () {
         if (Meteor.user().profile.current_offer_state == 1) {
           var timeLeftInSeconds = Math.ceil((offer.end_time - Session.get('serverTime'))/1000);
           Session.set('timeLeftInSeconds', timeLeftInSeconds);
-          if (timeLeftInSeconds == 0) {
+          if (timeLeftInSeconds <= 0) {
             Meteor.call('expireOffer', Meteor.user()._id, function(err, data) {
               if (!data) {
                 console.log("This should never be displayed... If it is then something is very wrong");
@@ -26,7 +26,7 @@ Meteor.startup(function () {
           var challengeEndTime = Meteor.user().profile.ac_end_time;
           var timeLeftInSeconds = Math.ceil((challengeEndTime - Session.get('serverTime'))/1000);
           Session.set('timeLeftInSeconds', timeLeftInSeconds);
-          if (timeLeftInSeconds == 0) {
+          if (timeLeftInSeconds <= 0) {
             Meteor.call('updateOutstandingOffer', Meteor.user()._id, function(err, data) {
               // success
             });
