@@ -14,34 +14,52 @@
 
 {{#ionView}}
 
-{{#ionContent}}
-<div class = "row not-fullscreen" style="background-image:url('/img/test.jpg');" data-img-width="1700" data-img-height="1000">
-  <div class = "col">
-    <div class="row">
-      <div class="col col-33"><div class = "circle"><h3 class = " white name">{{name}}</h3></div>    </div>
 
-      <div class = "row main-info">
-        <div class="col col-33 white">
-        {{#if ac_on}}
-            {{> ionIcon icon="ios-circle-filled" class = "ac-on main-icons"}}
-            <p class = "centered white">AC On</p>
-        {{else}}
-            {{#if ac_disconnected}}
-                {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
-                <p class = "centered white">AC Disconnected</p>
-            {{else}}
-                {{> ionIcon icon="ios-circle-outline" class = "ac-off main-icons"}}
-                <p class = "centered white">AC Off</p>
-            {{/if}}
-        {{/if}}
-        </div>
-        <div class="col col-33">  <h2 class = "white ">{{tokens}}</h2> <p class = "white"> tokens</p>
-        </div>
-        <div class="col"><h2 class = "white">{{offers_completed}} </h2>  <p class = "white"> offers </p> </div>
-      </div>
+{{#ionContent}}
+
+
+  {{#if ac_on}}
+  <div class = "row bordered ac-on">
+    <div class = "ac-info ">
+      <p class = "thin white">{{> ionIcon icon="flash margin"}}    Your AC is currently ON.</p>
+</div>
+</div>
+  {{else}}
+  {{#if ac_disconnected}}
+  <div class = "row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class = "ac-info ">
+
+<p class = "thin white">{{> ionIcon icon="alert margin"}}    Your AC is currently disconnected. </p>
     </div>
   </div>
-</div>
+  {{else}}
+  <div class = "row bordered ac-off">
+    <div class = "ac-info ">
+      <p class = "thin white">{{> ionIcon icon="leaf margin"}}    Your AC is currently OFF.</p>
+    </div>
+    </div>
+  {{/if}}
+  {{/if}}
+
+
+
+   <div class = "row main-info margin-top">
+    <div class = "col">
+      <p class = "centered name">Hello {{name}}. You have</p>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col margin-bottom">
+      <div class = "centered tokens">{{tokens}}</div>
+    </div>
+  </div>
+  <div class = "row">
+    <div class = "col">
+      <div class = "centered gray-info">tokens from {{offers_completed}} offers</div>
+    </div>
+  </div>
+
+
 
 {{#if hasOffer}}
 <div class="row">
@@ -67,7 +85,7 @@
                             </button>
                         {{else}}
                             <button id="acceptOffer" class="button button-balanced">
-                            Accept Offer
+                            Accept
                             </button>
                         {{/if}}
                     {{/if}}

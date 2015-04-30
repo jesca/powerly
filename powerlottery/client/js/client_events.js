@@ -28,6 +28,18 @@ Template.main.events({
       Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
     });
     },
+    'click [data-action="showPopupDscAC"]': function(event, template) {
+      IonPopup.show({
+        template: 'Please reconnect your Powerly tracking device',
+        buttons: [{
+          text: 'Ok',
+          type: 'button-positive',
+          onTap: function() {
+            IonPopup.close();
+          }
+        }]
+      });
+    },
 });
 
 
@@ -42,6 +54,7 @@ Template._sideMenu.events({
       IonPopover.hide();
     }
 });
+
 
 
 }

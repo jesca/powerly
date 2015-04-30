@@ -28,6 +28,10 @@ body{
 		letter-spacing: .2px;
 }
 
+.thin {
+	font-weight:100 !important;
+}
+
 .container {
 
   margin-right: auto;
@@ -35,8 +39,7 @@ body{
 }
  h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
-	font-weight: 400;
-}
+ }
 
 input {
   font-family: 'Roboto', sans-serif;
@@ -56,7 +59,6 @@ p {
 	padding: 0;
 	margin-bottom: 12px;
   font-family: 'Roboto', sans-serif;
-	font-weight: 300;
 	font-size: 18px;
 	line-height: 28px;
 	color: #666;
@@ -109,9 +111,9 @@ section {
 }
 
 .logo {
-  content:url('img/gray_p.png');
-  height:35px;
-  width:108px;
+  content:url('img/color_logo.png');
+  height:36px;
+  width:130;
   display: block;
   margin: 0 auto;
 }
@@ -222,15 +224,9 @@ margin-left:auto;
 	padding-top:5px;
 }
 
-.name {
-font-weight: 500;
-font-size:15px;
-padding-top:50px;
-text-transform:uppercase;
-}
 
 .main-info {
-margin-top:20px;
+margin-top:10px;
 }
 
 .h-pad {
@@ -255,11 +251,19 @@ margin-top:20px;
 }
 
 .ac-off {
-	color: #44a135;
+	background-color: #58B6C7;
+}
+
+.ac-dsc{
+	background-color: #D33743;
 }
 
 .ac-on {
-	color: #a82100;
+	background-color: #EAAD2A;
+}
+
+.ac-info {
+	margin: 0 auto;
 }
 
 .achievement-icon {
@@ -298,4 +302,38 @@ position:fixed;
 	display: inline-block;
 	margin: 0 auto;
 
+}
+
+.name {
+	font-size:22px;
+}
+
+.tokens {
+	padding-top:5px;
+	padding-bottom:5px;
+	font-size:75px;
+	font-weight:300;
+}
+.gray-info {
+	font-size:18px;
+	color:#949494;
+}
+
+.margin-bottom {
+	margin-bottom:20px !important;
+}
+
+.margin-top {
+	padding-top:20px !important;
+}
+
+.bordered {
+	border-top: 1px solid #bcbcbc;
+	border-bottom: 1px solid #bcbcbc;
+	height:50px;
+}
+
+.margin {
+	margin-left:10px;
+	margin-right:10px;
 }
