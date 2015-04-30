@@ -3,49 +3,16 @@
     </div>
     {{#ionContent}}
     <div class = "row prelogin-logo">
-      <div class = "col col-50">
-        <img src = "img/logo.png" height="42" width="100">
-        <h5 class = "white"> Earn while saving. <br>
-          Live better, together </h5>
+      <div class = "col col-50 inline">
+        <img src = "img/color_logo.png" height="76" width="205">
+        <h4 class = "def"> Earn while saving. <br>
+          Live better, together </h4>
       </div>
     </div>
     {{#ionContent}}
-    <div class="padding">
-      <button class="button button-large button-stable" data-ion-modal="_myModal">Open Modal</button>
-    </div>
+    <div class = "row login-box">
+       <a href="{{pathFor 'userAccounts'}}" class="button button-stable button-login">Login</a>
+     </div>
+   {{/ionContent}}
   {{/ionContent}}
-    {{/ionContent}}
-
-      {{#ionTabs style="ios"}}
-      {{> ionTab title="Login" path="userAccounts" icon="happy-outline"}}
-      {{/ionTabs}}
-
 </template>
-
-<!--
-<template name = "registerForm">
-  <form id="register-form" action="action">
-  <div>
-   <input type="text" id="account-name" placeholder="Name" />
-   <input type="email" id="account-email" placeholder="Email" />
-   <input type="password" id="account-password" placeholder="Password"/>
-   <input type="text" id="device-id" placeholder="Device ID" />
-   <input type="submit" id="create-account" value="Create an Account" />
-   <label class = "error"> {{response_msg}}</label>
- </div>
-</form>
-</template>
-
-<template name = "loginForm">
-  <form id="login-form" action="action">
-      <div class = "input-group">
-        <input type="email" id="login-email" placeholder="Email"/>
-        <input type="password" id="login-password" placeholder="Password"/>
-        <input type="submit" id="login-submit" class= "btn btn-warning" value="Sign in" />
-        <label class = "error"> {{response_msg}}</label>
-      </div>
-   </form>
-
-</template>
-
--->

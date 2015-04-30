@@ -23,6 +23,9 @@ body{
     line-height:100px;
 	  color:#ffffff;
     text-align:center;
+		font-style: "Roboto";
+		line-height: 26px;
+		letter-spacing: .2px;
 }
 
 .container {
@@ -74,6 +77,10 @@ html, body {
 	color: #ffffff !important;
 }
 
+.default {
+	color: #4085B9;
+}
+
 .nav-view-transition-ios.nav-view-direction-forward {
 	background-color:#ffffff !important;
 }
@@ -91,8 +98,8 @@ html, body {
 }
 
 .prelogin-logo {
-position:absolute;
-bottom:80px;
+	bottom:60%;
+	position:fixed;
 }
 
 /* visual styles */
@@ -268,4 +275,27 @@ margin-top:20px;
 .failed {
 	font-size:30px !important;
 	color: #D13434;
+}
+
+.login-box {
+bottom:40%;
+position:fixed;
+}
+
+.button-login {
+	display: inline-block;
+	margin: 0 auto;
+	width: 300px;
+	padding-top:10px;
+	height:70px;
+	background-color:rgba(74, 75, 76, 0.27) !important;
+	color:#ffffff !important;
+	font-family: "Roboto";
+	font-size:20px;
+}
+
+.inline {
+	display: inline-block;
+	margin: 0 auto;
+
 }
