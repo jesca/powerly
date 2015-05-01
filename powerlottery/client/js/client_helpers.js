@@ -54,37 +54,6 @@ Template.main.helpers({
   ac_disconnected: function() {
     return Meteor.user().profile.status == 2;
   },
-  minutes: function() {
-    return Math.floor(Session.get('timeLeftInSeconds') / 60);
-  },
-  seconds: function() {
-    var seconds = '' + (Session.get('timeLeftInSeconds') % 60);
-    return "00".substring(0, 2 - seconds.length) + seconds;
-  },
-  offer: function() {
-    return Session.get('offer');
-  },
-  /*
-  0: None
-  1: Not accepted
-  2: accepted
-  3: success
-  4: fail
-  */
-  hasOffer: function() {
-    return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
-  },
-  inGame: function() {
-    // user has accepted offer and it's in progress
-    return Meteor.user().profile.current_offer_state == 2 &&
-      Session.get('offer') && Meteor.user().profile.ac_end_time > Session.get('serverTime');
-  },
-  failed: function() {
-    return Meteor.user().profile.current_offer_state == 4 && Session.get('offer');
-  },
-  success: function() {
-    return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
-  }
 });
 
 Template.history_list.helpers({
@@ -144,5 +113,48 @@ Template.history_list.helpers({
 Template._tabs.helpers({
   hasOffer: function() {
     return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
+  }
+});
+
+Template.challenge.helpers({
+  ac_on: function() {
+    return Meteor.user().profile.status == 1;
+  },
+  ac_disconnected: function() {
+    return Meteor.user().profile.status == 2;
+  },
+  ac_disconnected: function() {
+    return Meteor.user().profile.status == 2;
+  },
+  minutes: function() {
+    return Math.floor(Session.get('timeLeftInSeconds') / 60);
+  },
+  seconds: function() {
+    var seconds = '' + (Session.get('timeLeftInSeconds') % 60);
+    return "00".substring(0, 2 - seconds.length) + seconds;
+  },
+  offer: function() {
+    return Session.get('offer');
+  },
+  /*
+  0: None
+  1: Not accepted
+  2: accepted
+  3: success
+  4: fail
+  */
+  hasOffer: function() {
+    return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
+  },
+  inGame: function() {
+    // user has accepted offer and it's in progress
+    return Meteor.user().profile.current_offer_state == 2 &&
+      Session.get('offer') && Meteor.user().profile.ac_end_time > Session.get('serverTime');
+  },
+  failed: function() {
+    return Meteor.user().profile.current_offer_state == 4 && Session.get('offer');
+  },
+  success: function() {
+    return Meteor.user().profile.current_offer_state == 3 && Session.get('offer');
   }
 });

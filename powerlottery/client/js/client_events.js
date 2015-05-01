@@ -13,21 +13,6 @@ if (Meteor.isClient) {
 
 
 Template.main.events({
-    'click #acceptOffer': function() {
-        Meteor.call("acceptOffer", Meteor.user()._id, function(err, data) {
-            // offer is now accepted
-        });
-    },
-    'click #acknowledgeSuccess': function() {
-      //Resets the user's current_offer_state and current_offer_id to 0
-      Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
-    });
-    },
-    'click #acknowledgeFailure': function() {
-      //Resets the user's current_offer_state and current_offer_id to 0
-      Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
-    });
-    },
     'click [data-action="showPopupDscAC"]': function(event, template) {
       IonPopup.show({
         template: 'Please reconnect your Powerly tracking device',
@@ -55,6 +40,21 @@ Template._sideMenu.events({
     }
 });
 
-
-
+Template.challenge.events({
+  'click #acceptOffer': function() {
+      Meteor.call("acceptOffer", Meteor.user()._id, function(err, data) {
+          // offer is now accepted
+      });
+  },
+  'click #acknowledgeSuccess': function() {
+    //Resets the user's current_offer_state and current_offer_id to 0
+    Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
+  });
+  },
+  'click #acknowledgeFailure': function() {
+    //Resets the user's current_offer_state and current_offer_id to 0
+    Meteor.call("resetUserStates", Meteor.user()._id, function(err, data) {
+  });
+  }
+})
 }

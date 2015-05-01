@@ -1,3 +1,19 @@
 <template name = "data">
+  {{#contentFor "headerTitle"}}
+  <div class="logo"></div>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+  <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+  {{/contentFor}}
+
+
+  {{#ionView}}
+  {{#ionContent}}
+<div class = "fullscreen">
+</div>
+  {{/ionContent}}
+  {{/ionView}}
+
   {{> _tabs}}
 </template>
