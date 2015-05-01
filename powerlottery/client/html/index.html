@@ -42,10 +42,10 @@
   {{/if}}
 
 
-
-   <div class = "row main-info margin-top">
+<div class = "not-fullscreen background main-info" style = "	background-image:url('/img/world.png') !important;">
+   <div class = "row padding-top">
     <div class = "col">
-      <p class = "centered name">Hello {{name}}. You have</p>
+      <p class = "centered name white">Hello {{name}}. You have</p>
     </div>
   </div>
   <div class = "row">
@@ -55,10 +55,16 @@
   </div>
   <div class = "row">
     <div class = "col">
-      <div class = "centered gray-info">tokens from {{offers_completed}} offers</div>
+      <p class = "centered white">tokens from {{offers_completed}} challenges</p>
     </div>
   </div>
+</div>
 
+<div class = "row under-main">
+  <div class = "col">
+  <h4 class="white">{{name}}'s Powerly History</h4>
+</div>
+</div>
 
 {{#if hasOffer}}
 <div class="row">
@@ -158,6 +164,8 @@
     </div>
 </div>
 {{/if}}
+
+
 {{>history_list}}
 
 {{/ionContent}}
@@ -168,13 +176,21 @@
 </template>
 
 <template name = "history_list">
-  <div class = "padding-top">
-  {{#each getHistory}}
+   {{#each getHistory}}
+
     {{#ionItem class="gray-bg"}}
     <div class = "row">
+
       <div class = "col">
-      <div class='thin middle token-count'>{{tokens}}</div>
-    </div>
+        <div class = "middle">
+          <div class='token-count'>{{tokens}}</div>
+          {{#if succeededOffer}}
+          <p class = "thin">Tokens rewarded</p>
+          {{else}}
+          <p class = "thin">So close!</p>
+          {{/if}}
+        </div>
+      </div>
     <div class = "col">
       <div class = "thin middle time">{{timeOffer}} </div>
     </div>
@@ -192,5 +208,4 @@
 
     {{/ionItem}}
   {{/each}}
-</div>
-</template>
+ </template>

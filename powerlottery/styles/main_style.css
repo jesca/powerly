@@ -1,10 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto);
-@import url(http://fonts.googleapis.com/css?family=Dosis|Ropa+Sans);
+@import url(http://fonts.googleapis.com/css?family=Ruda|Ropa+Sans);
 
 * {
 	margin: 0;
 	padding: 0px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ruda', sans-serif;
 }
 
 /* background setup */
@@ -14,7 +14,6 @@
     background-position:50% 50%;
     /* ie8- graceful degradation */
     background-position:50% 50%\9 !important;
-    position:fixed;
 		z-index:500;
 }
 
@@ -24,9 +23,8 @@ body{
     line-height:100px;
 	  color:#ffffff;
     text-align:center;
-		font-style: "Roboto";
 		line-height: 26px;
-		letter-spacing: .2px;
+		letter-spacing: .3px;
 }
 
 .thin {
@@ -39,11 +37,11 @@ body{
   margin-left: auto;
 }
  h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ruda', sans-serif;
  }
 
 .bg {
-	background-image:url('/img/profile.png') !important;
+	background-image:url('/img/world.png') !important;
 }
 
 input {
@@ -63,7 +61,7 @@ input {
 p {
 	padding: 0;
 	margin-bottom: 12px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Ruda', sans-serif;
 	font-size: 18px;
 	line-height: 28px;
 	color: #666;
@@ -75,7 +73,7 @@ p {
 html, body {
     /* give this to all tags from html to .fullscreen */
     height:100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Ruda', sans-serif;
 }
 
 .centered {text-align: center}
@@ -230,7 +228,9 @@ margin-left:auto;
 
 
 .main-info {
-margin-top:10px;
+padding-top:5px;
+padding-bottom:20px;
+color:white !important;
 }
 
 .h-pad {
@@ -238,16 +238,23 @@ margin-top:10px;
 }
 
 .not-fullscreen {
-  z-index:-1 !important;
-    height:220px;
     width:100%;
     overflow:hidden;
 }
 
+/* background setup */
+.background {
+    background-repeat:no-repeat;
+    /* custom background-position */
+    background-position:20% 20%;
+    /* ie8- graceful degradation */
+    background-position:50% 50%\9 !important;
+}
 
 /* icons */
 .tab-item .icon {
   font-size: 20px !important;
+	color: #388293;
 }
 
 .main-icons {
@@ -286,7 +293,7 @@ position:fixed;
 	height:70px;
 	background-color:rgba(74, 75, 76, 0.27) !important;
 	color:#ffffff !important;
-	font-family: "Roboto";
+	font-family: "Ruda";
 	font-size:22px;
 }
 
@@ -360,6 +367,7 @@ position:fixed;
 
 .token-count {
 	font-size:25px;
+	font-style:bold;
 	font-family: 'Ropa Sans';
 }
 
@@ -383,8 +391,14 @@ position:fixed;
 .time {
 	font-family:"Ropa Sans";
 	font-size: 22px;
+	letter-spacing: .4px;
+
 }
 
 .gray-font {
 	color:#a5a5a5;
+}
+
+.under-main {
+	background-color:rgba(17, 46, 56, 0.86)
 }

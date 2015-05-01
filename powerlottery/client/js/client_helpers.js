@@ -139,3 +139,10 @@ Template.history_list.helpers({
     return '' + month + ' ' + (d.getDay()) + ', ' + d.getFullYear();
   }
 });
+
+
+Template._tabs.helpers({
+  hasOffer: function() {
+    return Meteor.user().profile.current_offer_state == 1 && Session.get('offer');
+  }
+});
