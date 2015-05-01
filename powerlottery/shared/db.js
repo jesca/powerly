@@ -1,5 +1,6 @@
 devices = new Mongo.Collection('devices');
 offers = new Mongo.Collection('offers');
+points = new Mongo.Collection('points');
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
@@ -8,6 +9,7 @@ if (Meteor.isServer) {
     Meteor.users.remove({});
     offers.remove({});
     devices.remove({});
+    points.remove({});
     //Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
     //for testing remove this line after done
     devices.insert({_id:"2",status:2});
@@ -76,6 +78,12 @@ if (Meteor.isServer) {
         'profile.name': 1,
       }});
   });
+  Meteor.publish("points", function () {
+      return points.find({}, {fields: {
+        'date': 1,
+        'power': 1,
+      }});
+  });
 
   Meteor.publish("userData", function () {
     return Meteor.users.find({_id: this.userId});
@@ -88,4 +96,5 @@ if (Meteor.isClient) {
   Meteor.subscribe("allUserData");
   Meteor.subscribe("devices");
   Meteor.subscribe("offers");
+  Meteor.subscribe("points");
 }
