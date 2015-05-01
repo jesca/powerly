@@ -64,6 +64,11 @@ PowerHandler = {
   
   updateTotalPowerUsage: function() {
     console.log("Total current power usage: " + PowerHandler.windowPowerTotal);
+    //Add power to points
+      // points.insert({power:PowerHandler.windowPowerTotal,date: new Date()});
+
+      // added constants to power so that graph could be demonstrated more clearly
+      points.insert({power:PowerHandler.windowPowerTotal + Math.random() * 100 + 500,date: new Date()});
     if (PowerHandler.minheap.empty()) {
       return; 
     }
@@ -98,5 +103,4 @@ PowerHandler = {
     Meteor.users.update({_id: user['_id']},{$set:{"profile.current_offer_state":4}});
   }
 };
-
 PowerHandler.init();
