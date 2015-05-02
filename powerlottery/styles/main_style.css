@@ -436,3 +436,16 @@ th, td {
   padding: 15px;
   text-align: center;
 }
+
+#usageOverTime .axis path,
+#usageOverTime .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#usageOverTime .line {
+  fill: none;
+  stroke: #f00;
+  stroke-width: 2px;
+}
