@@ -267,3 +267,16 @@ margin-top:20px;
 	font-size:30px !important;
 	color: #D13434;
 }
+
+#usageOverTime .axis path,
+#usageOverTime .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+#usageOverTime .line {
+  fill: none;
+  stroke: #f00;
+  stroke-width: 2px;
+}
