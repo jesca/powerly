@@ -98,7 +98,7 @@ html, body {
 }
 
 .or-bg{
-	background:#6A98A6;
+	background:#7BB7C8;
 }
 
 .prelogin-logo {
@@ -322,6 +322,9 @@ position:fixed;
 .padding-top {
 	padding-top:20px !important;
 }
+.padding-top-big{
+	padding-top:40px !important;
+}
 
 .bordered {
 	border-top: 1px solid #bcbcbc;
@@ -334,11 +337,6 @@ position:fixed;
 	margin-right:10px;
 }
 
-.offer {
-
-	padding-top:10px !important;
-	padding-bottom:10px !important;
-}
 
 .timer {
 	font-size:100px;
