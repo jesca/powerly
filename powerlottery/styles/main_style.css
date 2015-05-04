@@ -256,8 +256,8 @@ margin-top:20px;
 .achievement-icon {
 	color: #55b1bf;
 }
-.list-scores {
-	margin-top:50px;
+.topOffset {
+	margin-top: 45px;
 }
 .succeed {
 	color: #85D78E;

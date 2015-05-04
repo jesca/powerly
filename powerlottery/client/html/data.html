@@ -1,5 +1,16 @@
 <template name = "data">
-  <div class="powerUsage">Current power usage: {{ power_usage }}</div>
-  {{> usageOverTime }}
+  {{#contentFor "headerTitle"}}
+  <div class="logo"></div>
+  {{/contentFor}}
+
+  {{#contentFor "headerButtonRight"}}
+  <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
+  {{/contentFor}}
+
+  <div class="topOffset">
+    <div class="powerUsage">Current power usage: {{ power_usage }} W</div>
+    {{> usageOverTime }}
+  </div>
+
   {{> _tabs}}
 </template>

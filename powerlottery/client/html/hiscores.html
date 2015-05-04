@@ -7,16 +7,15 @@
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
   {{/contentFor}}
 
-    <div class = "list-scores">
+  <div class="topOffset">
     {{#ionList}}
         {{#each scores}}
             {{#ionItem}}
-            <div class = "row">
-              <div class = "col">
-                <h4>{{ profile.name }}
-                </h4>
+            <div class="row">
+              <div class="col">
+                <h4>{{ profile.name }}</h4>
               </div>
-              <div class = "col">
+              <div class="col">
                 <h4>{{ profile.total_tokens }}</h4>
               </div>
             </div>
@@ -25,7 +24,5 @@
     {{/ionList}}
   </div>
 
-
-    {{> _tabs}}
-
+  {{> _tabs}}
 </template>
