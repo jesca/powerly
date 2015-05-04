@@ -348,6 +348,8 @@ section {
 }
 .gray-font {
   color: #a5a5a5;
+.topOffset {
+	margin-top: 45px;
 }
 .under-main {
   background-color: rgba(17, 46, 56, 0.86)

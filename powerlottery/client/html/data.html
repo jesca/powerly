@@ -7,7 +7,10 @@
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
   {{/contentFor}}
 
-  <div class="powerUsage">Current power usage: {{ power_usage }}</div>
-  {{> usageOverTime }}
+  <div class="topOffset">
+    <div class="powerUsage">Current power usage: {{ power_usage }} W</div>
+    {{> usageOverTime }}
+  </div>
+
   {{> _tabs}}
 </template>
