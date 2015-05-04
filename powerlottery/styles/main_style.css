@@ -97,6 +97,10 @@ html, body {
   min-width:100%;
 }
 
+.fullscreen {
+	background-size: cover;
+}
+
 .or-bg{
 	background:#7BB7C8;
 }
