@@ -6,26 +6,59 @@
   {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
   {{/contentFor}}
+  {{#ionView}}
+  {{#ionContent}}
 
-    <div class = "list-scores">
+  {{#if ac_on}}
+  <div class = "row bordered ac-on">
+    <div class = "ac-info ">
+      <p class = "thin white">{{> ionIcon icon="flash margin"}}    Your AC is currently ON.</p>
+    </div>
+  </div>
+  {{else}}
+  {{#if ac_disconnected}}
+  <div class = "row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class = "ac-info ">
+
+      <p class = "thin white">{{> ionIcon icon="alert margin"}}    Your AC is currently disconnected. </p>
+    </div>
+  </div>
+  {{else}}
+  <div class = "row bordered ac-off">
+    <div class = "ac-info ">
+      <p class = "thin white">{{> ionIcon icon="leaf margin"}}    Your AC is currently OFF.</p>
+    </div>
+  </div>
+  {{/if}}
+  {{/if}}
+
+
+
+  <div class= "fullscreen or-bg">
+    <div class = "row">
+  <div class = "col padding-top-big">
     {{#ionList}}
         {{#each scores}}
-            {{#ionItem}}
+            {{#ionItem class = "or-bg no-border"}}
             <div class = "row">
               <div class = "col">
-                <h4>{{ profile.name }}
+                <h4 class= "hi-list">{{ profile.name }}
                 </h4>
               </div>
               <div class = "col">
-                <h4>{{ profile.total_tokens }}</h4>
+                <h4 class = "hi-list">{{ profile.total_tokens }}</h4>
               </div>
             </div>
             {{/ionItem}}
         {{/each}}
     {{/ionList}}
   </div>
+</div>
+  </div>
 
 
+            {{/ionContent}}
+            {{/ionView}}
     {{> _tabs}}
 
 </template>

@@ -277,12 +277,13 @@ color:white !important;
 	margin-top:50px;
 }
 .succeed {
-	color: #59b656;
-	font-size:30px !important;
+	color: #33642d !important;
+	font-size:18px !important;
+
 }
 .failed {
-	font-size:30px !important;
-	color: #D13434;
+	font-size:18px !important;
+	color: #D13434 !important;
 }
 
 .login-box {
@@ -396,7 +397,7 @@ position:fixed;
 /* Styles */
 .time {
 	font-family:"Ropa Sans";
-	font-size: 15px;
+	font-size: 22px;
 	letter-spacing: .4px;
 
 }
@@ -472,4 +473,13 @@ position:fixed;
 
 .green-bg{
 background:	#A0C87B;
+}
+
+.no-border {
+	border: 0px !important;
+}
+
+.hi-list {
+	font-size:18px !important;
+	color:white !important;
 }

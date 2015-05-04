@@ -81,29 +81,27 @@
 
       <div class = "col">
         <div class = "middle">
-          <div class='token-count'>{{tokens}}</div>
-          {{#if succeededOffer}}
-          <p class = "thin">Tokens rewarded</p>
-          {{else}}
-          <p class = "thin">Challenge not completed</p>
-          {{/if}}
-        </div>
+          <div class='token-count thin'>{{tokens}}  {{> ionIcon icon="leaf"}}
+          </div>
+         </div>
       </div>
-    <div class = "col">
-      <div class = "thin middle time">{{timeOffer}} </div>
+
+    <div class = "col col-50">
+      <div class= "middle">
+      <div class = "thin time">{{timeOffer}} </div></div>
     </div>
-    <div class = "col">
       {{#if succeededOffer }}
+      <div class = "col">
       <div class= "middle">
-        {{> ionIcon icon="cash" class = "succeed"}}
+        <p class = "succeed"> Challenge completed</p>
       </div>
+    </div>
       {{else}}
+      <div class = "col">
       <div class= "middle">
-        {{> ionIcon icon="cash" class="gray-font"}}</div>
+        <p class = "gray-font"> Challenge failed</p></div></div>
       {{/if}}
    </div>
-  </div>
-
     {{/ionItem}}
   {{/each}}
  </template>

@@ -24,7 +24,7 @@ AccountsTemplates.configure({
     lowercaseUsername: false,
 
     // Appearance
-    showForgotPasswordLink: true,
+    showForgotPasswordLink: false,
     showLabels: true,
 
     // Client-side Validation
