@@ -38,7 +38,7 @@ Meteor.methods({
     */
     attemptCreateAndSendOffer: function() {
         if (offers.find({end_time: { $gte: new Date().getTime() }}).fetch().length == 0) {
-            var offerLength = 60 * .2 * 1000;
+            var offerLength = 60 * 10 * 1000;
             var endTime = new Date().getTime() + offerLength;
             offers.insert({
                 end_time: endTime,

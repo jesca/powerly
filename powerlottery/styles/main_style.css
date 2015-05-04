@@ -392,7 +392,7 @@ position:fixed;
 /* Styles */
 .time {
 	font-family:"Ropa Sans";
-	font-size: 22px;
+	font-size: 15px;
 	letter-spacing: .4px;
 
 }
@@ -464,4 +464,8 @@ position:fixed;
 
 .no-offer p {
 	font-size:20px;
+}
+
+.green-bg{
+background:	#A0C87B;
 }
