@@ -361,6 +361,9 @@ position:fixed;
 .white {
 	color: #ffffff !important;
 }
+.darkGray {
+	color: #666 !important;
+}
 
 .gray-bg {
 	background-color:#e8e8e8;
