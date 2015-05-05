@@ -277,7 +277,7 @@ color:white !important;
 	margin-top:50px;
 }
 .succeed {
-	color: #33642d !important;
+	color: #5b994f !important;
 }
 .failed {
 	color: #D13434 !important;
@@ -314,6 +314,7 @@ position:fixed;
 	padding-top:5px;
 	padding-bottom:5px;
 	font-size:75px;
+	font-family:'Roboto';
 	font-weight:300;
 }
 
@@ -481,4 +482,7 @@ background:	#A0C87B;
 .hi-list {
 	font-size:18px !important;
 	color:white !important;
+}
+.btn-large{
+	width:200px;
 }
