@@ -60,7 +60,7 @@
 
 <div class = "row under-main">
   <div class = "col">
-  <h4 class="white">{{name}}'s Powerly History</h4>
+  <h4 class="white">{{name}}'s Past Challenges</h4>
 </div>
 </div>
 
@@ -81,25 +81,25 @@
 
       <div class = "col">
         <div class = "middle">
-          <div class='token-count thin'>{{tokens}}  {{> ionIcon icon="leaf"}}
+          <div class='token-count thin'>{{tokens}} tokens
           </div>
          </div>
       </div>
 
-    <div class = "col col-50">
+    <div class = "col">
       <div class= "middle">
-      <div class = "thin time">{{timeOffer}} </div></div>
+      <div class = "thin token-count">{{timeOffer}} </div></div>
     </div>
       {{#if succeededOffer }}
       <div class = "col">
-      <div class= "middle">
-        <p class = "succeed"> Challenge completed</p>
+        <div class= "middle">
+        <div class = "thin token-count succeed">Challenge succeeded </div></div>
       </div>
-    </div>
       {{else}}
       <div class = "col">
-      <div class= "middle">
-        <p class = "gray-font"> Challenge failed</p></div></div>
+        <div class= "middle">
+        <div class = "thin token-count gray-font">Challenge failed </div></div>
+      </div>
       {{/if}}
    </div>
     {{/ionItem}}

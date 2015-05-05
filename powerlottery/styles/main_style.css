@@ -278,11 +278,8 @@ color:white !important;
 }
 .succeed {
 	color: #33642d !important;
-	font-size:18px !important;
-
 }
 .failed {
-	font-size:18px !important;
 	color: #D13434 !important;
 }
 
@@ -376,8 +373,7 @@ position:fixed;
 }
 
 .token-count {
-	font-size:25px;
-	font-style:bold;
+	font-size:20px;
 	font-family: 'Ropa Sans';
 }
 
