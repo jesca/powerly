@@ -6,9 +6,9 @@
  * 
  */
 PowerHandler = {
-  windowSize: 5000,
+  windowSize: 20000,
   windowPowerTotal: 0,
-  maxPowerThreshold: 1000,
+  maxPowerThreshold: 0,
   Vrms: 120,
   minheap: new Heap(),
   latestUpdates: {},

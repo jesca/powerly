@@ -2,6 +2,10 @@ Router.onBeforeAction(function () {
   // all properties available in the route function
   // are also available here such as this.params
   var routeName = this.route.getName();
+  if (routeName == 'device') {
+    this.next();
+    return;
+  }
   if (!Meteor.user()) {
     if (_.include(['userAccounts'], routeName)){
         this.next();
@@ -36,15 +40,16 @@ Router.map(function() {
 // POST request for recieving device data
 Router.route('/device', { where: 'server' })
   .post(function() {
+    console.log("here");
     query = this.params.query;
+    console.log(query);
     if (query.hasOwnProperty('id') &&
-        query.hasOwnProperty('timestamp') &&
         query.hasOwnProperty('status') &&
         query.hasOwnProperty('power')) {
       console.log("Processing device request: " + JSON.stringify(query));
       PowerHandler.processDeviceUpdate(
         query['id'],
-        query['timestamp'],
+        new Date().getTime(),
         query['status'],
         query['power']);
       this.response.end("success");
