@@ -4,12 +4,6 @@
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 </head>
 
-<template name = "layout">
-{{#ionBody}}
-{{> ionNavBar class = "navbar-default"}}
-{{#ionNavView}}
-{{> yield}}
-{{/ionNavView}}
-
-{{/ionBody}}
+<template name="layout">
+  {{#ionBody}} {{> ionNavBar class = "navbar-default"}} {{#ionNavView}} {{> yield}} {{/ionNavView}} {{/ionBody}}
 </template>

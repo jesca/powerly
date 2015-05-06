@@ -2,106 +2,86 @@
   <!-- Signed in -->
   {{#contentFor "headerTitle"}}
   <div class="logo"></div>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
+  {{/contentFor}} {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-  {{/contentFor}}
-  {{#if currentUser}}
+  {{/contentFor}} {{#if currentUser}} {{#ionView}} {{#ionContent}} {{#if ac_on}}
+  <div class="row bordered ac-on">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="flash margin"}} Your AC is currently ON.</p>
+    </div>
+  </div>
+  {{else}} {{#if ac_disconnected}}
+  <div class="row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class="ac-info ">
 
-
-{{#ionView}}
-
-
-{{#ionContent}}
-
-
-  {{#if ac_on}}
-  <div class = "row bordered ac-on">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="flash margin"}}    Your AC is currently ON.</p>
-</div>
-</div>
-  {{else}}
-  {{#if ac_disconnected}}
-  <div class = "row bordered ac-dsc" data-action="showPopupDscAC">
-    <div class = "ac-info ">
-
-<p class = "thin white">{{> ionIcon icon="alert margin"}}    Your AC is currently disconnected. </p>
+      <p class="thin white">{{> ionIcon icon="alert margin"}} Your AC is currently disconnected. </p>
     </div>
   </div>
   {{else}}
-  <div class = "row bordered ac-off">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="leaf margin"}}    Your AC is currently OFF.</p>
-    </div>
-    </div>
-  {{/if}}
-  {{/if}}
-
-
-<div class = "not-fullscreen background main-info" style = "	background-image:url('/img/world.png') !important;">
-   <div class = "row padding-top">
-    <div class = "col">
-      <p class = "centered name white">Hello {{name}}. You have</p>
+  <div class="row bordered ac-off">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="leaf margin"}} Your AC is currently OFF.</p>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col margin-bottom">
-      <div class = "centered tokens">{{tokens}}</div>
+  {{/if}} {{/if}}
+
+
+  <div class="not-fullscreen background main-info" style="	background-image:url('/img/world.png') !important;">
+    <div class="row padding-top">
+      <div class="col">
+        <p class="centered name white">Hello {{name}}. You have</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col margin-bottom">
+        <div class="centered tokens">{{tokens}}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p class="centered white">tokens from {{offers_completed}} challenges</p>
+      </div>
     </div>
   </div>
-  <div class = "row">
-    <div class = "col">
-      <p class = "centered white">tokens from {{offers_completed}} challenges</p>
+
+  <div class="row under-main">
+    <div class="col">
+      <h4 class="white">{{name}}'s Past Challenges</h4>
     </div>
   </div>
-</div>
 
-<div class = "row under-main">
-  <div class = "col">
-  <h4 class="white">{{name}}'s Past Challenges</h4>
-</div>
-</div>
-
-{{>history_list}}
-
-{{/ionContent}}
-{{> _tabs}}
-
-{{/ionView}}
-{{/if}}
+  {{>history_list}} {{/ionContent}} {{> _tabs}} {{/ionView}} {{/if}}
 </template>
 
-<template name = "history_list">
-   {{#each getHistory}}
+<template name="history_list">
+  {{#each getHistory}} {{#ionItem class="gray-bg"}}
+  <div class="row">
 
-    {{#ionItem class="gray-bg"}}
-    <div class = "row">
-
-      <div class = "col">
-        <div class = "middle">
-          <div class='token-count thin'>{{tokens}} tokens
-          </div>
-         </div>
+    <div class="col">
+      <div class="middle">
+        <div class='token-count thin'>{{tokens}} tokens
+        </div>
       </div>
-
-    <div class = "col">
-      <div class= "middle">
-      <div class = "thin token-count">{{timeOffer}} </div></div>
     </div>
-      {{#if succeededOffer }}
-      <div class = "col">
-        <div class= "middle">
-        <div class = "thin token-count succeed">Challenge succeeded </div></div>
+
+    <div class="col">
+      <div class="middle">
+        <div class="thin token-count">{{timeOffer}} </div>
       </div>
-      {{else}}
-      <div class = "col">
-        <div class= "middle">
-        <div class = "thin token-count gray-font">Challenge failed </div></div>
+    </div>
+    {{#if succeededOffer }}
+    <div class="col">
+      <div class="middle">
+        <div class="thin token-count succeed">Challenge succeeded </div>
       </div>
-      {{/if}}
-   </div>
-    {{/ionItem}}
-  {{/each}}
- </template>
+    </div>
+    {{else}}
+    <div class="col">
+      <div class="middle">
+        <div class="thin token-count gray-font">Challenge failed </div>
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  {{/ionItem}} {{/each}}
+</template>

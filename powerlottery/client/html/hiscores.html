@@ -1,64 +1,52 @@
 <template name="hiscores">
   {{#contentFor "headerTitle"}}
   <div class="logo"></div>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
+  {{/contentFor}} {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-  {{/contentFor}}
-  {{#ionView}}
-  {{#ionContent}}
+  {{/contentFor}} {{#ionView}} {{#ionContent}} {{#if ac_on}}
+  <div class="row bordered ac-on">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="flash margin"}} Your AC is currently ON.</p>
+    </div>
+  </div>
+  {{else}} {{#if ac_disconnected}}
+  <div class="row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class="ac-info ">
 
-  {{#if ac_on}}
-  <div class = "row bordered ac-on">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="flash margin"}}    Your AC is currently ON.</p>
+      <p class="thin white">{{> ionIcon icon="alert margin"}} Your AC is currently disconnected. </p>
     </div>
   </div>
   {{else}}
-  {{#if ac_disconnected}}
-  <div class = "row bordered ac-dsc" data-action="showPopupDscAC">
-    <div class = "ac-info ">
-
-      <p class = "thin white">{{> ionIcon icon="alert margin"}}    Your AC is currently disconnected. </p>
+  <div class="row bordered ac-off">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="leaf margin"}} Your AC is currently OFF.</p>
     </div>
   </div>
-  {{else}}
-  <div class = "row bordered ac-off">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="leaf margin"}}    Your AC is currently OFF.</p>
-    </div>
-  </div>
-  {{/if}}
-  {{/if}}
+  {{/if}} {{/if}}
 
 
 
-  <div class= "fullscreen or-bg">
-    <div class = "row">
-  <div class = "col padding-top-big">
-    {{#ionList}}
+  <div class="fullscreen or-bg">
+    <div class="padding-top-big">
+      <table width="100%" id="hi" class=" white white highscore-main">
+        <tr class="highscore-tr">
+          <td>Rank</td>
+          <td>User</td>
+          <td>Total Tokens</td>
+        </tr>
         {{#each scores}}
-            {{#ionItem class = "or-bg no-border"}}
-            <div class = "row">
-              <div class = "col">
-                <h4 class= "hi-list">{{ profile.name }}
-                </h4>
-              </div>
-              <div class = "col">
-                <h4 class = "hi-list">{{ profile.total_tokens }}</h4>
-              </div>
-            </div>
-            {{/ionItem}}
+        <tr>
+          <td>{{rank}}</td>
+          <td>{{profile.name}}</td>
+          <td>{{profile.total_tokens}}</td>
+        </tr>
         {{/each}}
-    {{/ionList}}
-  </div>
-</div>
+
+      </table>
+    </div>
   </div>
 
 
-            {{/ionContent}}
-            {{/ionView}}
-    {{> _tabs}}
+  {{/ionContent}} {{/ionView}} {{> _tabs}}
 
 </template>

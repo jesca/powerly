@@ -1,178 +1,160 @@
-<template name = "challenge">
+<template name="challenge">
   {{#contentFor "headerTitle"}}
   <div class="logo"></div>
-  {{/contentFor}}
-
-  {{#contentFor "headerButtonRight"}}
+  {{/contentFor}} {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-  {{/contentFor}}
-  {{#ionView}}
-  {{#ionContent}}
+  {{/contentFor}} {{#ionView}} {{#ionContent}} {{#if ac_on}}
+  <div class="row bordered ac-on">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="flash margin"}} Your AC is currently ON.</p>
+    </div>
+  </div>
+  {{else}} {{#if ac_disconnected}}
+  <div class="row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class="ac-info ">
 
-  {{#if ac_on}}
-  <div class = "row bordered ac-on">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="flash margin"}}    Your AC is currently ON.</p>
+      <p class="thin white">{{> ionIcon icon="alert margin"}} Your AC is currently disconnected. </p>
     </div>
   </div>
   {{else}}
-  {{#if ac_disconnected}}
-  <div class = "row bordered ac-dsc" data-action="showPopupDscAC">
-    <div class = "ac-info ">
-
-      <p class = "thin white">{{> ionIcon icon="alert margin"}}    Your AC is currently disconnected. </p>
+  <div class="row bordered ac-off">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="leaf margin"}} Your AC is currently OFF.</p>
     </div>
   </div>
-  {{else}}
-  <div class = "row bordered ac-off">
-    <div class = "ac-info ">
-      <p class = "thin white">{{> ionIcon icon="leaf margin"}}    Your AC is currently OFF.</p>
-    </div>
-  </div>
-  {{/if}}
-  {{/if}}
-
-
-      {{#if hasOffer}}
-      <div class = "fullscreen or-bg">
-        <div class = "row">
-      <div class = "col countdown">
-        <p class="white">Accept challenge by:</p><br>
-        <div class = 'row padding-top-big'>
-          <div class = "col">
-            <div class = "timer thin white">{{minutes}}:{{seconds}}</div>
-          </div>
-        </div>
-        <div class = "row">
-          <div class ="col">
-            <p class="white"> minutes    &nbsp;&nbsp;&nbsp;   seconds</p></div>
-          </div>
-
-          <div class = "col">
-            <p class="white">  {{> ionIcon icon="leaf offer-info "}}  {{offer.tokensOffered}} tokens </p>
-            <p class="white">  {{> ionIcon icon="ios-time-outline offer-info "}} 30 minutes </p>
-          </div>
-        </div>
-      </div>
-          {{#if ac_disconnected}}
-          <div class = "fullscreen or-bg">
-          <div class="col middle">
-            <div class="button round-button button-unallowed">
-              {{> ionIcon icon="checkmark inside-button"}}
-            </div>
-          </div>
+  {{/if}} {{/if}} {{#if hasOffer}}
+  <div class="fullscreen or-bg">
+    <div class="row">
+      <div class="col countdown">
+        <p class="white">Accept challenge by:</p>
+        <br>
+        <div class='row padding-top-big'>
           <div class="col">
-            <p class="small thin white">Your AC needs to be connected and off to accept this challenge</p>
+            <div class="timer thin white">{{minutes}}:{{seconds}}</div>
           </div>
-      </div>
-          {{else}}
-          {{#if ac_on}}
-          <div class = "fullscreen or-bg">
-          <div class = "col middle">
-            <div class="button round-button button-unallowed"> {{> ionIcon icon="checkmark inside-button"}}  </div>
-          </div>
-          <div class = "col">
-            <p class = "small thin white">Your AC needs to be connected and off to accept this challenge </p> </div>
         </div>
-            {{else}}
-            <div class = "fullscreen or-bg">
-            <div class = "col middle">
+        <div class="row">
+          <div class="col">
+            <p class="white"> minutes &nbsp;&nbsp;&nbsp; seconds</p>
+          </div>
+        </div>
 
-              <div class="button round-button button-allowed" id="acceptOffer"> {{> ionIcon icon="checkmark"}}  </div>
-            </div>
-            <div class = "col">
-              <p class = "small thin white"> By accepting this challenge, please keep your AC turned off for 30 minutes.<br>
-                If your AC is detected to be turned on, you will be disqualified from the challenge.<br> On completion, the specified number of
-                tokens will be immediately added to your Powerly account. </p> </div>
-            </div>
-            {{/if}}
-            {{/if}}
-            </div>
+        <div class="col">
+          <p class="white"> {{> ionIcon icon="leaf offer-info "}} {{offer.tokensOffered}} tokens </p>
+          <p class="white"> {{> ionIcon icon="ios-time-outline offer-info "}} 30 minutes </p>
+        </div>
+      </div>
+    </div>
+    {{#if ac_disconnected}}
+    <div class="fullscreen or-bg">
+      <div class="col middle">
+        <div class="button round-button button-unallowed">
+          {{> ionIcon icon="checkmark inside-button"}}
+        </div>
+      </div>
+      <div class="col">
+        <p class="small thin white">Your AC needs to be connected and off to accept this challenge</p>
+      </div>
+    </div>
+    {{else}} {{#if ac_on}}
+    <div class="fullscreen or-bg">
+      <div class="col middle">
+        <div class="button round-button button-unallowed"> {{> ionIcon icon="checkmark inside-button"}} </div>
+      </div>
+      <div class="col">
+        <p class="small thin white">Your AC needs to be connected and off to accept this challenge </p>
+      </div>
+    </div>
+    {{else}}
+    <div class="fullscreen or-bg">
+      <div class="col middle">
+
+        <div class="button round-button button-allowed" id="acceptOffer"> {{> ionIcon icon="checkmark"}} </div>
+      </div>
+      <div class="col">
+        <p class="small thin white"> By accepting this challenge, please keep your AC turned off for 30 minutes.
+          <br> If your AC is detected to be turned on, you will be disqualified from the challenge.
+          <br> On completion, the specified number of tokens will be immediately added to your Powerly account. </p>
+      </div>
+    </div>
+    {{/if}} {{/if}}
+  </div>
 
 
-              {{else}}
-              {{#if failed}}
-              <div class = "fullscreen or-bg">
-                <div class = "row">
+  {{else}} {{#if failed}}
+  <div class="fullscreen or-bg">
+    <div class="row">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="item item-text-wrap">
               <div class="row">
-                <div class="col">
-                  <div class="card">
-                    <div class="item item-text-wrap">
-                      <div class="row">
-                        <div class = 'col'><p>Sorry, we detected that your AC was disconnected or turned on before time was up.
-                        You have been disqualified from this challenge.</p>
-                        <button id = "acknowledgeFailure" class="button button-default btn-large">
-                          OK
-                        </button></div>
-                      </div>
-                    </div>
-                  </div>
+                <div class='col'>
+                  <p>Sorry, we detected that your AC was disconnected or turned on before time was up. You have been disqualified from this challenge.</p>
+                  <button id="acknowledgeFailure" class="button button-default btn-large">
+                    OK
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-              {{else}}
-              {{#if success}}
-              <div class = "fullscreen or-bg">
-                <div class = "row">
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}} {{#if success}}
+  <div class="fullscreen or-bg">
+    <div class="row">
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="item item-text-wrap">
               <div class="row">
                 <div class="col">
-                  <div class="card">
-                    <div class="item item-text-wrap">
-                      <div class="row">
-                        <div class="col">
-                        <p>Awesome! {{ offer.tokensOffered }} tokens have been added to your account.</p>
-                        <button id = "acknowledgeSuccess" class="button button-default btn-large">
-                          OK
-                        </button>
-                      </div>
-                      </div>
-                    </div>
-                  </div>
+                  <p>Awesome! {{ offer.tokensOffered }} tokens have been added to your account.</p>
+                  <button id="acknowledgeSuccess" class="button button-default btn-large">
+                    OK
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-              {{else}}
+        </div>
+      </div>
+    </div>
+  </div>
+  {{else}} {{#if inGame}}
+  <div class="fullscreen green-bg">
+    <div class="col countdown">
+      <p class="white">Keep your AC Off!</p>
+      <br>
+      <div class='row padding-top-big'>
+        <div class="col">
+          <div class="timer thin white">{{minutes}}:{{seconds}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p class="white"> minutes &nbsp;&nbsp;&nbsp; seconds</p>
+        </div>
+      </div>
 
-          {{#if inGame}}
-          <div class= "fullscreen green-bg">
-          <div class = "col countdown">
-            <p class="white">Keep your AC Off!</p><br>
-            <div class = 'row padding-top-big'>
-              <div class = "col">
-                <div class = "timer thin white">{{minutes}}:{{seconds}}</div>
-              </div>
-            </div>
-            <div class = "row">
-              <div class ="col">
-                <p class="white"> minutes    &nbsp;&nbsp;&nbsp;   seconds</p></div>
-              </div>
+      <div class="col">
+        <p class="white"> {{> ionIcon icon="leaf offer-info "}} {{offer.tokensOffered}} tokens </p>
+        <p class="white"> {{> ionIcon icon="ios-time-outline offer-info "}} 30 minutes </p>
+      </div>
+    </div>
+  </div>
 
-              <div class = "col">
-                <p class="white">  {{> ionIcon icon="leaf offer-info "}}  {{offer.tokensOffered}} tokens </p>
-                <p class="white">  {{> ionIcon icon="ios-time-outline offer-info "}} 30 minutes </p>
-              </div>
-            </div>
-          </div>
-
-          {{else}}
-          <div class= "fullscreen or-bg">
-          <div class = "col countdown">
-              <div class = "row"><div class = "col no-offer "><p class = "white thin">There are currently no challenges available</p></div></div>
-            </div>
-          </div>
-              {{/if}}
-              {{/if}}
-              {{/if}}
-              {{/if}}
-
-
-
-
-
-          {{/ionContent}}
-          {{/ionView}}
-
-          {{> _tabs}}
-        </template>
+  {{else}}
+  <div class="fullscreen or-bg">
+    <div class="col countdown">
+      <div class="row">
+        <div class="col no-offer ">
+          <p class="white thin">There are currently no challenges available</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}} {{/if}} {{/if}} {{/if}} {{/ionContent}} {{/ionView}} {{> _tabs}}
+</template>

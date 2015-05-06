@@ -1,18 +1,17 @@
-<template name = "login">
-    <div class="fullscreen background" style="background-image:url('/img/bg.png');">
+<template name="login">
+  <div class="fullscreen background" style="background-image:url('/img/bg.png');">
+  </div>
+  {{#ionContent}}
+  <div class="row prelogin-logo">
+    <div class="col col-50 inline">
+      <img src="img/color_logo.png" height="76" width="205">
+      <h4 class="default"> Earn while saving.
+        <br> Live better, together </h4>
     </div>
-    {{#ionContent}}
-    <div class = "row prelogin-logo">
-      <div class = "col col-50 inline">
-        <img src = "img/color_logo.png" height="76" width="205">
-        <h4 class = "default"> Earn while saving. <br>
-          Live better, together </h4>
-      </div>
-    </div>
-    {{#ionContent}}
-    <div class = "row login-box">
-       <a href="{{pathFor 'userAccounts'}}" class="button button-stable button-login">Login</a>
-     </div>
-   {{/ionContent}}
-  {{/ionContent}}
+  </div>
+  {{#ionContent}}
+  <div class="row login-box">
+    <a href="{{pathFor 'userAccounts'}}" class="button button-stable button-login">Login</a>
+  </div>
+  {{/ionContent}} {{/ionContent}}
 </template>
