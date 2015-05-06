@@ -2,9 +2,10 @@ var usageOverTimePoints = new Meteor.Collection(null);
 
 Template.data.rendered = function() {
     // initialization code
-    var margin = {top: 20, right: 20, bottom: 40, left: 80},
-    width = 400 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    var margin = {top: 20, right: 20, bottom: 40, left: 80};
+
+    var width = $('body').width()*0.75 - margin.left - margin.right;
+    var height = $('body').width()*0.75*0.6 - margin.top - margin.bottom;
 
     var x = d3.scale.linear()
         .range([width, 0]);
