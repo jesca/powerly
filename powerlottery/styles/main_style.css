@@ -350,7 +350,7 @@ section {
   color: #a5a5a5;
 }
 .topOffset {
-	margin-top: 45px;
+  margin-top: 45px;
 }
 .under-main {
   background-color: rgba(17, 46, 56, 0.86)
@@ -439,16 +439,13 @@ th, td {
   padding: 15px;
   text-align: center;
 }
-
-#usageOverTime .axis path,
-#usageOverTime .axis line {
+#usageOverTime .axis path, #usageOverTime .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #ffffff;
   shape-rendering: crispEdges;
 }
-
 #usageOverTime .line {
   fill: none;
-  stroke: #f00;
+  stroke: #931616;
   stroke-width: 2px;
 }
