@@ -1,14 +1,4 @@
 <template name="_tabs">
-    {{#ionTabs style="ios" class= "tabs-icon-only"}}
-    {{> ionTab title = "Home" path="main" icon="android-home"}}
-    {{#if hasOffer}}
-    {{> ionTab title="Challenge" path="challenge" badgeNumber="1" icon="leaf"}}
-    {{else}}
-    {{> ionTab  title = "Challenge" path="challenge" icon="leaf"}}
-    {{/if}}
-    {{> ionTab  title = "Rewards" path="rewards" icon="cash"}}
-    {{> ionTab title = "Data" path="data" icon="stats-bars"}}
-    {{> ionTab  title = "People" path="hiscores" icon="arrow-graph-up-right"}}
-
-    {{/ionTabs}}
+  {{#ionTabs style="ios" class= "tabs-icon-only"}} {{> ionTab title = "Home" path="main" icon="android-home"}} {{#if hasOffer}} {{> ionTab title="Challenge" path="challenge" badgeNumber="1" icon="leaf"}} {{else}} {{> ionTab title = "Challenge" path="challenge"
+  icon="leaf"}} {{/if}} {{> ionTab title = "Data" path="data" icon="stats-bars"}} {{> ionTab title = "Leaderboard" path="hiscores" icon="arrow-graph-up-right"}} {{/ionTabs}}
 </template>
