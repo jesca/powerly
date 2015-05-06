@@ -323,6 +323,7 @@ section {
   color: #e0b127;
 }
 .token-count {
+  letter-spacing: .2px;
   font-size: 18px;
   font-family: 'Ropa Sans';
 }
