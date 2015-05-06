@@ -9,6 +9,11 @@ Template.hiscores.helpers({
       user.rank = index + 1;
       return user;
     });
-  }
-
+  },
+  ac_on: function() {
+    return Meteor.user().profile.status == 1;
+  },
+  ac_disconnected: function() {
+    return Meteor.user().profile.status == 2;
+  },
 });

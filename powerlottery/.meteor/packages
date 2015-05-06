@@ -16,10 +16,10 @@ accounts-base
 fourseven:scss
 meteoric:ionic-sass
 meteoric:ionicons-sass
-meteoric:ionic
 meteoric:autoform-ionic
 useraccounts:ionic
 useraccounts:core
 aldeed:template-extension
 minimongo
 raix:push
+meteoric:ionic

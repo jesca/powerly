@@ -123,9 +123,6 @@ Template.challenge.helpers({
   ac_disconnected: function() {
     return Meteor.user().profile.status == 2;
   },
-  ac_disconnected: function() {
-    return Meteor.user().profile.status == 2;
-  },
   minutes: function() {
     return Math.floor(Session.get('timeLeftInSeconds') / 60);
   },
