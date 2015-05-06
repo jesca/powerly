@@ -99,12 +99,11 @@
                   <div class="card">
                     <div class="item item-text-wrap">
                       <div class="row">
-                        Sorry, we detected that your AC was disconnected or turned on before time was up.
-                        You have been disqualified from this challenge.
-
-                        <button id = "acknowledgeFailure" class="button button-assertive">
+                        <div class = 'col'><p>Sorry, we detected that your AC was disconnected or turned on before time was up.
+                        You have been disqualified from this challenge.</p>
+                        <button id = "acknowledgeFailure" class="button button-default btn-large">
                           OK
-                        </button>
+                        </button></div>
                       </div>
                     </div>
                   </div>
@@ -121,11 +120,12 @@
                   <div class="card">
                     <div class="item item-text-wrap">
                       <div class="row">
-                        Awesome! {{ offer.tokensOffered }} tokens have been added to your account.
-                        <button id = "acknowledgeSuccess" class="button button-energized">
+                        <div class="col">
+                        <p>Awesome! {{ offer.tokensOffered }} tokens have been added to your account.</p>
+                        <button id = "acknowledgeSuccess" class="button button-default btn-large">
                           OK
                         </button>
-
+                      </div>
                       </div>
                     </div>
                   </div>

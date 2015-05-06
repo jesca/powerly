@@ -58,7 +58,7 @@ Template.main.helpers({
 
 Template.history_list.helpers({
   getHistory: function() {
-    return Meteor.user().profile.past_offers;
+    return Meteor.user().profile.past_offers.reverse();
   },
   succeededOffer: function() {
     return this.status == 1;
