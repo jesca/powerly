@@ -3,16 +3,35 @@
   <div class="logo"></div>
   {{/contentFor}} {{#contentFor "headerButtonRight"}}
   <button class="button button-clear" data-ion-popover="_sideMenu">{{> ionIcon icon="android-menu" class = "menu-icon"}}</button>
-  {{/contentFor}} {{#ionView}} {{#ionContent}}
+  {{/contentFor}} {{#ionView}} {{#ionContent}} {{#if ac_on}}
+  <div class="row bordered ac-on">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="flash margin"}} Your AC is currently ON.</p>
+    </div>
+  </div>
+  {{else}} {{#if ac_disconnected}}
+  <div class="row bordered ac-dsc" data-action="showPopupDscAC">
+    <div class="ac-info ">
+
+      <p class="thin white">{{> ionIcon icon="alert margin"}} Your AC is currently disconnected. </p>
+    </div>
+  </div>
+  {{else}}
+  <div class="row bordered ac-off">
+    <div class="ac-info ">
+      <p class="thin white">{{> ionIcon icon="leaf margin"}} Your AC is currently OFF.</p>
+    </div>
+  </div>
+  {{/if}} {{/if}}
+
 
   <div class="fullscreen or-bg">
     <div class="padding-top-big ">
       <div class="col">
-        <h2 class="white">Current power usage: {{ power_usage }} W</h2>
+        <h4 class="white">Current power usage: {{ power_usage }} W</h4>
         <br> {{> usageOverTime }}</div>
     </div>
   </div>
-
 
   {{/ionContent}} {{/ionView}} {{> _tabs}}
 </template>

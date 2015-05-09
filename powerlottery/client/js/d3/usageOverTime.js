@@ -9,8 +9,8 @@ Template.data.rendered = function() {
     left: 80
   };
 
-  var width = $('body').width() * 0.75 - margin.left - margin.right;
-  var height = $('body').width() * 0.75 * 0.6 - margin.top - margin.bottom;
+  var width = $('body').width() * 0.85 - margin.left - margin.right;
+  var height = $('body').width() * 0.85 * 0.8 - margin.top - margin.bottom;
 
   var x = d3.scale.linear()
     .range([width, 0]);
@@ -48,12 +48,14 @@ Template.data.rendered = function() {
     .append("text")
     .attr("transform", "translate(" + width / 2 + "," + (margin.bottom - 5) + ")")
     .style("text-anchor", "middle")
+    .style("fill", "white")
     .text("Time since present (s)");
 
   svg.append("g")
     .attr("class", "y axis white")
     .append("text")
     .attr("transform", "translate(" + (25 - margin.left) + "," + height / 2 + ") rotate(-90)")
+    .style("fill", "white")
     .text("Power (W)");
 
   function update() {
@@ -63,7 +65,7 @@ Template.data.rendered = function() {
     });
     usageOverTimePoints.remove({
       time: {
-        $lte: new Date().getTime() - 500000
+        $lte: new Date().getTime() - 30000
       }
     });
 

@@ -94,7 +94,7 @@ html, body {
   background: #7BB7C8;
 }
 .prelogin-logo {
-  bottom: 60%;
+  bottom: 50%;
   position: fixed;
 }
 /* visual styles */
@@ -251,7 +251,7 @@ section {
   color: #D13434 !important;
 }
 .login-box {
-  bottom: 40%;
+  bottom: 30%;
   position: fixed;
 }
 .button-login {
@@ -298,7 +298,7 @@ section {
   margin-right: 10px;
 }
 .timer {
-  font-size: 100px;
+  font-size: 80px;
   font-style: bold;
   margin-bottom: 20px;
   letter-spacing: 5px;
@@ -443,6 +443,9 @@ th, td {
   fill: none;
   stroke: #ffffff;
   shape-rendering: crispEdges;
+}
+#usageOverTime .axis text {
+  fill: #ffffff;
 }
 #usageOverTime .line {
   fill: none;

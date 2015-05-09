@@ -6,7 +6,7 @@
  *
  */
 PowerHandler = {
-  windowSize: 20000,
+  windowSize: 30000,
   windowPowerTotal: 0,
   maxPowerThreshold: 0,
 
@@ -31,7 +31,6 @@ PowerHandler = {
       }, {
         _id: deviceId + '',
         timestamp: timestamp,
-        status: status,
         power: power
       }, function(error, result) {});
     } else {

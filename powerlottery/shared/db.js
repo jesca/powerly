@@ -6,6 +6,14 @@ if (Meteor.isServer) {
     console.log("start up");
     // clear the devices and offers db on startup
     Meteor.users.remove({});
+    Meteor.users.insert({profile: {total_tokens: 90, name: "Junwei"}});
+    Meteor.users.insert({profile: {total_tokens: 55, name: "Jessica"}});
+    Meteor.users.insert({profile: {total_tokens: 45, name: "Paymon"}});
+    Meteor.users.insert({profile: {total_tokens: 35, name: "Bob"}});
+    Meteor.users.insert({profile: {total_tokens: 25, name: "Jimmy"}});
+    Meteor.users.insert({profile: {total_tokens: 25, name: "Joe"}});
+    Meteor.users.insert({profile: {total_tokens: 20, name: "George"}});
+    Meteor.users.insert({profile: {total_tokens: 16, name: "Hillary"}});
     offers.remove({});
     devices.remove({});
     //Meteor.users.update({}, {$set:{'profile.status': 2, 'profile.power_usage': 0}});
